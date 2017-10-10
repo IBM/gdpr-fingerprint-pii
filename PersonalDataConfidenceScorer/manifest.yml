@@ -1,0 +1,9 @@
+applications:
+- instances: 1
+  domain: mybluemix.net
+  env:
+    Categories: Cat1,Cat2
+    Cat1_Weight: 50
+    Cat2_Weight: 10
+    Cat1_PIIs: MobileNumber,Name,doj
+    Cat2_PIIs: Person,Company,dob

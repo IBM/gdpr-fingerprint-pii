@@ -21,11 +21,17 @@ body,html {
 }
 
 .node text {
-	font: 12px sans-serif;
+	font: 20px sans-serif;
+	text-align: center;
 }
 
 .link {
 	fill: none;
-	stroke: #000;
-	stroke-width: 2px;
+	stroke: #aaa;
+	stroke-width: 1px;
+}
+
+.score {
+	font-size: medium;
+	color: maroon;
 }

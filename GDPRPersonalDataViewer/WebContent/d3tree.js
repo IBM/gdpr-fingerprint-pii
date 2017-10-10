@@ -38,7 +38,7 @@ function send(text) {
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(inputJSON);
     var jsonData = JSON.parse(xmlhttp.responseText);
-    documentscore.innerHTML = "Document Score: " + jsonData.score;
+    documentscore.innerHTML = "Fingerprint Confidence: " + jsonData.score;
     showTree(jsonData.treeData);
 }
 

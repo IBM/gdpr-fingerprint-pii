@@ -64,7 +64,7 @@ public class PIIDataExtractor {
 			        String ofKeyStr = (String)ofKey; // Category name.. e.g. Very_High
 			        // Add this key as name
 			        JSONObject nfNameL2 = new JSONObject(); // new format - Category name
-			        nfNameL2.put("name", ofKeyStr);
+			        String categoryWeight = "";
 			        JSONArray nfChildrenL2Array = new JSONArray(); // 
 			        nfNameL2.put("children", nfChildrenL2Array);
 			        nfChildrenL1Array.add(nfNameL2);
@@ -76,7 +76,7 @@ public class PIIDataExtractor {
 			        		JSONObject ofPIIObject = (JSONObject)ofPIIArrayForGivenCategory.get(i);
 					        String ofPIIType = (String)ofPIIObject.get("piitype");
 					        String ofPII = (String)ofPIIObject.get("pii");
-					        double ofWeight = ((Double)ofPIIObject.get("weight")).doubleValue();
+					        categoryWeight = ((Double)ofPIIObject.get("weight")).doubleValue() + "";
 					        
 					        JSONObject nfNameL3 = new JSONObject();
 					        nfNameL3.put("name", ofPIIType);
@@ -93,10 +93,17 @@ public class PIIDataExtractor {
 					        nfChildrenL3Array.add(nfNameL4);
 					        
 					        // add children to nfChildrenL4Array
+					        /*
 					        JSONObject nfNameL5 = new JSONObject();
 					        nfNameL5.put("name", "Weightage " + ofWeight);
 					        nfChildrenL4Array.add(nfNameL5);
+					        */
 			        	}
+			        }
+			        if( categoryWeight.length() > 0 ){
+				        nfNameL2.put("name", ofKeyStr + " (Weightage: " + categoryWeight + ")");
+			        }else{
+				        nfNameL2.put("name", ofKeyStr);
 			        }
 			    }
 			}
@@ -141,6 +148,9 @@ public class PIIDataExtractor {
 		
 		// extract string from text for each regex and build JSONObjects for them
 		JSONArray entities = (JSONArray) nluJSON.get("entities");
+		if( entities == null ){
+			return new JSONObject();
+		}
 		if( regexEntityTypes != null && regexEntityTypes.length > 0 ){
 			for( int i = 0; i < regexEntityTypes.length; i++ ){
 				String regexEntityType = regexEntityTypes[i];

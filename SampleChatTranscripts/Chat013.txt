@@ -1,0 +1,9 @@
+Rep: This is Mohan. How can I help you?
+Caller: Hi, this is John. I wanted to request for test drive of your newly launched vehicle.
+Rep: Sure, I can help you. May i know your phone number and email id for the records
+Caller: My phone number is 1010-1010-10 and email is askme@yahoo.com
+Rep: Thank you for providing the information. Can you verify your communication address for the vehicle to be sent across for test drive
+Caller : Site # 1, ABC road, JP  Nagar, Bangalore
+Rep: May i have your date of birth to complete your profile
+Caller: 1989, 1st of March
+Rep : Thanks for providing the details. Your test drive is scheduled for tomorrow.

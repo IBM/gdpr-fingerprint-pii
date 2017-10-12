@@ -1,0 +1,19 @@
+Cust: Hi this is Pinto here calling from Bangalore
+Tech Rep: This is intu from Tikona Technical support Sir, how can I help you today
+Cust: My Broadband is not connecting. Can you help resolve
+Tech: Sure Sir, let me confirm your Customer ID.. it is 128976 and your address is No 18, 19th Cross, Hebbal, Bangalore 56
+Cust: Yes correct
+Tech: And I am talking to Mr.Pinto
+Cust: Yes its me
+Tech: Can I confirm that your Modem is connected and the power is ON
+Cust: Yes it is
+Tech: Can you switch off the modem and wait for 20 secs and power it back. I will stay on call while you do that?
+Cust: Ok I am doing that.... ok I have just restarted the modem
+Tech: Thank you, please wait a few mins while I diognise your connection
+Cust: ok
+Tech: Can you please try to login now Sir?
+Cust: Ok, I am going to the login to my broadband account now. Yes, now I am able to login
+Cust: Now let me check if I am able to browse the internet.. Yes, I could navigate to google.com. Seems its working now
+Tech: Great, is there anything I can do for you today Sir
+Cust: No.. thats it thanks very much
+Tech: Thank you Sir have a wonderful day

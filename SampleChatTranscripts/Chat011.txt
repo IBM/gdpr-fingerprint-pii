@@ -1,0 +1,9 @@
+Rep: This is Karthik. How can I help you?
+Caller: Hi, this is John. I wanted to request for cheque book.
+Rep: Sure, I can help you.  For verification purpose may I know your date of birth and email id
+Caller: My date of birth is 19-Apr-89 and email is askme@yahoo.com
+Rep: Thank you for providing the information. Can you verify your communication address
+Caller : #100, 3rd floor, ABC Apartments, BSK III  Stage, Bangalore-75
+Rep: May i have your phone number
+Caller: 10101-01010
+Rep : Thanks for providing the details. Your request will be processed shortly.

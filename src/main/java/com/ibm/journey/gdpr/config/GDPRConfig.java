@@ -1,8 +1,11 @@
 package com.ibm.journey.gdpr.config;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
-/*
+import org.apache.log4j.Logger;
+
+/**
  * Class for configuration settings for
  * 1. PII data categories
  * 2. Weightage for each of the categories
@@ -20,14 +23,23 @@ import java.util.HashMap;
  * 		Low_PIIs=Name,Company
  */
 public class GDPRConfig {
-	private static String[] categoriesArray = null; // Categories in config
-	private static HashMap<String, String> weightageMap = null; // weightages in
-																// config
-	private static HashMap<String, String[]> categoryPIIMapping = null; // PIIs
-																		// in
-																		// config
+	
+	final static Logger logger = Logger.getLogger(GDPRConfig.class);
+	
+	// Categories in config
+	private static String[] categoriesArray = null;
+	
+	// weightages in config
+	private static HashMap<String, String> weightageMap = null;
+	
+	// PIIs in config
+	private static HashMap<String, String[]> categoryPIIMapping = null;
 
-	// Get the catgories configured as a String Array
+	/**
+	  * Get the categories configured as a String Array
+	  * 
+	  * @return categoriesArray Categories as an array of Strings
+	  */
 	public static String[] getCategories() throws Exception {
 		try {
 			if (categoriesArray == null) {
@@ -40,7 +52,11 @@ public class GDPRConfig {
 		}
 	}
 
-	// Get the weights for each category as a map of category->weight
+	/**
+	  * Get the weights for each category as a map of category->weight
+	  * 
+	  * @return weightageMap Map containing weights for the categories
+	  */
 	public static HashMap<String, String> getWeightages() throws Exception {
 		try {
 			if (weightageMap == null) {
@@ -53,9 +69,13 @@ public class GDPRConfig {
 		}
 	}
 
-	// Mapping of each category with all PII data. represented as map category
-	// -> PIIData[]
-	// e.g. ""Very_High" -> ["Name", "emailid"]
+
+	/**
+	  * Mapping of each category with all PII data. represented as map category -> PIIData[]
+	  * e.g. ""Very_High" -> ["Name", "emailid"]
+	  * 
+	  * @return categoryPIIMapping Map of category and PII types corresponding to category
+	  */	
 	public static HashMap<String, String[]> getCategoryPIIMapping() throws Exception {
 		try {
 			if (categoryPIIMapping == null) {
@@ -68,7 +88,10 @@ public class GDPRConfig {
 		}
 	}
 
-	// Set categories in config as an array
+
+	/**
+	  * Set categories in config as an array
+	  */
 	private static void setCategories() throws Exception {
 		try {
 			String categoriesStr = System.getenv("Categories").trim();
@@ -77,6 +100,10 @@ public class GDPRConfig {
 			}
 
 			categoriesArray = trimArrayValues(categoriesStr.split(","));
+			if (logger.isInfoEnabled()) {
+				logger.info("Configuration - Categories");
+				logger.info(Arrays.toString(categoriesArray));
+			}
 
 			if (categoriesArray.length <= 0) {
 				throw new Exception("Categories not found in config");
@@ -87,7 +114,10 @@ public class GDPRConfig {
 		}
 	}
 
-	// Set weights for categories in config as a map of category -> weight
+
+	/**
+	  * Set weights for categories in config as a map of category -> weight
+	  */
 	private static void setWeightages() throws Exception {
 		try {
 			if (categoriesArray == null) {
@@ -96,10 +126,16 @@ public class GDPRConfig {
 
 			weightageMap = new HashMap<String, String>();
 
+			if (logger.isInfoEnabled()) {
+				logger.info("Configuration - Weights");
+			}
 			for (int i = 0; i < categoriesArray.length; i++) {
 				String key = categoriesArray[i] + "_Weight";
 				String weight = System.getenv(key);
 				weightageMap.put(categoriesArray[i], weight);
+				if (logger.isInfoEnabled()) {
+					logger.info(categoriesArray[i] + " -> " + weight);
+				}
 			}
 			if (weightageMap.size() <= 0) {
 				throw new Exception("Attributes could not be retrieved");
@@ -110,7 +146,10 @@ public class GDPRConfig {
 		}
 	}
 
-	// set category to PII data mapping
+
+	/**
+	  * set category to PII data mapping
+	  */
 	private static void setCategoryPIIMapping() throws Exception {
 		try {
 			if (categoriesArray == null) {
@@ -119,11 +158,17 @@ public class GDPRConfig {
 
 			categoryPIIMapping = new HashMap<String, String[]>();
 
+			if (logger.isInfoEnabled()) {
+				logger.info("Configuration - categoryPIIMapping");
+			}
 			for (int i = 0; i < categoriesArray.length; i++) {
 				String key = categoriesArray[i] + "_PIIs";
 				String attributes = System.getenv(key);
 				String[] attributesArray = trimArrayValues(attributes.split(","));
 				categoryPIIMapping.put(categoriesArray[i], attributesArray);
+				if (logger.isInfoEnabled()) {
+					logger.info(categoriesArray[i] + " -> " + Arrays.toString(attributesArray));
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,8 +177,10 @@ public class GDPRConfig {
 
 	}
 
-	// This method return the appropriate category, given a PII, as specified in
-	// config
+
+	/**
+	  * This method return the appropriate category, given a PII, as specified in config
+	  */
 	public static String getCategoryForPII(String pii) throws Exception {
 		try {
 			if (categoriesArray == null) {
@@ -160,14 +207,16 @@ public class GDPRConfig {
 			}
 			return null; // category not found
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
 			e.printStackTrace();
 			throw new Exception(e.getMessage());
 		}
 
 	}
 
-	// Given a category, get weight for it as specified in config
+
+	/**
+	  * Given a category, get weight for it as specified in config
+	  */
 	public static float getWeightForCategory(String category) throws Exception {
 		try {
 			if (weightageMap == null) {
@@ -182,6 +231,12 @@ public class GDPRConfig {
 
 	}
 
+	/**
+	  * Given a category, get weight for it as specified in config
+	  * 
+	  * @param stringArray Array String values to trim
+	  * @return stringArray trimmes values Array
+	  */
 	private static String[] trimArrayValues(String[] stringArray) {
 		for (int i = 0; i < stringArray.length; i++) {
 			stringArray[i] = stringArray[i].trim();

@@ -1,0 +1,19 @@
+applications:
+- instances: 1
+  domain: mybluemix.net
+  env:
+    wks_model: 10:bf07696e-da66-45ad-8af3-26dec3f3df70
+    username: 7a62a6c9-393e-4007-91f3-7a95c55e217e
+    password: W6KwIJMOSeGB
+    regex_params: dob,doj
+    dob_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.](19|20)\d\d
+    doj_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d
+    Categories: Very_High,High,Medium,Low
+    Very_High_Weight: 50
+    High_Weight: 40
+    Medium_Weight: 20
+    Low_Weight: 10
+    Very_High_PIIs: MobileNumber
+    High_PIIs: Person,dob,EmailId
+    Medium_PIIs: Name,doj
+    Low_PIIs: Company

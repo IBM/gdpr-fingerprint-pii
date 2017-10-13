@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+
+/**
+ * Generic String utilities that can be reused.. 
+ * e.g. Splitting a String, converting InputStream to String
+ */
 public class StringUtils {
 
 	// convert InputStream to String

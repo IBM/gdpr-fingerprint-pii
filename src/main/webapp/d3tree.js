@@ -28,13 +28,17 @@ window.onload = function() {
     });
 }
 
+function getContextPath() {
+	   return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+	}
 
 function send(text) {
+
     var inputJSON = '{"text": "' + text + '"}';
 
     var xmlhttp = new XMLHttpRequest();
-    var URL = "http://" + window.location.host + "/PersonalDataScorer/rest/personaldata/forviewer";
-    // TODO get complete path? how to
+    var proto = window.location.protocol;
+    var URL = proto + "//" + window.location.host + getContextPath() + "/rest/personaldata/forviewer";
     xmlhttp.open("POST", URL, false);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(inputJSON);

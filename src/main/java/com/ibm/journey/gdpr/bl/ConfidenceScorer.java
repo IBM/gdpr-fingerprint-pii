@@ -1,11 +1,14 @@
 package com.ibm.journey.gdpr.bl;
 
+import org.apache.log4j.Logger;
+
 import com.ibm.journey.gdpr.config.GDPRConfig;
 import com.ibm.json.java.JSONArray;
 import com.ibm.json.java.JSONObject;
 
 public class ConfidenceScorer {
 	
+	final static Logger logger = Logger.getLogger(ConfidenceScorer.class);
 	
 	public JSONObject getConfidenceScore(JSONObject inputData) throws Exception{
 		
@@ -84,7 +87,6 @@ public class ConfidenceScorer {
 			String[] configCategories = GDPRConfig.getCategories();
 			for( int i = 0; i < configCategories.length; i++ ){ // categories in order of weightage
 				String category = configCategories[i];
-				System.out.println("Category = " + category);
 				// calculate weightage for this category
 				for( int j = 0; j < categoriesArray.size(); j++ ){
 					JSONObject piiDataCategoryNode = (JSONObject)categoriesArray.get(j);
@@ -96,7 +98,6 @@ public class ConfidenceScorer {
 							String piiType = piiNode.get("piitype").toString();
 							String pii = piiNode.get("pii").toString();
 							float weight = ((Float)piiNode.get("weight")).floatValue();
-							System.out.println("PII Node: piitype = " + piiType + ", pii = " + pii + ", weight = " + weight);
 							currentConfidence = getUpdatedConfidence(weight, currentConfidence);
 						}
 					}
@@ -106,7 +107,6 @@ public class ConfidenceScorer {
 			
 		}catch( Exception e){
 			e.printStackTrace();
-			System.out.println("Error: " + e.getMessage());
 			throw e;
 		}
 	}

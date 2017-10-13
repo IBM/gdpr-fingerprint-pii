@@ -1,0 +1,22 @@
+Rep: Welcome to Vodaphone. This is Sanjay. How can I help you
+Caller: My billing is incorrect
+Rep: May I have your phone number please
+Caller: Yes, my phone number is 8765453213
+Rep: Who is this number registered to
+Caller: Amit
+Rep: For verification can you confirm your date of birth and email id
+Caller: Date of birth is 20 July 1980 and email is amit@whatever.com
+Rep: What's the issue in billing
+Caller: I am charged for data pack whereas I had requested for unsubscribing from data pack a month back
+Rep: Apologies sir I will check Can I place your call on hold for a minute please?
+Caller: yes
+Rep: Thanks
+Rep: Yes, there seems to be an issue I will initiate reversal of data charges
+Caller: Thanks Can I get a hard copy of the bill to my address please?
+Rep: Please confirm your address
+Caller: My address is house no 13, Block 2, nandini layout, Bengaluru - 560016
+Rep: I have taken your request for paper bill which you will get it in a week
+Caller: ok
+Rep: Is there anything else that I can help you with
+Caller: no
+Rep: Thanks. Have a good day.. Bye

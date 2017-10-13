@@ -1,0 +1,17 @@
+Rep: This is Vishal. How can I help you?
+Caller: This is Astha. I want to increase the data limit of my number.
+Rep: Sure, Mam, I’ll help you. Do you want to add data for the number from which you are calling?
+Caller: yes, before that can you please tell me what is the current data limit with my plan?
+Rep: Sure Mam. Let me check the details.
+Rep: Mam, it is 300 MB per month. How much data you need 1GB/2GB?
+Caller: I want 1GB per month.
+Rep: Sure Mam. Can you please tell your date of birth, it is required for verification purpose.
+Caller: ok, it is 7th February 1990
+Rep: and your email id is?
+Caller: it is astha123@gmail.com
+Rep: Mam, as you are using corporate plan, please confirm your office name and employee ID.
+Caller: Sure, Company name is IBM and employee ID is 890031.
+Rep: Thank you for verification. Wait a min..
+Rep: Ok.. I have raised a service request to increase data limit for your number. You will get an update within 24 hours. Is there anything else that I can help you with
+Caller: No
+Rep: Thanks for calling Vodafone. Have a good day.

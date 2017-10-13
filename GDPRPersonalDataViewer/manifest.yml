@@ -1,6 +1,0 @@
-applications:
-- instances: 1
-  domain: mybluemix.net
-  env:
-    wrapperurl: http://gdpr-personaldata-extractor.mybluemix.net/rest/piiextractorford3
-  

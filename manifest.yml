@@ -2,6 +2,7 @@ applications:
 - instances: 1
   domain: mybluemix.net
   buildpack: liberty-for-java
+  path: target/PersonalDataScorer.war
   env:
     wks_model: 10:bf07696e-da66-45ad-8af3-26dec3f3df70
     username: 7a62a6c9-393e-4007-91f3-7a95c55e217e

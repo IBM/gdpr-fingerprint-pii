@@ -1,7 +1,7 @@
 declared-services:
     NLUGDPROneClick:
         label: natural-language-understanding
-        plan: Lite
+        plan: free
 applications:
 - instances: 1
   domain: mybluemix.net

@@ -1,7 +1,11 @@
 package com.ibm.journey.gdpr.bl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -160,16 +164,17 @@ public class PIIDataExtractor {
 	  */
 	private JSONObject getNLUOutput(String text) throws Exception {
 		try {
-			String user = System.getenv("username");
-			String password = System.getenv("password");
+			Map<String, String> nluCreds = getNLUCredentials();
+//			String user = System.getenv("username");
+//			String password = System.getenv("password");
 			String model = System.getenv("wks_model");
-			if (logger.isInfoEnabled()) {
-				logger.info("NLU Instance details");
-				logger.info("user: " + user + ", modelid: " + model + "  For password, refer env variables");
-			}
+//			if (logger.isInfoEnabled()) {
+//				logger.info("NLU Instance details");
+//				logger.info("user: " + user + ", modelid: " + model + "  For password, refer env variables");
+//			}
 
 			NaturalLanguageUnderstanding service = new NaturalLanguageUnderstanding(
-					NaturalLanguageUnderstanding.VERSION_DATE_2017_02_27, user, password);
+					NaturalLanguageUnderstanding.VERSION_DATE_2017_02_27, nluCreds.get("username"), nluCreds.get("password"));
 
 			EntitiesOptions entitiesOptions = new EntitiesOptions.Builder().model(model).emotion(true).sentiment(true)
 					.limit(20).build();
@@ -185,6 +190,41 @@ public class PIIDataExtractor {
 			throw new Exception(e.getMessage());
 		}
 
+	}
+	
+	
+	private Map<String, String> getNLUCredentials() throws Exception{
+		
+		Map<String, String> nluCredentialsMap = new HashMap<String, String>();
+		
+		try{
+			String VCAP_SERVICES = System.getenv("VCAP_SERVICES");
+			//String VCAP_SERVICES = "{\"natural-language-understanding\":[{\"credentials\":{\"url\":\"https://gateway.watsonplatform.net/natural-language-understanding/api\",\"username\":\"8ea86c6c-c681-4186-bf91-e766413145ad\",\"password\":\"XaQHFNhhpnKX\"},\"syslog_drain_url\":null,\"volume_mounts\":[],\"label\":\"natural-language-understanding\",\"provider\":null,\"plan\":\"free\",\"name\":\"NLU - GDPR\",\"tags\":[\"watson\",\"ibm_created\",\"ibm_dedicated_public\",\"lite\"]}]}";
+			
+			if (VCAP_SERVICES != null) {
+				// parse the VCAP JSON structure
+				JSONObject obj = (JSONObject) JSONObject.parse(VCAP_SERVICES);
+				JSONArray nluArray = (JSONArray)obj.get("natural-language-understanding");
+				if( nluArray != null && nluArray.size() > 0 ){
+					for( int i = 0; i < nluArray.size(); i++ ){
+						JSONObject o = (JSONObject)nluArray.get(i);
+						if( o.get("credentials") != null ){
+							JSONObject credsObject = (JSONObject)o.get("credentials");
+							nluCredentialsMap.put("username", (String)credsObject.get("username"));
+							nluCredentialsMap.put("password", (String)credsObject.get("password"));
+							nluCredentialsMap.put("nluURL", (String)credsObject.get("url"));
+						}
+					}
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new Exception(e.getMessage());
+		}
+		if( nluCredentialsMap.get("username") == null ){
+			throw new Exception("NLU Credentials not found");
+		}
+		return nluCredentialsMap;
 	}
 
 	/**

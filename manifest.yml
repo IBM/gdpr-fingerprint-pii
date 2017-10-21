@@ -1,5 +1,5 @@
 declared-services:
-    NLUGDPROneClick:
+    NLUGDPR:
         label: natural-language-understanding
         plan: free
 applications:
@@ -8,9 +8,9 @@ applications:
   buildpack: liberty-for-java
   path: target/PersonalDataScorer.war
   services: 
-    - NLUGDPROneClick
+    - NLUGDPR
   env:
-    wks_model: 10:bf07696e-da66-45ad-8af3-26dec3f3df70
+    wks_model: 
     regex_params: dob,doj
     dob_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.](19|20)\d\d
     doj_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d

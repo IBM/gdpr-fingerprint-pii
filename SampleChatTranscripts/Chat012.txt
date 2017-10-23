@@ -1,9 +1,0 @@
-Rep: This is Mohan. How can I help you?
-Caller: Hi, this is John. I wanted to request for pickup of car for service.
-Rep: Sure, I can help you.  For verification purpose may I know your vehicle number, date of birth and email id to check for promo deals
-Caller: My vehicle number is KA-01-M-1111, date of birth is April 19th 1989 and email is askme@yahoo.com
-Rep: I have pulled up the vehicle details. Can you verify your communication address for the vehicle pickup
-Caller : Plot 1/A, survey number 100/290/1, BTM II Stage, Bangalore
-Rep: May i have your phone number
-Caller: 101-010-1010
-Rep : Thanks for providing the details. Your vehicle will be picked up tomorrow.

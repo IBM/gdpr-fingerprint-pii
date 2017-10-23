@@ -4,10 +4,42 @@
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
 
 # Personal Data Extraction and Scoring of an unstructured text document
-Name of Journey
 
-# Short Description
-Short description of the journey
+The General Data Protection Regulation (GDPR) is a regulation by which the European Parliament, the Council of the European Union and the European Commission intend to strengthen and unify data protection for all individuals within the European Union (EU). It also addresses the export of personal data outside the EU. 
+
+Under the EU's new General Data Protection Regulation, enterprises around the world must not only keep personal data private, but they will also be required to "forget" any personal data related to an individual on request -- and the GDPR right to be forgotten will be a significant part of compliance with the new rule. 
+
+In this this journey, we show you how to extract personal data from unstructured text document and assign confidence score which represents the probability of identifying an individual from the personal data identified. 
+
+**What does this journey achieve?**
+This application extracts personal data from an unstructured chat transcript. It also provides a confidence score, which is an indicator of how confidently an individual can be identified from the personal data available and extracted from the text.
+
+Let us try to understand this with an example
+Sample transcript
+Rep: This is Thomas. How can I help you?
+Caller: This is Alex. I want to change my plan to corporate plan
+Rep: Sure, I can help you. Do you want to change the plan for the number from which you are calling now?
+Caller: yes
+Rep: For verification purpose may I know your date of birth and email id
+Caller: My data of birth is 10-Aug-1979 and my email id is alex@gmail.com
+Rep: Which plan do you want to migrate to
+Caller: Plan 450 unlimited
+Rep: Can I have your company name and date of joining
+Caller: I work for IBM and doj 01-Feb-99
+Rep: Ok.. I have taken your request to migrate plan to 450 unlimited. You will get an update in 3 hours. Is there anything else that I can help you with
+Caller: No
+Rep: Thanks for calling Vodaphone. Have a good day.
+Caller: you too
+
+Personal Data extracted from the above text:
+Name: Alex
+Date of birth: 10-Aug-1979
+Email id: alex@gmail.com
+Company: IBM 
+Date of joining: 01-Feb-99
+Also the confidence score is calculated
+**Confidence score:** 0.7
+
 
 # Offering Type
 Cognitive | Cloud | Emerging

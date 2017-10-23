@@ -1,12 +1,9 @@
-# gdpr-pii-data
 
 # Work in Progress
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
 
-# HOME
-
-# Short Name
+# Personal Data Extraction and Scoring of an unstructured text document
 Name of Journey
 
 # Short Description

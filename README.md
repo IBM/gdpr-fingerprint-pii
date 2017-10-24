@@ -88,9 +88,7 @@ This journey gives you a step by step instructions for:
     - **Personal Data Extractor component:** <br />
 Personal Data Extractor component is the controller which controls the flow of data between all the components. 
     - **Scorer component:**  <br />
-Scorer component calculates the score of a document, which will be between 0 and 1, based on the personal data identified and the configuration data. It uses the below algorithm 
-<br />
-Let doc_score be 0 <br />
+Scorer component calculates the score of a document, which will be between 0 and 1, based on the personal data identified and the configuration data. It uses the below algorithm<br />Let doc_score be 0 <br />
 For each category{ <br />
 &emsp;cat_weight = weightage for the category<br />
 &emsp;cat_entity_types = list of entity types for the category<br />
@@ -101,8 +99,7 @@ For each category{ <br />
      - **Regex component:**  <br />
 Regex component parses the input text using the regular expressions provided in the configuration files to extract personal data. Regular expressions are used to extract personal data where NLU won’t is not effective enough. It augments the results provided by NLU.
     - **Viewer component:**  <br />
-Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown
-<img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
+Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown <img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
 
 ### 3. Develop Watson Knowledge Studio model
 Note that building Watson Knowledge Studio annotations and building a model is a complex and iterative process. The intention here is not to deal with the end to end process but to give an idea on the process so that it can be modified/extended as the requirements suit<br/>

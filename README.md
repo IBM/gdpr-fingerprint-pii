@@ -148,8 +148,9 @@ Regex component parses the input text using the regular expressions provided in 
 Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown <img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
 
 ### 4. Develop Watson Knowledge Studio model
-Note that building Watson Knowledge Studio annotations and building a model is a complex and iterative process. The intention here is not to deal with the end to end process but to give an idea on the process so that it can be modified/extended as the requirements suit<br/>
-The steps described here is to import the Type Systems and ground truth on which to train the machine learning model, annotator development and evaluation, and then deploying it into Natural Language Understanding
+Note that building Watson Knowledge Studio annotations and building a model is a complex and iterative process. The intention here is not to deal with the end to end process but to give an idea on the process so that it can be modified/extended as the requirements suite<br/>
+The steps described here is to import the Type Systems and ground truth on which to train the machine learning model, annotator development and evaluation, and then deploying it on 
+to Natural Language Understanding
 #### 4.1 Import Artifacts
 In github repository, navigate to WKS folder. Download the files named “Documents.zip” and “TypeSystems.json” to your local filesystem
 #### 4.2 Create Project

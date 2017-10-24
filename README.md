@@ -72,7 +72,7 @@ This journey gives you a step by step instructions for:
 1. [Prerequisites](#1-prerequisites)
 2. [Deploy the application to Bluemix](#2-deploy-the-application-to-bluemix)
 3. [Develop Watson Knowledge Studio model](#3-develop-watson-knowledge-studio-model)
-4. [Deploy WKS model to Watson Natural Language Understanding](#4-deploy-wKS-model-to-watson-natural-language-understanding)
+4. [Deploy WKS model to Watson Natural Language Understanding](#4-deploy-wks-model-to-watson-natural-language-understanding)
 5. [Verify that configuration parameters are correct](#5-verify-that-configuration-parameters-are-correct)
 6. [Using Personal Data Extractor application](#6-using-personal-data-extractor-application)
 

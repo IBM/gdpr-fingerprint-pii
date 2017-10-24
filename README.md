@@ -103,7 +103,7 @@ Medium_PIIs: Name,DOJ<br/>
 Low_PIIs: Company<br/>
 regex_params: DOB,DOJ<br/>
 DOB_regex: (0[1-9]|[12]\[0-9]|3[01])[- /.]\(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\(19|20)\d\d<br/>
-DOJ_regex: (0[1-9]|[12]\[0-9]|3[01])[- /.]\(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d*<br/><br/><br/>**Categories:** <br/>Personal data are classified into different categories so as to assign weights for each category which can then be used to calculate confidence score of document<br/>
+DOJ_regex: (0[1-9]|[12]\[0-9]|3[01])[- /.]\(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d*<br/><br/>**Categories:** <br/>Personal data are classified into different categories so as to assign weights for each category which can then be used to calculate confidence score of document<br/>
 *\<category>_Weight: Weightage for each category<br/>
 \<category>_PIIs: Personal data (Entity types)<br/>
 regex_params: Entity types which have to be extracted using regular expressions<br/>

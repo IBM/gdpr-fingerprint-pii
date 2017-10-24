@@ -69,15 +69,15 @@ This journey gives you a step by step instructions for:
 
 
 # Steps
-1. [Prerequisites](#1-Prerequisites)
-2. Deploy the application to Bluemix
+1. [Prerequisites](#1-prerequisites)
+2. [Deploy the application to Bluemix](#2-deploy-the-application-to-bluemix)
 3. Develop Watson Knowledge Studio (WKS) model
 4. Deploy WKS model to Watson Natural Language Understanding (NLU)
 5. Verify that configuration parameters are correct
 6. Using Personal Data Extractor application
 
 
-### 1.Prerequisites
+### 1. Prerequisites
 - Bluemix account
 - Watson Knowledge Studio account and WKS skills
 

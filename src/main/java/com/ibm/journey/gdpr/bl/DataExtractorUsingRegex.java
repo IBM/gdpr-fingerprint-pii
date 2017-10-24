@@ -66,6 +66,9 @@ public class DataExtractorUsingRegex {
 	  * @return matchResultList results of regular expression matching
 	  */
 	private List<String> getRegexMatchingWords(String text, String patternStr) {
+		System.out.println("text = " + text);
+		System.out.println("patternStr = " + patternStr);
+
 		Pattern p = Pattern.compile(patternStr);
 
 		Matcher m = p.matcher(text);

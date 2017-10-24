@@ -10,16 +10,16 @@ applications:
   services: 
     - NLUGDPR
   env:
-    wks_model: 
-    regex_params: dob,doj
-    dob_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.](19|20)\d\d
-    doj_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d
+    wks_model: 10:b7a9e265-5325-45bd-b1c7-38a063097179
+    regex_params: DOB,DOJ
+    DOB_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.](19|20)\d\d
+    DOJ_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d
     Categories: Very_High,High,Medium,Low
     Very_High_Weight: 50
     High_Weight: 40
     Medium_Weight: 20
     Low_Weight: 10
     Very_High_PIIs: MobileNumber
-    High_PIIs: Person,dob,EmailId
-    Medium_PIIs: Name,doj
+    High_PIIs: Person,DOB,EmailId
+    Medium_PIIs: Name,DOJ
     Low_PIIs: Company

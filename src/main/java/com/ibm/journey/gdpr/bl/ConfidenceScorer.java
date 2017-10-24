@@ -65,6 +65,7 @@ public class ConfidenceScorer {
 			for( int i = 0; i < entities.size(); i++ ){
 				JSONObject entity = (JSONObject)entities.get(i);
 				String piiType = entity.get("type").toString();
+				piiType = piiType.substring(0, 1).toUpperCase() + piiType.substring(1); // make first letter caps
 				String pii = entity.get("text").toString();
 				String category = GDPRConfig.getCategoryForPII(piiType);
 				if( category == null ){

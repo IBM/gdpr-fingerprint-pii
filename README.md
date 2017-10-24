@@ -51,6 +51,14 @@ This journey gives you a step by step instructions for:
 
 # Flow
 <img src="images/Architecture.png" alt="Architecture/Flow diagram" width="640" border="10" />
+1 – Viewer passes input text to Personal Data Extractor<br/>
+2 – Personal Data Extractor passes the text to NLU<br/>
+3 – Personal Data extracted from the input text . NLU uses custom model to provide the response<br/>
+4 – Personal Data Extractor passes NLU Output to Regex component<br/>
+5 – Regex component uses the regular expressions provided in configuration to extract personal data which is then augmented to the NLU Output<br/>
+6 – The augmented personal data is passed to scorer component<br/>
+7 – Scorer component uses the configuration to come up with a overall document score and the result is passed back to Personal Data Extractor component<br/>
+8 – This data is then passed to viewer component<br/>
 
 
 # Included Components

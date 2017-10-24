@@ -71,10 +71,10 @@ This journey gives you a step by step instructions for:
 # Steps
 1. [Prerequisites](#1-prerequisites)
 2. [Deploy the application to Bluemix](#2-deploy-the-application-to-bluemix)
-3. Develop Watson Knowledge Studio (WKS) model
-4. Deploy WKS model to Watson Natural Language Understanding (NLU)
-5. Verify that configuration parameters are correct
-6. Using Personal Data Extractor application
+3. [Develop Watson Knowledge Studio model](#3-develop-watson-knowledge-studio-model)
+4. [Deploy WKS model to Watson Natural Language Understanding](#4-deploy-wKS-model-to-watson-natural-language-understanding)
+5. [Verify that configuration parameters are correct](#5-verify-that-configuration-parameters-are-correct)
+6. [Using Personal Data Extractor application](#6-using-personal-data-extractor-application)
 
 
 ### 1. Prerequisites
@@ -104,7 +104,7 @@ Regex component parses the input text using the regular expressions provided in 
 Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown
 <img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
 
-### 3. Develop Watson Knowledge Studio (WKS) model
+### 3. Develop Watson Knowledge Studio model
 Note that building Watson Knowledge Studio annotations and building a model is a complex and iterative process. The intention here is not to deal with the end to end process but to give an idea on the process so that it can be modified/extended as the requirements suit<br/>
 The steps described here is to import the Type Systems and ground truth on which to train the machine learning model, annotator development and evaluation, and then deploying it into Natural Language Understanding
 #### 3.1 Import Artifacts
@@ -192,7 +192,7 @@ Click "Create"
 -   Train and Evaluate process takes place. It will take a few minutes for this step to complete 
 <img src="images/WKSAnnotatorProcessing.png" alt="WKSAnnotatorProcessing" width="640" border="10" />
 
-### 4. Deploy WKS model to Watson Natural Language Understanding (NLU)
+### 4. Deploy WKS model to Watson Natural Language Understanding
 -   Once Train and Evaluate processes are over the model is created. Click “Details”
 <img src="images/WKSAnnotatorCreated.png" alt="WKSAnnotatorCreated" width="640" border="10" />
 -   Click “Take Snapshot”

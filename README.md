@@ -110,7 +110,7 @@ Date<br/>
 \<regex_param>_regex: Regular expression using which an entity needs to be extracted from text. 
 e.g. (0[1-9]|[12]\[0-9]|3[01])*
 
-#### 2.2 Configuration (Sample):**
+#### 2.3 Configuration
 Categories, Category weightage and Category to Personal Data mapping can be defined via 
 configuration. A sample configuration is as shown below <br/>
 *Categories: Very_High,High,Medium,Low<br/>

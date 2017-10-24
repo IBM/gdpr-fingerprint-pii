@@ -78,18 +78,39 @@ This journey gives you a step by step instructions for:
 
 # Steps
 1. [Prerequisites](#1-prerequisites)
-2. [Deploy the application to Bluemix](#2-deploy-the-application-to-bluemix)
-3. [Develop Watson Knowledge Studio model](#3-develop-watson-knowledge-studio-model)
-4. [Deploy WKS model to Watson Natural Language Understanding](#4-deploy-wks-model-to-watson-natural-language-understanding)
-5. [Verify that configuration parameters are correct](#5-verify-that-configuration-parameters-are-correct)
-6. [Using Personal Data Extractor application](#6-using-personal-data-extractor-application)
+2. [Details to understand before the application setup](#2-details-to-understand-before-the-application-setup)
+3. [Deploy the application to Bluemix](#3-deploy-the-application-to-bluemix)
+4. [Develop Watson Knowledge Studio model](#4-develop-watson-knowledge-studio-model)
+5. [Deploy WKS model to Watson Natural Language Understanding](#5-deploy-wks-model-to-watson-natural-language-understanding)
+6. [Verify that configuration parameters are correct](#6-verify-that-configuration-parameters-are-correct)
+7. [Using Personal Data Extractor application](#7-using-personal-data-extractor-application)
 
 
 ### 1. Prerequisites
 - Bluemix account
 - Watson Knowledge Studio account and WKS skills
 
-### 2. Deploy the application to Bluemix
+### 2. Details to understand before the application setup
+We have to define what personal data (e.g. Name, emailed) we would want to extract. This is done in two ways in this Journey. A) Using Custom model build using Watson Knowledge Studio (WKS) and B) Using regular expressions. Details of how these are used are explained later in this document.<br/><br/> **Configuration (Sample):**<br/>
+*Categories: Very_High,High,Medium,Low<br/>
+Very_High_Weight: 50<br/>
+High_Weight: 40<br/>
+Medium_Weight: 20<br/>
+Low_Weight: 10<br/>
+Very_High_PIIs: MobileNumber,EmailId<br/>
+High_PIIs: Person,DOB<br/>
+Medium_PIIs: Name,DOJ<br/>
+Low_PIIs: Company<br/>
+regex_params: DOB,DOJ<br/>
+DOB_regex: (0[1-9]|[12]\[0-9]|3[01])[- /.]\(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\(19|20)\d\d<br/>
+DOJ_regex: (0[1-9]|[12]\[0-9]|3[01])[- /.]\(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d*<br/><br/><br/>**Categories:** <br/>Personal data are classified into different categories so as to assign weights for each category which can then be used to calculate confidence score of document<br/>
+*\<category>_Weight: Weightage for each category<br/>
+\<category>_PIIs: Personal data (Entity types)<br/>
+regex_params: Entity types which have to be extracted using regular expressions<br/>
+\<regex_param>_regex: Regular expression using which an entity needs to be extracted from text*
+
+
+### 3. Deploy the application to Bluemix
 - Use the "Deploy to Bluemix" button at the top of this documentation to deploy the 
   application to Bluemix
 - Brief description of application components
@@ -109,12 +130,12 @@ Regex component parses the input text using the regular expressions provided in 
     - **Viewer component:**  <br />
 Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown <img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
 
-### 3. Develop Watson Knowledge Studio model
+### 4. Develop Watson Knowledge Studio model
 Note that building Watson Knowledge Studio annotations and building a model is a complex and iterative process. The intention here is not to deal with the end to end process but to give an idea on the process so that it can be modified/extended as the requirements suit<br/>
 The steps described here is to import the Type Systems and ground truth on which to train the machine learning model, annotator development and evaluation, and then deploying it into Natural Language Understanding
-#### 3.1 Import Artifacts
+#### 4.1 Import Artifacts
 In github repository, navigate to WKS folder. Download the files named “Documents.zip” and “TypeSystems.json” to your local filesystem
-#### 3.2 Create Project
+#### 4.2 Create Project
 Login to the WKS instance. If you do not have a WKS account, create a Watson Knowledge Studio Account. You can sign up for a 30 day free trial here:
 https://www.ibm.com/us-en/marketplace/supervised-machine-learning/purchase#product-header-top
 - Click "Create Project". In the “Create New Project” pop up window, enter the name of the new project.
@@ -123,7 +144,7 @@ https://www.ibm.com/us-en/marketplace/supervised-machine-learning/purchase#produ
 - In the "Select a language" drop down field, choose “English”. Machine learning-based tokenizer is default option you need to choose. 
 Click "Create"
 <img src="images/WKSCreateProjectOptions.png" alt="Create Project Options" width="640" border="10" />
-#### 3.3 Import type system
+#### 4.3 Import type system
 - After the project is created, click “Type Systems” on the top navigation bar
 - Select “Entity Types” tab and click “Import”
 <img src="images/WKSImportTypeSystems.png" alt="Import Type Systems" width="640" border="10" />
@@ -133,7 +154,7 @@ Click "Create"
 <img src="images/WKSTypeSystemsImport.png" alt="WKSTypeSystemsImport" width="640" border="10" />
 - The documents are listed as below. Make a note of entity types or keywords that we are interested in. You can add/edit entities if you wish.
 <img src="images/WKSImportedEntityTypes.png" alt="WKSImportedEntityTypes" width="640" border="10" />
-#### 3.4 Import Documents
+#### 4.4 Import Documents
 - Click “Documents” on the top navigation bar
 <img src="images/WKSImportDocuments.png" alt="WKSImportDocuments" width="640" border="10" />
 - Click “Import Document Set”
@@ -143,7 +164,7 @@ Click "Create"
 - Click “Import”
 <img src="images/WKSDocImport.png" alt="WKSDocImport" width="640" border="10" />
 - Documents are now imported. 
-#### 3.5 Create and assign annotation sets
+#### 4.5 Create and assign annotation sets
 - Click “Annotation Sets” to create annotation sets
 <img src="images/WKSAnnotationSet.png" alt="WKSAnnotationSet" width="640" border="10" />
 - Click “Create Annotation Sets”
@@ -152,7 +173,7 @@ Click "Create"
 <img src="images/WKSAnnotationGenerate.png" alt="WKSAnnotationGenerate" width="640" border="10" />
 - Annotation set is created. 
 <img src="images/WKSAnnotationCreated.png" alt="WKSAnnotationCreated" width="640" border="10" />
-#### 3.6 Human Annotation
+#### 4.6 Human Annotation
 - Click “Human Annotation” on the top navigation bar
 - Click “Add Task”
 <img src="images/WKSAddTask.png" alt="WKSAddTask" width="640" border="10" />
@@ -197,7 +218,7 @@ Click "Create"
 - Train and Evaluate process takes place. It will take a few minutes for this step to complete 
 <img src="images/WKSAnnotatorProcessing.png" alt="WKSAnnotatorProcessing" width="640" border="10" />
 
-### 4. Deploy WKS model to Watson Natural Language Understanding
+### 5. Deploy WKS model to Watson Natural Language Understanding
 - Once Train and Evaluate processes are over the model is created. Click “Details”
 <img src="images/WKSAnnotatorCreated.png" alt="WKSAnnotatorCreated" width="640" border="10" />
 - Click “Take Snapshot”
@@ -217,7 +238,7 @@ Click "Create"
 - Click OK. Model is deployed to NLU
 <img src="images/WKSDeployedSnapshot.png" alt="WKSDeployedSnapshot" width="640" border="10" />
 
-### 5. Verify that configuration parameters are correct
+### 6. Verify that configuration parameters are correct
 - Navigate to the Bluemix dashboard. Click on the GDPR application that is deployed
 <img src="images/BMDashboard.png" alt="BMDashboard" width="640" border="10" />
 - Click “Runtime”
@@ -230,7 +251,7 @@ parameters are correct. Click “Save”
 - The application restages. When the application is running, we are ready to use the application to extract personal data and score them from unstructured text
 <img src="images/AppRestarting.png" alt="AppRestarting" width="640" border="10" />
 
-### 6. Using Personal Data Extractor application
+### 7. Using Personal Data Extractor application
 - Open the application URL from a browser
 <img src="images/AppHomePage.png" alt="AppHomePage" width="640" border="10" />
 - Click "Choose File". On the popup window browse to the text file from which personal 

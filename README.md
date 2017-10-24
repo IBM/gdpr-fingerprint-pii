@@ -14,7 +14,7 @@ In this this journey, we show you how to extract personal data from unstructured
 **What does this journey achieve?**
 This application extracts personal data from an unstructured chat transcript. It also provides a confidence score, which is an indicator of how confidently an individual can be identified from the personal data available and extracted from the text.
 
-Let us try to understand this with an example chat transcript as below<br /><br />
+Let us try to understand this with an example chat transcript as below<br />
    
 *Rep: This is Thomas. How can I help you? <br />
 Caller: This is Alex. I want to change my plan to corporate plan <br />
@@ -50,7 +50,7 @@ This journey gives you a step by step instructions for:
 - Viewing the score and the personal data identified in a tree structure for better visualization
 
 # Flow
-<img src="images/Architecture.png" alt="Architecture/Flow diagram" width="640" border="10" />
+<img src="images/Architecture.png" alt="Architecture/Flow diagram" width="640" border="10" /><br/>
 1 – Viewer passes input text to Personal Data Extractor<br/>
 2 – Personal Data Extractor passes the text to NLU<br/>
 3 – Personal Data extracted from the input text . NLU uses custom model to provide the response<br/>
@@ -87,11 +87,32 @@ This journey gives you a step by step instructions for:
 
 
 ### 1. Prerequisites
-- Bluemix account
-- Watson Knowledge Studio account and WKS skills
+- Bluemix account: If you do not have a Bluemix account, you can create on here [here](https://console.bluemix.net/)
+- Watson Knowledge Studio account: User must have a WKS account. If you do not have 
+  an account, you can create a free 
+  account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio)
+- Basic knowledge of building models in WKS: The user must possess basic knowledge 
+  of building model in WKS in order to build a custom model. Detailed steps for building 
+  a model are provided in this document
 
 ### 2. Details to understand before the application setup
-We have to define what personal data (e.g. Name, emailed) we would want to extract. This is done in two ways in this Journey. A) Using Custom model build using Watson Knowledge Studio (WKS) and B) Using regular expressions. Details of how these are used are explained later in this document.<br/><br/> **Configuration (Sample):**<br/>
+#### 2.1 Data extraction methods
+We have to define what personal data (e.g. Name, Email id) we would want to extract. This is done in two ways in this Journey. <br/>
+A) Using Custom model build using Watson Knowledge Studio (WKS) and <br/>
+B) Using regular expressions. Details of how these are used are explained later in this document.<br/><br/>
+#### 2.2  Categories
+Personal data are classified into different categories so as to assign weights for each category which can then be used to calculate confidence score of document. 
+These Categories are used in the configuration as explained in the following section<br/>
+*\<category>_Weight: Weightage for each category. e.g. High_Weight: 40<br/>
+\<category>_PIIs: Personal data (Entity types). e.g. EmailId, Employee Id<br/>
+regex_params: Entity types which have to be extracted using regular expressions. e.g. 
+Date<br/>
+\<regex_param>_regex: Regular expression using which an entity needs to be extracted from text. 
+e.g. (0[1-9]|[12]\[0-9]|3[01])*
+
+#### 2.2 Configuration (Sample):**
+Categories, Category weightage and Category to Personal Data mapping can be defined via 
+configuration. A sample configuration is as shown below <br/>
 *Categories: Very_High,High,Medium,Low<br/>
 Very_High_Weight: 50<br/>
 High_Weight: 40<br/>
@@ -103,11 +124,7 @@ Medium_PIIs: Name,DOJ<br/>
 Low_PIIs: Company<br/>
 regex_params: DOB,DOJ<br/>
 DOB_regex: (0[1-9]|[12]\[0-9]|3[01])[- /.]\(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\(19|20)\d\d<br/>
-DOJ_regex: (0[1-9]|[12]\[0-9]|3[01])[- /.]\(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d*<br/><br/>**Categories:** <br/>Personal data are classified into different categories so as to assign weights for each category which can then be used to calculate confidence score of document<br/>
-*\<category>_Weight: Weightage for each category<br/>
-\<category>_PIIs: Personal data (Entity types)<br/>
-regex_params: Entity types which have to be extracted using regular expressions<br/>
-\<regex_param>_regex: Regular expression using which an entity needs to be extracted from text*
+DOJ_regex: (0[1-9]|[12]\[0-9]|3[01])[- /.]\(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d*<br/><br/>
 
 
 ### 3. Deploy the application to Bluemix
@@ -117,12 +134,12 @@ regex_params: Entity types which have to be extracted using regular expressions<
     - **Personal Data Extractor component:** <br />
 Personal Data Extractor component is the controller which controls the flow of data between all the components. 
     - **Scorer component:**  <br />
-Scorer component calculates the score of a document, which will be between 0 and 1, based on the personal data identified and the configuration data. It uses the below algorithm<br />Let doc_score be 0 <br />
+Scorer component calculates the score of a document, which is between 0 and 1, based on the personal data identified and the configuration data. It uses the below algorithm<br />Let `score` be 0 <br />
 For each category{ <br />
 &emsp;cat_weight = weightage for the category<br />
 &emsp;cat_entity_types = list of entity types for the category<br />
 &emsp;for each cat_entity_types{<br />
-&emsp;&emsp;doc_score = doc_score +( ( cat_weight/100 ) * ( 100 - doc_score ) )<br />
+&emsp;&emsp;`score` = score +( ( cat_weight/100 ) * ( 100 - score ) )<br />
 &emsp;}<br />
 }<br />
      - **Regex component:**  <br />

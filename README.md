@@ -50,7 +50,7 @@ This journey gives you a step by step instructions for:
 - Viewing the score and the personal data identified in a tree structure for better visualization
 
 # Flow
-<img src="images/Architecture.png" alt="Architecture/Flow diagram" width="640" border="10" /><br/>
+<br/><img src="images/Architecture.png" alt="Architecture/Flow diagram" width="640" border="10" /><br/>
 1 – Viewer passes input text to Personal Data Extractor<br/>
 2 – Personal Data Extractor passes the text to NLU<br/>
 3 – Personal Data extracted from the input text . NLU uses custom model to provide the response<br/>
@@ -145,7 +145,7 @@ For each category{ <br />
      - **Regex component:**  <br />
 Regex component parses the input text using the regular expressions provided in the configuration files to extract personal data. Regular expressions are used to extract personal data where NLU won’t is not effective enough. It augments the results provided by NLU.
     - **Viewer component:**  <br />
-Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown <img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
+Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown <br/><img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
 
 ### 4. Develop Watson Knowledge Studio model
 Note that building Watson Knowledge Studio annotations and building a model is a complex and iterative process. The intention here is not to deal with the end to end process but to give an idea on the process so that it can be modified/extended as the requirements suite<br/>
@@ -157,126 +157,126 @@ In github repository, navigate to WKS folder. Download the files named “Docume
 Login to the WKS instance. If you do not have a WKS account, create a Watson Knowledge Studio Account. You can sign up for a 30 day free trial here:
 https://www.ibm.com/us-en/marketplace/supervised-machine-learning/purchase#product-header-top
 - Click "Create Project". In the “Create New Project” pop up window, enter the name of the new project.
-<img src="images/WKSCreateProject.png" alt="Create Project" width="640" border="10" /><br/>
+<br/><img src="images/WKSCreateProject.png" alt="Create Project" width="640" border="10" /><br/>
 - The “Description” field is optional.<br/>
 - In the "Select a language" drop down field, choose “English”. Machine learning-based tokenizer is default option you need to choose. 
 Click "Create"
-<img src="images/WKSCreateProjectOptions.png" alt="Create Project Options" width="640" border="10" /><br/>
+<br/><img src="images/WKSCreateProjectOptions.png" alt="Create Project Options" width="640" border="10" /><br/>
 #### 4.3 Import type system
 - After the project is created, click “Type Systems” on the top navigation bar<br/>
 - Select “Entity Types” tab and click “Import”
-<img src="images/WKSImportTypeSystems.png" alt="Import Type Systems" width="640" border="10" /><br/>
-- Click the import/download icon and browse to the file “TypeSystems.json” file that was downloaded, from git repository, earlier
-<img src="images/WKSImportTypeSystemsBrowse.png" alt="Import Type Systems Browse" width="640" border="10" /><br/>
+<br/><img src="images/WKSImportTypeSystems.png" alt="Import Type Systems" width="640" border="10" /><br/>
+- Click the import/download icon and browse to the file “TypeSystems.json” file that was downloaded, from git repository, earlier<br/>
+<br/><img src="images/WKSImportTypeSystemsBrowse.png" alt="Import Type Systems Browse" width="640" border="10" /><br/>
 - The selected file gets listed in the popup window. Click “Import”
-<img src="images/WKSTypeSystemsImport.png" alt="WKSTypeSystemsImport" width="640" border="10" /><br/>
+<br/><img src="images/WKSTypeSystemsImport.png" alt="WKSTypeSystemsImport" width="640" border="10" /><br/>
 - The documents are listed as below. Make a note of entity types or keywords that we are interested in. You can add/edit entities if you wish.
-<img src="images/WKSImportedEntityTypes.png" alt="WKSImportedEntityTypes" width="640" border="10" /><br/>
+<br/><img src="images/WKSImportedEntityTypes.png" alt="WKSImportedEntityTypes" width="640" border="10" /><br/>
 #### 4.4 Import Documents
 - Click “Documents” on the top navigation bar
-<img src="images/WKSImportDocuments.png" alt="WKSImportDocuments" width="640" border="10" /><br/>
+<br/><img src="images/WKSImportDocuments.png" alt="WKSImportDocuments" width="640" border="10" /><br/>
 - Click “Import Document Set”
-<img src="images/WKSImportDocSet.png" alt="WKSImportDocSet" width="640" border="10" /><br/>
+<br/><img src="images/WKSImportDocSet.png" alt="WKSImportDocSet" width="640" border="10" /><br/>
 - Click import/download button on the popup window
 - Browse to and select “Documents.zip” file that was downloaded from github repository earlier
 - Click “Import”
-<img src="images/WKSDocImport.png" alt="WKSDocImport" width="640" border="10" /><br/>
+<br/><img src="images/WKSDocImport.png" alt="WKSDocImport" width="640" border="10" /><br/>
 - Documents are now imported. 
 #### 4.5 Create and assign annotation sets
 - Click “Annotation Sets” to create annotation sets
-<img src="images/WKSAnnotationSet.png" alt="WKSAnnotationSet" width="640" border="10" /><br/>
+<br/><img src="images/WKSAnnotationSet.png" alt="WKSAnnotationSet" width="640" border="10" /><br/>
 - Click “Create Annotation Sets”
-<img src="images/WKSCreateAnnotationSet.png" alt="WKSCreateAnnotationSet" width="640" border="10" /><br/>
+<br/><img src="images/WKSCreateAnnotationSet.png" alt="WKSCreateAnnotationSet" width="640" border="10" /><br/>
 - Type in name for the annotation set and click “Generate”
-<img src="images/WKSAnnotationGenerate.png" alt="WKSAnnotationGenerate" width="640" border="10" /><br/>
+<br/><img src="images/WKSAnnotationGenerate.png" alt="WKSAnnotationGenerate" width="640" border="10" /><br/>
 - Annotation set is created. 
-<img src="images/WKSAnnotationCreated.png" alt="WKSAnnotationCreated" width="640" border="10" /><br/>
+<br/><img src="images/WKSAnnotationCreated.png" alt="WKSAnnotationCreated" width="640" border="10" /><br/>
 #### 4.6 Human Annotation
 - Click “Human Annotation” on the top navigation bar
 - Click “Add Task”
-<img src="images/WKSAddTask.png" alt="WKSAddTask" width="640" border="10" /><br/>
+<br/><img src="images/WKSAddTask.png" alt="WKSAddTask" width="640" border="10" /><br/>
 - Enter a name for the task and click “Create”
-<img src="images/WKSCreateTask.png" alt="WKSCreateTask" width="640" border="10" /><br/>
+<br/><img src="images/WKSCreateTask.png" alt="WKSCreateTask" width="640" border="10" /><br/>
 - In the popup window, select the Annotation Set that was created earlier
 - Click “Create Task”
-<img src="images/WKSCreateTask2.png" alt="WKSCreateTask2" width="640" border="10" /><br/>
+<br/><img src="images/WKSCreateTask2.png" alt="WKSCreateTask2" width="640" border="10" /><br/>
 - Task should get created. Click on the Task
-<img src="images/WKSTaskCreated.png" alt="WKSTaskCreated" width="640" border="10" /><br/>
+<br/><img src="images/WKSTaskCreated.png" alt="WKSTaskCreated" width="640" border="10" /><br/>
 - Next we need to annotate, mapping document entries with entity types defined in Type system
 - Click “Annotate”
-<img src="images/WKSAnnotate.png" alt="WKSAnnotate" width="640" border="10" /><br/>
+<br/><img src="images/WKSAnnotate.png" alt="WKSAnnotate" width="640" border="10" /><br/>
 - Click OK for any Alert message that pops up
 - Ground truth editor opens up. Here you can select each document one by one to annotate all the documents. Click on any of the documents
-<img src="images/WKSGroundTruthFiles.png" alt="WKSGroundTruthFiles" width="640" border="10" /><br/>
+<br/><img src="images/WKSGroundTruthFiles.png" alt="WKSGroundTruthFiles" width="640" border="10" /><br/>
 - From the documents select an entry that you want to be extracted from the document as entities. Then click on the entity type on the right hand side of the screen
 - Similarly do this for all the keywords in the document
-<img src="images/WKSEntityMapping.png" alt="WKSEntityMapping" width="640" border="10" /><br/>
+<br/><img src="images/WKSEntityMapping.png" alt="WKSEntityMapping" width="640" border="10" /><br/>
 - Once all the keywords are mapped to entity types, select “Completed” from the status dropdown
-<img src="images/WKSMappingComplete.png" alt="WKSMappingComplete" width="640" border="10" /><br/>
+<br/><img src="images/WKSMappingComplete.png" alt="WKSMappingComplete" width="640" border="10" /><br/>
 - Click “Save” to save the changes
-<img src="images/WKSMappingSaved.png" alt="WKSMappingSaved" width="640" border="10" /><br/>
+<br/><img src="images/WKSMappingSaved.png" alt="WKSMappingSaved" width="640" border="10" /><br/>
 - Repeat above steps for all the document. Once all the documents are annotated and completed, click “Submit All”
-<img src="images/WKSAllFilesAnnotationCompleted.png" alt="WKSAllFilesAnnotationCompleted" width="640" border="10" /><br/>
+<br/><img src="images/WKSAllFilesAnnotationCompleted.png" alt="WKSAllFilesAnnotationCompleted" width="640" border="10" /><br/>
 - If the status shows “IN PROGRESS”, click “Refresh” button
-<img src="images/WKSAnnotationStatusRefresh.png" alt="WKSAnnotationStatusRefresh" width="640" border="10" /><br/>
+<br/><img src="images/WKSAnnotationStatusRefresh.png" alt="WKSAnnotationStatusRefresh" width="640" border="10" /><br/>
 - Status should now change to “SUBMITTED”
 - Select the Annotation Set name and click “Accept” button
-<img src="images/WKSAnnotationAccept.png" alt="WKSAnnotationAccept" width="640" border="10" /><br/>
+<br/><img src="images/WKSAnnotationAccept.png" alt="WKSAnnotationAccept" width="640" border="10" /><br/>
 - Click “OK” on the confirmation popup window
 - Task status now changes to “COMPLETED”
-<img src="images/WKSAnnotationCompleted.png" alt="WKSAnnotationCompleted" width="640" border="10" /><br/>
+<br/><img src="images/WKSAnnotationCompleted.png" alt="WKSAnnotationCompleted" width="640" border="10" /><br/>
 - Click “Annotator Component” on the top navigation bar 
-<img src="images/WKSAnnotatorComponentLink.png" alt="WKSAnnotatorComponentLink" width="640" border="10" /><br/>
+<br/><img src="images/WKSAnnotatorComponentLink.png" alt="WKSAnnotatorComponentLink" width="640" border="10" /><br/>
 - We will create “Machine Learning” annotator. So click “Create this type of annotator” under “Machine Learning”
-<img src="images/WKSMachineLearning.png" alt="WKSMachineLearning" width="640" border="10" /><br/>
+<br/><img src="images/WKSMachineLearning.png" alt="WKSMachineLearning" width="640" border="10" /><br/>
 - Under “Document Set” select the set whose annotation was completed in previous steps. Click “Next”
-<img src="images/WKSCreateAnnotator.png" alt="WKSCreateAnnotator" width="640" border="10" /><br/>
+<br/><img src="images/WKSCreateAnnotator.png" alt="WKSCreateAnnotator" width="640" border="10" /><br/>
 - Click “Train and Evaluate”
-<img src="images/WKSTrainEvaluate.png" alt="WKSTrainEvaluate" width="640" border="10" /><br/>
+<br/><img src="images/WKSTrainEvaluate.png" alt="WKSTrainEvaluate" width="640" border="10" /><br/>
 - Train and Evaluate process takes place. It will take a few minutes for this step to complete 
-<img src="images/WKSAnnotatorProcessing.png" alt="WKSAnnotatorProcessing" width="640" border="10" />
+<br/><img src="images/WKSAnnotatorProcessing.png" alt="WKSAnnotatorProcessing" width="640" border="10" />
 
 ### 5. Deploy WKS model to Watson Natural Language Understanding
 - Once Train and Evaluate processes are over the model is created. Click “Details”
-<img src="images/WKSAnnotatorCreated.png" alt="WKSAnnotatorCreated" width="640" border="10" /><br/>
+<br/><img src="images/WKSAnnotatorCreated.png" alt="WKSAnnotatorCreated" width="640" border="10" /><br/>
 - Click “Take Snapshot”
-<img src="images/WKSSnapshot.png" alt="WKSSnapshot" width="640" border="10" /><br/>
+<br/><img src="images/WKSSnapshot.png" alt="WKSSnapshot" width="640" border="10" /><br/>
 - Enter any meaningful description for the snapshot. Click “OK”
-<img src="images/WKSSnapshotOK.png" alt="WKSSnapshotOK" width="640" border="10" /><br/>
+<br/><img src="images/WKSSnapshotOK.png" alt="WKSSnapshotOK" width="640" border="10" /><br/>
 - Snapshot is created
-<img src="images/WKSSnapshotCreated.png" alt="WKSSnapshotCreated" width="640" border="10" /><br/>
+<br/><img src="images/WKSSnapshotCreated.png" alt="WKSSnapshotCreated" width="640" border="10" /><br/>
 - Click “Deploy” to deploy on the NLU instance created when the application was deployed on Bluemix. Click “Deploy”
-<img src="images/WKSDeploy.png" alt="WKSDeploy" width="640" border="10" /><br/>
+<br/><img src="images/WKSDeploy.png" alt="WKSDeploy" width="640" border="10" /><br/>
 - Select “Natural Language Understanding”. Click “Next”
-<img src="images/WKSDeployModel.png" alt="WKSDeployModel" width="640" border="10" /><br/>
+<br/><img src="images/WKSDeployModel.png" alt="WKSDeployModel" width="640" border="10" /><br/>
 - Select your Bluemix Region, Space and NLU service instances. Click “Deploy”
-<img src="images/WKSDeployNLUIntsance.png" alt="WKSDeployNLUIntsance" width="640" border="10" /><br/>
+<br/><img src="images/WKSDeployNLUIntsance.png" alt="WKSDeployNLUIntsance" width="640" border="10" /><br/>
 - WKS model should get deployed on the NLU. Make a note of the Model Id. Click “OK”
-<img src="images/WKSModelId.png" alt="WKSModelId" width="640" border="10" /><br/>
+<br/><img src="images/WKSModelId.png" alt="WKSModelId" width="640" border="10" /><br/>
 - Click OK. Model is deployed to NLU
-<img src="images/WKSDeployedSnapshot.png" alt="WKSDeployedSnapshot" width="640" border="10" /><br/>
+<br/><img src="images/WKSDeployedSnapshot.png" alt="WKSDeployedSnapshot" width="640" border="10" /><br/>
 
 ### 6. Verify that configuration parameters are correct
 - Navigate to the Bluemix dashboard. Click on the GDPR application that is deployed
-<img src="images/BMDashboard.png" alt="BMDashboard" width="640" border="10" /><br/>
+<br/><img src="images/BMDashboard.png" alt="BMDashboard" width="640" border="10" /><br/>
 - Click “Runtime”
-<img src="images/Runtime.png" alt="Runtime" width="640" border="10" /><br/>
+<br/><img src="images/Runtime.png" alt="Runtime" width="640" border="10" /><br/>
 - Click “Environment Variables” and scroll down to user defined variables
-<img src="images/EnvVar.png" alt="EnvVar" width="640" border="10" /><br/>
+<br/><img src="images/EnvVar.png" alt="EnvVar" width="640" border="10" /><br/>
 - Update the model id against “wks_model” and verify that all other configuration 
 parameters are correct. Click “Save”
-<img src="images/EnvVarModelId.png" alt="EnvVarModelId" width="640" border="10" /><br/>
+<br/><img src="images/EnvVarModelId.png" alt="EnvVarModelId" width="640" border="10" /><br/>
 - The application restages. When the application is running, we are ready to use the application to extract personal data and score them from unstructured text
-<img src="images/AppRestarting.png" alt="AppRestarting" width="640" border="10" /><br/>
+<br/><img src="images/AppRestarting.png" alt="AppRestarting" width="640" border="10" /><br/>
 
 ### 7. Using Personal Data Extractor application
 - Open the application URL from a browser
-<img src="images/AppHomePage.png" alt="AppHomePage" width="640" border="10" /><br/>
+<br/><img src="images/AppHomePage.png" alt="AppHomePage" width="640" border="10" /><br/>
 - Click "Choose File". On the popup window browse to the text file from which personal 
 data should be extracted. Select the file and click "Open"
 - Initially you see a collapsed tree view as below
-<img src="images/TreeView1.png" alt="TreeView1" width="640" border="10" /><br/>
+<br/><img src="images/TreeView1.png" alt="TreeView1" width="640" border="10" /><br/>
 - Click on nodes to expand and collapse the nodes. Full tree view looks as below
-<img src="images/TreeView2.png" alt="TreeView2" width="640" border="10" /><br/>
+<br/><img src="images/TreeView2.png" alt="TreeView2" width="640" border="10" /><br/>
 
   

@@ -97,7 +97,7 @@ For each category{ <br />
 &emsp;for each cat_entity_types{<br />
 &emsp;&emsp;doc_score = doc_score +( ( cat_weight/100 ) * ( 100 - doc_score ) )<br />
 &emsp;}<br />
-}
+}<br />
     - **Regex component:**  <br />
 Regex component parses the input text using the regular expressions provided in the configuration files to extract personal data. Regular expressions are used to extract personal data where NLU won’t is not effective enough. It augments the results provided by NLU.
     - **Viewer component:**  <br />

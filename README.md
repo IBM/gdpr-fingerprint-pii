@@ -98,7 +98,7 @@ For each category{ <br />
 &emsp;&emsp;doc_score = doc_score +( ( cat_weight/100 ) * ( 100 - doc_score ) )<br />
 &emsp;}<br />
 }<br />
-    - **Regex component:**  <br />
+     - **Regex component:**  <br />
 Regex component parses the input text using the regular expressions provided in the configuration files to extract personal data. Regular expressions are used to extract personal data where NLU won’t is not effective enough. It augments the results provided by NLU.
     - **Viewer component:**  <br />
 Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown

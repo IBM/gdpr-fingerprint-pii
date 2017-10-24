@@ -38,7 +38,7 @@ Personal Data extracted from the above text: <br />
 Date of birth: 10-Aug-1979 <br />
 Email id: alex@gmail.com <br />
 Company: IBM  <br />
-Date of joining: 01-Feb-99 <br />
+Date of joining: 01-Feb-99 <br /><br />
 Also the confidence score is calculated <br />*
 **Confidence score:** 0.7
 

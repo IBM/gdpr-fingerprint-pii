@@ -44,7 +44,7 @@ Also the confidence score is calculated <br />*
 
 
 This journey gives you a step by step instructions for:
-- Building a custom model using WKS and having NLU use that model for personal data extraction
+- Building a custom model using WKS (Watson Knowledge Studio) and having NLU (Natural Language Understanding) use that model for personal data extraction
 - Using regular expressions, in addition to NLU, to extract personal data from unstructured text
 - Configuring pre-identified personal data with weightage and coming up with a score representing the confidence level of identifying an individual using the personal data identified
 - Viewing the score and the personal data identified in a tree structure for better visualization

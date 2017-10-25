@@ -9,8 +9,7 @@ The General Data Protection Regulation (GDPR) is a regulation by which the Europ
 
 Under the EU's new General Data Protection Regulation, enterprises around the world must not only keep personal data private, but they will also be required to "forget" any personal data related to an individual on request -- and the GDPR right to be forgotten will be a significant part of compliance with the new rule. 
 
-**What does this journey achieve?**
-This application extracts personal data from an unstructured chat transcript. It also provides a confidence score, which is an indicator of how confidently an individual can be identified from the personal data available and extracted from the text.
+When a customer requests that all his/her personal data be deleted, then an organisation needs to identify all the documents where the customer's personal data reside. This journey identifies such personal data from a provided document. The journey also provides a confidence score for the personal data which indicates the confidence level in identifying an individual uniquely.
 
 Let us try to understand this with an example chat transcript as below<br />
 

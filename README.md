@@ -168,8 +168,7 @@ to Natural Language Understanding
 #### 4.1 Import Artifacts
 In github repository, navigate to WKS folder. Download the files named “Documents.zip” and “TypeSystems.json” to your local filesystem
 #### 4.2 Create Project
-Login to the WKS instance. If you do not have a WKS account, create a Watson Knowledge Studio Account. You can sign up for a 30 day free trial here:
-https://www.ibm.com/us-en/marketplace/supervised-machine-learning/purchase#product-header-top
+Login to the WKS instance. If you do not have a WKS account, create a Watson Knowledge Studio Account. You can sign up for a 30 day free trial [here](https://www.ibm.com/us-en/marketplace/supervised-machine-learning/purchase#product-header-top)
 - Click "Create Project". In the “Create New Project” pop up window, enter the name of the new project.
 <br/><img src="images/WKSCreateProject.png" alt="Create Project" width="640" border="10" /><br/>
 - The “Description” field is optional.<br/>

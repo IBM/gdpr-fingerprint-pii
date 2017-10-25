@@ -90,7 +90,7 @@ This journey gives you a step by step instructions for:
 5. [Deploy WKS model to Watson Natural Language Understanding](#5-deploy-wks-model-to-watson-natural-language-understanding)
 6. [Verify that configuration parameters are correct](#6-verify-that-configuration-parameters-are-correct)
 7. [Using Personal Data Extractor application](#7-using-personal-data-extractor-application)
-8. [Consuming the output by other applications]
+8. [Consuming the output by other applications](#8-consuming-the-output-by-other-applications)
 
 
 ### 1. Prerequisites

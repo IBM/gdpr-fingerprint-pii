@@ -53,6 +53,7 @@ This journey gives you a step by step instructions for:
 - Using regular expressions, in addition to NLU, to extract personal data from unstructured text
 - Configuring pre-identified personal data with weightage and coming up with a score representing the confidence level of identifying an individual using the personal data identified
 - Viewing the score and the personal data identified in a tree structure for better visualization
+- Consuming the output of this Journey by other applications
 
 # Flow
 <br/><img src="images/Architecture.png" alt="Architecture/Flow diagram" width="640" border="10" /><br/>
@@ -89,6 +90,7 @@ This journey gives you a step by step instructions for:
 5. [Deploy WKS model to Watson Natural Language Understanding](#5-deploy-wks-model-to-watson-natural-language-understanding)
 6. [Verify that configuration parameters are correct](#6-verify-that-configuration-parameters-are-correct)
 7. [Using Personal Data Extractor application](#7-using-personal-data-extractor-application)
+8. [Consuming the output by other applications]
 
 
 ### 1. Prerequisites
@@ -290,6 +292,16 @@ data should be extracted. Select the file and click "Open"
 <br/><img src="images/TreeView1.png" alt="TreeView1" width="640" border="10" /><br/>
 - Click on nodes to expand and collapse the nodes. Full tree view looks as below
 <br/><img src="images/TreeView2.png" alt="TreeView2" width="640" border="10" /><br/>
+
+### 8. Consuming the output by other applications
+- This application exposes two REST interfaces <br />
+/rest/personaldata/forviewer and <br/>
+/rest/personaldata/forconsumer<br/>
+The two have differently formatted output for different usage purposes. While the former is used by viewer, in D3 tree view, the latter is more generic and can be invoked by any application for consumption. <br/>
+Viewer Output JSON looks as in the below image<br/>
+<br/><img src="images/ForViewer.png" alt="ForViewer" width="640" border="10" /><br/>
+Generic Output JSON looks as in the below image<br/>
+<br/><img src="images/ForConsumer.png" alt="ForConsumer" width="400" border="10" /><br/>
 
 # Troubleshooting
 - Personal Data extracted is not correct: 

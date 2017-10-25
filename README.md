@@ -299,9 +299,9 @@ data should be extracted. Select the file and click "Open"
 /rest/personaldata/forconsumer<br/>
 The two have differently formatted output for different usage purposes. While the former is used by viewer, in D3 tree view, the latter is more generic and can be invoked by any application for consumption. <br/>
 Viewer Output JSON looks as in the below image<br/>
-<br/><img src="images/ForViewer.png" alt="ForViewer" width="640" border="10" /><br/>
+<br/><img src="images/ForViewer.png" alt="ForViewer" width="300" border="10" /><br/>
 Generic Output JSON looks as in the below image<br/>
-<br/><img src="images/ForConsumer.png" alt="ForConsumer" width="400" border="10" /><br/>
+<br/><img src="images/ForConsumer.png" alt="ForConsumer" width="300" border="10" /><br/>
 
 # Troubleshooting
 - Personal Data extracted is not correct: 

@@ -114,10 +114,8 @@ These Categories are used in the configuration as explained in the following sec
 ```
 <category>_Weight: Weightage for each category. e.g. High_Weight: 40
 <category>_PIIs: Personal data (Entity types). e.g. EmailId, Employee Id
-regex_params: Entity types which have to be extracted using regular expressions. e.g. 
-Date
-<regex_param>_regex: Regular expression using which an entity needs to be extracted from text
-e.g. (0[1-9]|[12]\[0-9]|3[01])
+regex_params: Entity types which have to be extracted using regular expressions. e.g. Date
+<regex_param>_regex: Regular expression using which an entity needs to be extracted from text e.g. (0[1-9]|[12]\[0-9]|3[01])
 ```
 
 #### 2.3 Configuration

@@ -15,32 +15,39 @@ In this this journey, we show you how to extract personal data from unstructured
 This application extracts personal data from an unstructured chat transcript. It also provides a confidence score, which is an indicator of how confidently an individual can be identified from the personal data available and extracted from the text.
 
 Let us try to understand this with an example chat transcript as below<br />
-   
-*Rep: This is Thomas. How can I help you? <br />
-Caller: This is Alex. I want to change my plan to corporate plan <br />
-Rep: Sure, I can help you. Do you want to change the plan for the number from which you are calling now? <br />
-Caller: yes <br />
-Rep: For verification purpose may I know your date of birth and email id <br />
-Caller: My data of birth is 10-Aug-1979 and my email id is alex@gmail.com <br />
-Rep: Which plan do you want to migrate to <br />
-Caller: Plan 450 unlimited <br />
-Rep: Can I have your company name and date of joining <br />
-Caller: I work for IBM and doj 01-Feb-99 <br />
-Rep: Ok.. I have taken your request to migrate plan to 450 unlimited. You will get an update in 3 hours. Is there anything else that I can help you with <br />
-Caller: No <br />
-Rep: Thanks for calling Vodaphone. Have a good day. <br />
-Caller: you too <br />*
 
+```
+Rep: This is Thomas. How can I help you?
+Caller: This is Alex. I want to change my plan to corporate plan
+Rep: Sure, I can help you. Do you want to change the plan for the number from which you are calling now?
+Caller: yes
+Rep: For verification purpose may I know your date of birth and email id
+Caller: My data of birth is 10-Aug-1979 and my email id is alex@gmail.com
+Rep: Which plan do you want to migrate to
+Caller: Plan 450 unlimited
+Rep: Can I have your company name and date of joining
+Caller: I work for IBM and doj 01-Feb-99
+Rep: Ok.. I have taken your request to migrate plan to 450 unlimited. You will get an update in 3 hours. Is there anything else that I can help you with
+Caller: No
+Rep: Thanks for calling Vodaphone. Have a good day
+Caller: you too
+```
 
 Personal Data extracted from the above text: <br />
 
-*Name: Alex <br />
-Date of birth: 10-Aug-1979 <br />
-Email id: alex@gmail.com <br />
-Company: IBM  <br />
-Date of joining: 01-Feb-99 <br /><br />
-Also the confidence score is calculated <br />*
-**Confidence score:** 0.7
+```
+Name: Alex
+Date of birth: 10-Aug-1979
+Email id: alex@gmail.com
+Company: IBM
+Date of joining: 01-Feb-99
+```
+
+Also the confidence score is calculated
+
+```
+Confidence score: 0.7
+```
 
 
 This journey gives you a step by step instructions for:
@@ -103,48 +110,59 @@ B) Using regular expressions. Details of how these are used are explained later 
 #### 2.2  Categories
 Personal data are classified into different categories so as to assign weights for each category which can then be used to calculate confidence score of document. 
 These Categories are used in the configuration as explained in the following section<br/>
-*\<category>_Weight: Weightage for each category. e.g. High_Weight: 40<br/>
-\<category>_PIIs: Personal data (Entity types). e.g. EmailId, Employee Id<br/>
+
+```
+<category>_Weight: Weightage for each category. e.g. High_Weight: 40
+<category>_PIIs: Personal data (Entity types). e.g. EmailId, Employee Id
 regex_params: Entity types which have to be extracted using regular expressions. e.g. 
-Date<br/>
-\<regex_param>_regex: Regular expression using which an entity needs to be extracted from text. 
-e.g. (0[1-9]|[12]\[0-9]|3[01])*
+Date
+<regex_param>_regex: Regular expression using which an entity needs to be extracted from text
+e.g. (0[1-9]|[12]\[0-9]|3[01])
+```
 
 #### 2.3 Configuration
 Categories, Category weightage and Category to Personal Data mapping can be defined via 
 configuration. A sample configuration is as shown below <br/>
-*Categories: Very_High,High,Medium,Low<br/>
-Very_High_Weight: 50<br/>
-High_Weight: 40<br/>
-Medium_Weight: 20<br/>
-Low_Weight: 10<br/>
-Very_High_PIIs: MobileNumber,EmailId<br/>
-High_PIIs: Person,DOB<br/>
-Medium_PIIs: Name,DOJ<br/>
-Low_PIIs: Company<br/>
-regex_params: DOB,DOJ<br/>
-DOB_regex: (0[1-9]|[12]\[0-9]|3[01])[- /.]\(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\(19|20)\d\d<br/>
-DOJ_regex: (0[1-9]|[12]\[0-9]|3[01])[- /.]\(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d*<br/><br/>
 
+```
+Categories: Very_High,High,Medium,Low
+Very_High_Weight: 50
+High_Weight: 40
+Medium_Weight: 20
+Low_Weight: 10
+Very_High_PIIs: MobileNumber,EmailId
+High_PIIs: Person,DOB
+Medium_PIIs: Name,DOJ
+Low_PIIs: Company
+regex_params: DOB,DOJ
+DOB_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.](19|20)\d\d
+DOJ_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d
+```
 
 ### 3. Deploy the application to Bluemix
-- Use the "Deploy to Bluemix" button at the top of this documentation to deploy the 
-  application to Bluemix
-- Brief description of application components
-    - **Personal Data Extractor component:** <br />
-Personal Data Extractor component is the controller which controls the flow of data between all the components. 
-    - **Scorer component:**  <br />
-Scorer component calculates the score of a document, which is between 0 and 1, based on the personal data identified and the configuration data. It uses the below algorithm<br />Let `score` be 0 <br />
-For each category{ <br />
-&emsp;cat_weight = weightage for the category<br />
-&emsp;cat_entity_types = list of entity types for the category<br />
-&emsp;for each cat_entity_types{<br />
-&emsp;&emsp;`score` = score +( ( cat_weight/100 ) * ( 100 - score ) )<br />
-&emsp;}<br />
-}<br />
-     - **Regex component:**  <br />
+#### 3.1 Deploy application to Bluemix
+Use the "Deploy to Bluemix" button at the top of this documentation to deploy the 
+  application to Bluemix. You would be presented with a toolchain view and asked to Deploy the application, go ahead and click the deploy button. After the application is deployed ensure that the application is started and also ensure that a NLU service instance is created and bound to the application created
+#### 3.2 Brief description of application components
+##### 3.2.1 Personal Data Extractor component:
+Personal Data Extractor component is the controller which controls the flow of data between all the components. It also integrates with NLU
+##### 3.2.1 Regex component:
 Regex component parses the input text using the regular expressions provided in the configuration files to extract personal data. Regular expressions are used to extract personal data where NLU won’t is not effective enough. It augments the results provided by NLU.
-    - **Viewer component:**  <br />
+##### 3.2.3 Scorer component:
+Scorer component calculates the score of a document, which is between 0 and 1, based on the personal data identified and the configuration data. It uses the below algorithm
+
+```
+Let score be 0
+For each category{
+   cat_weight = weightage for the category
+   cat_entity_types = list of entity types for the category
+   for each cat_entity_types{
+      score = score +( ( cat_weight/100 ) * ( 100 - score ) )
+   }
+}
+```
+
+##### 3.2.4 Viewer component:
 Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown <br/><img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
 
 ### 4. Develop Watson Knowledge Studio model

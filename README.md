@@ -279,8 +279,7 @@ Click "Create"
 <br/><img src="images/Runtime.png" alt="Runtime" width="640" border="10" /><br/>
 - Click “Environment Variables” and scroll down to user defined variables
 <br/><img src="images/EnvVar.png" alt="EnvVar" width="640" border="10" /><br/>
-- Update the model id against “wks_model” and verify that all other configuration 
-parameters are correct. Click “Save”
+- Update the model id against “wks_model” entry. Also here is where you will update all your configuration data. Update/edit all the confifiguration data as required. Finally verify that all other configuration parameters are correct. Click “Save”
 <br/><img src="images/EnvVarModelId.png" alt="EnvVarModelId" width="640" border="10" /><br/>
 - The application restages. When the application is running, we are ready to use the application to extract personal data and score them from unstructured text
 <br/><img src="images/AppRestarting.png" alt="AppRestarting" width="640" border="10" /><br/>

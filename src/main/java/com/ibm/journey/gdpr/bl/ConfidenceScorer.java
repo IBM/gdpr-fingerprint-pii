@@ -137,7 +137,7 @@ public class ConfidenceScorer {
 					}
 				}
 			}
-			return currentConfidence;
+			return currentConfidence/100;
 			
 		}catch( Exception e){
 			e.printStackTrace();

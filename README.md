@@ -1,15 +1,13 @@
 
 # Work in Progress
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
-
 # Fingerprinting personal data from unstructured documents
 
 The General Data Protection Regulation (GDPR) is a regulation by which the European Parliament, the Council of the European Union and the European Commission intend to strengthen and unify data protection for all individuals within the European Union (EU). It also addresses the export of personal data outside the EU. 
 
 Under the EU's new General Data Protection Regulation, enterprises around the world must not only keep personal data private, but they will also be required to "forget" any personal data related to an individual on request -- and the GDPR right to be forgotten will be a significant part of compliance with the new rule. 
 
-When a customer requests that all his/her personal data be deleted, then an organisation needs to identify all the documents where the customer's personal data reside. This journey identifies such personal data from a provided document. The journey also provides a confidence score for the personal data which indicates the confidence level in identifying an individual uniquely.
+When a customer requests that all his/her personal data be deleted, then an organisation needs to identify all the documents where the customer's personal data reside. This journey addresses the need to identify the personal data from the provided documents. Also, we will see how to assign a confidence score for the personal data that indicates the confidence level in identifying an individual uniquely as part of the journey.
 
 Let us try to understand this with an example chat transcript as below<br />
 
@@ -48,7 +46,8 @@ Confidence score: 0.7
 
 
 This journey gives you a step by step instructions for:
-- Building a custom model using WKS (Watson Knowledge Studio) and having NLU (Natural Language Understanding) use that model for personal data extraction
+- Building a custom model using Watson Knowledge Studio (WKS) and having Natural Language Understanding 
+  (NLU) use that model for personal data extraction
 - Using regular expressions, in addition to NLU, to extract personal data from unstructured text
 - Configuring pre-identified personal data with weightage and coming up with a score representing the confidence level of identifying an individual using the personal data identified
 - Viewing the score and the personal data identified in a tree structure for better visualization
@@ -93,7 +92,7 @@ This journey gives you a step by step instructions for:
 
 
 ### 1. Prerequisites
-- Bluemix account: If you do not have a Bluemix account, you can create on here [here](https://console.bluemix.net/)
+- Bluemix account: If you do not have a Bluemix account, you can create an account here [here](https://console.bluemix.net/)
 - Watson Knowledge Studio account: User must have a WKS account. If you do not have 
   an account, you can create a free 
   account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio)
@@ -138,8 +137,10 @@ DOJ_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oc
 
 ### 3. Deploy the application to Bluemix
 #### 3.1 Deploy application to Bluemix
-Use the "Deploy to Bluemix" button at the top of this documentation to deploy the 
-  application to Bluemix. You would be presented with a toolchain view and asked to Deploy the application, go ahead and click the deploy button. After the application is deployed ensure that the application is started and also ensure that a NLU service instance is created and bound to the application created
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
+
+Click "Deploy to Bluemix" button above to deploy the application to Bluemix. You would be presented with a toolchain view and asked to Deploy the application, go ahead and click the deploy button. After the application is deployed ensure that the application is started and also ensure that a NLU service instance is created and bound to the application created.
+
 #### 3.2 Brief description of application components
 ##### 3.2.1 Personal Data Extractor component:
 Personal Data Extractor component is the controller which controls the flow of data between all the components. It also integrates with NLU
@@ -160,16 +161,17 @@ For each category{
 ```
 
 ##### 3.2.4 Viewer component:
-Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown <br/><img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
-
+Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown <br/>
+<!--
+<img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
+-->
 ### 4. Develop Watson Knowledge Studio model
-Note that building Watson Knowledge Studio annotations and building a model is a complex and iterative process. The intention here is not to deal with the end to end process but to give an idea on the process so that it can be modified/extended as the requirements suite<br/>
-The steps described here is to import the Type Systems and ground truth on which to train the machine learning model, annotator development and evaluation, and then deploying it on 
-to Natural Language Understanding
+Note that building Watson Knowledge Studio annotations and building a model is a complex and iterative process. The intention here is not to deal with the end to end process but to give an idea on the process so that it can be modified or extended as the requirements suite<br/>
+The steps described here is to import the Type Systems and ground truth on which to train the machine learning model, annotator development and evaluation, and then deploying it to Natural Language Understanding service created earlier
 #### 4.1 Import Artifacts
 In github repository, navigate to WKS folder. Download the files named “Documents.zip” and “TypeSystems.json” to your local filesystem
 #### 4.2 Create Project
-Login to the WKS instance. If you do not have a WKS account, create a Watson Knowledge Studio Account. You can sign up for a 30 day free trial [here](https://www.ibm.com/us-en/marketplace/supervised-machine-learning/purchase#product-header-top)
+Login to the WKS instance.
 - Click "Create Project". In the “Create New Project” pop up window, enter the name of the new project.
 <br/><img src="images/WKSCreateProject.png" alt="Create Project" width="640" border="10" /><br/>
 - The “Description” field is optional.<br/>
@@ -282,7 +284,7 @@ Click "Create"
 - The application restages. When the application is running, we are ready to use the application to extract personal data and score them from unstructured text
 <br/><img src="images/AppRestarting.png" alt="AppRestarting" width="640" border="10" /><br/>
 
-### 7. Using Personal Data Extractor application
+### 7. Analyze Results
 - Open the application URL from a browser
 <br/><img src="images/AppHomePage.png" alt="AppHomePage" width="640" border="10" /><br/>
 - Click "Choose File". On the popup window browse to the text file from which personal 
@@ -302,18 +304,6 @@ Viewer Output JSON looks as in the below image<br/>
 Generic Output JSON looks as in the below image<br/>
 <br/><img src="images/ForConsumer.png" alt="ForConsumer" width="300" border="10" /><br/>
 
-# Troubleshooting
-- Personal Data extracted is not correct: 
-    - Watson Knowledge Studio requires rigorous training 
-  with as much variety of data as possible. Please train the WKS model with a large 
-  set of data so it can learn and give right results
-    - Regular Expressions: Regular expressions can be configured and used for personal 
-      data that cannot be extracted using NLU with custom WKS model. Configure appropriate 
-      regular expressions in User Defined Variables of the application
-- The application does not show any data
-    - This could be possible due to incorrect configuration. Ensure that the User defined 
-      variable keys follow the same pattern as mentioned provided in the sample
-    - Check application log for any errors on the server side
 
 # References
 * 

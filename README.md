@@ -82,17 +82,22 @@ This journey gives you a step by step instructions for:
 
 # Steps
 1. [Prerequisites](#1-prerequisites)
-2. [Details to understand before the application setup](#2-details-to-understand-before-the-application-setup)
+2. [Concepts used](#2-concepts-used)
 3. [Deploy the application to Bluemix](#3-deploy-the-application-to-bluemix)
 4. [Develop Watson Knowledge Studio model](#4-develop-watson-knowledge-studio-model)
 5. [Deploy WKS model to Watson Natural Language Understanding](#5-deploy-wks-model-to-watson-natural-language-understanding)
 6. [Verify that configuration parameters are correct](#6-verify-that-configuration-parameters-are-correct)
-7. [Using Personal Data Extractor application](#7-using-personal-data-extractor-application)
+7. [Analyze result](#7-analyze-result)
 8. [Consuming the output by other applications](#8-consuming-the-output-by-other-applications)
 
 
 ### 1. Prerequisites
 - Bluemix account: If you do not have a Bluemix account, you can create an account here [here](https://console.bluemix.net/)
+- If you opt to deploy the Liberty application manually then 
+    - Cloud Foundry cli should be installed. If not installed then use the [link](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) 
+  to install Cloud Foundry cli
+    - mvn should be installed. If not installed then use the [link](https://maven.apache.org/install.html) 
+      to install mvn
 - Watson Knowledge Studio account: User must have a WKS account. If you do not have 
   an account, you can create a free 
   account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio)
@@ -100,7 +105,7 @@ This journey gives you a step by step instructions for:
   of building model in WKS in order to build a custom model. Detailed steps for building 
   a model are provided in this document
 
-### 2. Details to understand before the application setup
+### 2. Concepts used
 #### 2.1 Data extraction methods
 We have to define what personal data (e.g. Name, Email id) we would want to extract. This is done in two ways in this Journey. <br/>
 A) Using Custom model build using Watson Knowledge Studio (WKS) and <br/>
@@ -135,18 +140,12 @@ DOB_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oc
 DOJ_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d
 ```
 
-### 3. Deploy the application to Bluemix
-#### 3.1 Deploy application to Bluemix
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
-
-Click "Deploy to Bluemix" button above to deploy the application to Bluemix. You would be presented with a toolchain view and asked to Deploy the application, go ahead and click the deploy button. After the application is deployed ensure that the application is started and also ensure that a NLU service instance is created and bound to the application created.
-
-#### 3.2 Brief description of application components
-##### 3.2.1 Personal Data Extractor component:
+#### 2.4 Brief description of application components
+##### 2.4.1 Personal Data Extractor component:
 Personal Data Extractor component is the controller which controls the flow of data between all the components. It also integrates with NLU
-##### 3.2.1 Regex component:
+##### 2.4.2 Regex component:
 Regex component parses the input text using the regular expressions provided in the configuration files to extract personal data. Regular expressions are used to extract personal data where NLU won’t is not effective enough. It augments the results provided by NLU.
-##### 3.2.3 Scorer component:
+##### 2.4.3 Scorer component:
 Scorer component calculates the score of a document, which is between 0 and 1, based on the personal data identified and the configuration data. It uses the below algorithm
 
 ```
@@ -160,11 +159,63 @@ For each category{
 }
 ```
 
-##### 3.2.4 Viewer component:
+##### 2.4.4 Viewer component:
 Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown <br/>
 <!--
 <img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
 -->
+
+### 3. Application deployment
+#### 3.1 Deploy Java Liberty application to Bluemix
+You can deploy the Java Liberty application using the "Deploy to Bluemix" button or 
+using manual steps
+##### 3.1.1 Deploy using "Deploy to Bluemix"
+Click "Deploy to Bluemix" button above to deploy the application to Bluemix. You would be presented with a toolchain view and asked to Deploy the application, go ahead and click the deploy button. After the application is deployed ensure that the application is started and also ensure that a NLU service instance is created and bound to the application created.
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
+##### 3.1.2 Deploy using Manual steps
+###### 3.1.2.1 Create NLU instance
+- Login to Bluemix console and click "Create"
+  <br/><img src="images/ServiceCreate.png" alt="ServiceCreate" width="640" border="10" /><br/>
+- In the search field type "Natural Language Understanding" and Click on Watson Natural Language Understanding 
+  service entry
+  <br/><img src="images/NLUSelection.png" alt="NLUSelection" width="640" border="10" /><br/>
+- Below screen is displayed
+  <br/><img src="images/NLUCreateDefault.png" alt="NLUCreateDefault" width="640" border="10" /><br/>
+- Edit the field "Service name:" to say NLUGDPR and leave the other settings default. 
+  Click "Create"
+  <br/><img src="images/NLUCreateEdit.png" alt="NLUCreateEdit" width="640" border="10" /><br/>
+- NLU Instance is created.
+###### 3.1.2.2 Deploy the Java application on Bluemix
+- Open command prompt. Login to your Bluemix space using the below command
+```
+cf login
+```
+- Clone the code to your local machine
+- Change directory to the parent folder of the project that you cloned
+```
+cd /Users/muralidhar/git/gdpr-fingerprint-pii
+```
+
+- Examine the manifest.yml file. Verify if the NLU service name is same as the one 
+  created in earlier steps. If not, update the NLU service name to the one created 
+  above
+  <br/><img src="images/ManifestServiceBinding.png" alt="ManifestServiceBinding" width="640" border="10" /><br/>
+
+Build war file using the command
+```
+mvn clean package
+```
+
+Deploy the Java Liberty Application using the below command
+```
+cf push gdpr-personaldata-scorer -p target/PersonalDataScorer.war
+```
+Ensure that the application is deployed successfully and is running. 
+<br/><img src="images/AppRunning.png" alt="AppRunning" width="640" border="10" /><br/>
+Also ensure that the NLU service instance is bound to the application created
+<br/><img src="images/ServiceBinding.png" alt="ServiceBinding" width="640" border="10" /><br/>
+
+
 ### 4. Develop Watson Knowledge Studio model
 Note that building Watson Knowledge Studio annotations and building a model is a complex and iterative process. The intention here is not to deal with the end to end process but to give an idea on the process so that it can be modified or extended as the requirements suite<br/>
 The steps described here is to import the Type Systems and ground truth on which to train the machine learning model, annotator development and evaluation, and then deploying it to Natural Language Understanding service created earlier
@@ -231,8 +282,7 @@ Click "Create"
 <br/><img src="images/WKSMappingComplete.png" alt="WKSMappingComplete" width="640" border="10" /><br/>
 - Click “Save” to save the changes
 <br/><img src="images/WKSMappingSaved.png" alt="WKSMappingSaved" width="640" border="10" /><br/>
-- Repeat above steps for all the document. Once all the documents are annotated and completed, click “Submit All”
-<br/><img src="images/WKSAllFilesAnnotationCompleted.png" alt="WKSAllFilesAnnotationCompleted" width="640" border="10" /><br/>
+- Repeat above steps for all the document. All the documents should be annotated and completed
 - If the status shows “IN PROGRESS”, click “Refresh” button
 <br/><img src="images/WKSAnnotationStatusRefresh.png" alt="WKSAnnotationStatusRefresh" width="640" border="10" /><br/>
 - Status should now change to “SUBMITTED”

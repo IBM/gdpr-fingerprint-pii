@@ -3,11 +3,21 @@
 
 # Fingerprinting personal data from unstructured documents
 
-The General Data Protection Regulation (GDPR) is a regulation by which the European Parliament, the Council of the European Union and the European Commission intend to strengthen and unify data protection for all individuals within the European Union (EU). It also addresses the export of personal data outside the EU. 
+The General Data Protection Regulation (GDPR) is a regulation by which the European 
+Parliament, the Council of the European Union and the European Commission intend to 
+strengthen and unify data protection for all individuals within the European Union 
+(EU). It also addresses the export of personal data outside the EU. 
 
-Under the EU's new General Data Protection Regulation, enterprises around the world must not only keep personal data private, but they will also be required to "forget" any personal data related to an individual on request -- and the GDPR right to be forgotten will be a significant part of compliance with the new rule. 
+Under the EU's new General Data Protection Regulation, enterprises around the world 
+must not only keep personal data private, but they will also be required to "forget" 
+any personal data related to an individual on request -- and the GDPR right to be forgotten 
+will be a significant part of compliance with the new rule. 
 
-When a customer requests that all his/her personal data be deleted, then an organisation needs to identify all the documents where the customer's personal data reside. This journey addresses the need to identify the personal data from the provided documents. Also, we will see how to assign a confidence score for the personal data that indicates the confidence level in identifying an individual uniquely as part of the journey.
+When a customer requests that all his or her personal data be deleted, then an organisation 
+needs to identify all the documents where the customer's personal data reside. This 
+journey addresses the need to identify the personal data from the provided documents. 
+Also, we will see how to assign a confidence score for the personal data that indicates 
+the confidence level in identifying an individual uniquely as part of the journey.
 
 Let us try to understand this with an example chat transcript as below<br />
 
@@ -46,33 +56,44 @@ Confidence score: 0.7
 
 
 This journey gives you a step by step instructions for:
-- Building a custom model using Watson Knowledge Studio (WKS) and having Natural Language Understanding 
-  (NLU) use that model for personal data extraction
-- Using regular expressions, in addition to NLU, to extract personal data from unstructured text
-- Configuring pre-identified personal data with weightage and coming up with a score representing the confidence level of identifying an individual using the personal data identified
-- Viewing the score and the personal data identified in a tree structure for better visualization
-- Consuming the output of this Journey by other applications
+- Building a custom model using Watson Knowledge Studio (WKS) and having Natural Language 
+Understanding (NLU) use that model for personal data extraction.
+- Using regular expressions, in addition to NLU, to extract personal data from unstructured 
+text.
+- Configuring pre-identified personal data with weightage and coming up with a score 
+representing the confidence level of identifying an individual using the personal data 
+identified.
+- Viewing the score and the personal data identified in a tree structure for better 
+visualization.
+- Consuming the output of this Journey by other applications.
 
 # Flow
 <br/><img src="images/Architecture.png" alt="Architecture/Flow diagram" width="640" border="10" /><br/>
-1 – Viewer passes input text to Personal Data Extractor<br/>
-2 – Personal Data Extractor passes the text to NLU<br/>
-3 – Personal Data extracted from the input text . NLU uses custom model to provide the response<br/>
-4 – Personal Data Extractor passes NLU Output to Regex component<br/>
-5 – Regex component uses the regular expressions provided in configuration to extract personal data which is then augmented to the NLU Output<br/>
-6 – The augmented personal data is passed to scorer component<br/>
-7 – Scorer component uses the configuration to come up with a overall document score and the result is passed back to Personal Data Extractor component<br/>
-8 – This data is then passed to viewer component<br/>
+1 – Viewer passes input text to Personal Data Extractor.<br/>
+2 – Personal Data Extractor passes the text to NLU.<br/>
+3 – Personal Data extracted from the input text. NLU uses custom model to provide the response.<br/>
+4 – Personal Data Extractor passes NLU Output to Regex component.<br/>
+5 – Regex component uses the regular expressions provided in configuration to extract personal data which is then augmented to the NLU Output.<br/>
+6 – The augmented personal data is passed to scorer component.<br/>
+7 – Scorer component uses the configuration to come up with a overall document score and the result is passed back to Personal Data Extractor component.<br/>
+8 – This data is then passed to viewer component.<br/>
 
 
 # Included Components
 * [Watson Knowledge Studio](https://console.bluemix.net/docs/services/knowledge-studio/index.html#wks_overview_full): 
-  A tool to create a machine-learning model that understands the linguistic nuances, meaning, and relationships specific to your industry or to create a rule-based model that finds entities in documents based on rules that you define.
+  A tool to create a machine-learning model that understands the linguistic nuances, 
+  meaning, and relationships specific to your industry or to create a rule-based model 
+  that finds entities in documents based on rules that you define.
 
 * [Watson Natural Language Understanding](https://www.ibm.com/watson/services/natural-language-understanding/): 
-  A Bluemix service that can analyze text to extract meta-data from content such as concepts, entities, keywords, categories, sentiment, emotion, relations, semantic roles, using natural language understanding.
+  A Bluemix service that can analyze text to extract meta-data from content such as 
+  concepts, entities, keywords, categories, sentiment, emotion, relations, semantic 
+  roles, using natural language understanding.
 
-* [Liberty for Java](https://console.bluemix.net/docs/runtimes/liberty/index.html#liberty_runtime): Develop, deploy, and scale Java web apps with ease. IBM WebSphere Liberty Profile is a highly composable, ultra-fast, ultra-light profile of IBM WebSphere Application Server designed for the cloud.
+* [Liberty for Java](https://console.bluemix.net/docs/runtimes/liberty/index.html#liberty_runtime): 
+Develop, deploy, and scale Java web apps with ease. IBM WebSphere Liberty Profile is 
+a highly composable, ultra-fast, ultra-light profile of IBM WebSphere Application Server 
+designed for the cloud.
 
 
 # Watch the Overview Video
@@ -92,38 +113,29 @@ This journey gives you a step by step instructions for:
 
 
 ### 1. Prerequisites
-- Bluemix account: If you do not have a Bluemix account, you can create an account here [here](https://console.bluemix.net/)
+- Bluemix account: If you do not have a Bluemix account, you can create an account [here](https://console.bluemix.net/).
 - If you opt to deploy the Liberty application manually then 
-    - Cloud Foundry cli should be installed. If not installed then use the [link](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) 
-  to install Cloud Foundry cli
-    - mvn should be installed. If not installed then use the [link](https://maven.apache.org/install.html) 
-      to install mvn
+    - Cloud Foundry cli should be installed. If not installed, click [here](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) to 
+    install.
+    - Maven should be installed. If not installed, click [here](https://maven.apache.org/install.html) 
+      to install.
 - Watson Knowledge Studio account: User must have a WKS account. If you do not have 
-  an account, you can create a free 
-  account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio)
+  an account, you can create a free account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio).
 - Basic knowledge of building models in WKS: The user must possess basic knowledge 
   of building model in WKS in order to build a custom model. Detailed steps for building 
-  a model are provided in this document
+  a model are provided in this document.
 
 ### 2. Concepts used
 #### 2.1 Data extraction methods
 We have to define what personal data (e.g. Name, Email id) we would want to extract. This is done in two ways in this Journey. <br/>
 A) Using Custom model build using Watson Knowledge Studio (WKS) and <br/>
 B) Using regular expressions. Details of how these are used are explained later in this document.<br/><br/>
-#### 2.2  Categories
-Personal data are classified into different categories so as to assign weights for each category which can then be used to calculate confidence score of document. 
-These Categories are used in the configuration as explained in the following section<br/>
+#### 2.2  Configuration
+We use configuration to extract personal data. Personal data are classified into different 
+categories. Each category is assigned a weight. Also we specify what personal data 
+belongs to which category. <br/>
 
-```
-<category>_Weight: Weightage for each category. e.g. High_Weight: 40
-<category>_PIIs: Personal data (Entity types). e.g. EmailId, Employee Id
-regex_params: Entity types which have to be extracted using regular expressions. e.g. Date
-<regex_param>_regex: Regular expression using which an entity needs to be extracted from text e.g. (0[1-9]|[12]\[0-9]|3[01])
-```
-
-#### 2.3 Configuration
-Categories, Category weightage and Category to Personal Data mapping can be defined via 
-configuration. A sample configuration is as shown below <br/>
+A sample configuration is as shown below <br/>
 
 ```
 Categories: Very_High,High,Medium,Low
@@ -140,27 +152,48 @@ DOB_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oc
 DOJ_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d
 ```
 
-#### 2.4 Brief description of application components
-##### 2.4.1 Personal Data Extractor component:
-Personal Data Extractor component is the controller which controls the flow of data between all the components. It also integrates with NLU
-##### 2.4.2 Regex component:
-Regex component parses the input text using the regular expressions provided in the configuration files to extract personal data. Regular expressions are used to extract personal data where NLU won’t is not effective enough. It augments the results provided by NLU.
-##### 2.4.3 Scorer component:
-Scorer component calculates the score of a document, which is between 0 and 1, based on the personal data identified and the configuration data. It uses the below algorithm
+If you want to change configuration, then follow the below syntax 
 
 ```
-Let score be 0
-For each category{
-   cat_weight = weightage for the category
-   cat_entity_types = list of entity types for the category
-   for each cat_entity_types{
-      score = score +( ( cat_weight/100 ) * ( 100 - score ) )
-   }
-}
+Categories: <new set of categories which are comma separated>. e.g. Categories: MyCategory1,MyCategory2,MyCategory3
+<category_name>_Weight: Weightage for each category. e.g. MyCategory1_Weight: 40 
+<category>_PIIs: Personal data (Entity types). e.g. MyCategory1_PIIS: EmailId, Employee Id
+regex_params: Entity types which have to be extracted using regular expressions. e.g. regex_params: 
+Date
+<regex_param>_regex: Regular expression using which an entity needs to be extracted from text e.g. Date_regex: 
+(0[1-9]|[12]\[0-9]|3[01])
 ```
 
-##### 2.4.4 Viewer component:
-Viewer component is the user interface component of the application. User can browse to a file, containing chat transcripts, and submit it for personal data extraction the scoring. The personal data is then shown in a tree structure along with scores. Overall confidence score for the document is also shown <br/>
+#### 2.3 Brief description of application components
+##### 2.3.1 Personal Data Extractor component:
+Personal Data Extractor component is the controller which controls the flow of data 
+between all the components. It also integrates with NLU.
+##### 2.3.2 Regex component:
+Regex component parses the input text using the regular expressions provided in the 
+configuration files to extract personal data. Regular expressions are used to extract 
+personal data to Augment NLU output.
+##### 2.3.3 Scorer component:
+Scorer component calculates the score of a document, which is between 0 and 1, based 
+on the personal data identified and the configuration data. It uses the below algorithm
+
+	```
+	Let score be 0
+	For each category{
+	   cat_weight = weightage for the category
+	   cat_entity_types = list of entity types for the category
+	   for each cat_entity_types{
+	      score = score +( ( cat_weight/100 ) * ( 100 - score ) )
+	   }
+	}
+	score = score / 100; // to make it between 0 and 1
+    ```
+<br/>
+
+##### 2.3.4 Viewer component:
+Viewer component is the user interface component of the application. User can browse 
+a file, containing chat transcripts, and submit for personal data extraction component 
+After processed results (personal data) are then shown in a tree view, along with the 
+overall confidence score. <br/>
 <!--
 <img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
 -->
@@ -168,83 +201,88 @@ Viewer component is the user interface component of the application. User can br
 ### 3. Application deployment
 #### 3.1 Deploy Java Liberty application to Bluemix
 You can deploy the Java Liberty application using the "Deploy to Bluemix" button or 
-using manual steps
+using manual steps.
 ##### 3.1.1 Deploy using "Deploy to Bluemix"
-Click "Deploy to Bluemix" button above to deploy the application to Bluemix. You would be presented with a toolchain view and asked to Deploy the application, go ahead and click the deploy button. After the application is deployed ensure that the application is started and also ensure that a NLU service instance is created and bound to the application created.
+Click "Deploy to Bluemix" button above to deploy the application to Bluemix. You would 
+be presented with a toolchain view and asked to Deploy the application, go ahead and 
+click the deploy button. After the application is deployed ensure that the application 
+is started and also ensure that a NLU service instance is created and bound to the 
+application created.<br/>
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
 ##### 3.1.2 Deploy using Manual steps
-###### 3.1.2.1 Create NLU instance
-- Login to Bluemix console and click "Create"
-  <br/><img src="images/ServiceCreate.png" alt="ServiceCreate" width="640" border="10" /><br/>
-- In the search field type "Natural Language Understanding" and Click on Watson Natural Language Understanding 
-  service entry
-  <br/><img src="images/NLUSelection.png" alt="NLUSelection" width="640" border="10" /><br/>
-- Below screen is displayed
+###### 3.1.2.1 Create NLU service instance
+- Step1: Click [here](https://console.bluemix.net/catalog/services/natural-language-understanding) 
+to create NLU service
+- Step2: Below screen is displayed
   <br/><img src="images/NLUCreateDefault.png" alt="NLUCreateDefault" width="640" border="10" /><br/>
-- Edit the field "Service name:" to say NLUGDPR and leave the other settings default. 
+- Step3: Edit the field "Service name:" to say NLUGDPR and leave the other settings default. 
   Click "Create"
   <br/><img src="images/NLUCreateEdit.png" alt="NLUCreateEdit" width="640" border="10" /><br/>
-- NLU Instance is created.
+- Step4: NLU service instance is created.
 ###### 3.1.2.2 Deploy the Java application on Bluemix
-- Open command prompt. Login to your Bluemix space using the below command
+- Step5: Clone the [repo](https://github.com/IBM/gdpr-fingerprint-pii)
+- Step6: Open command prompt. Login to your Bluemix space using the below command
 ```
 cf login
 ```
-- Clone the code to your local machine
-- Change directory to the parent folder of the project that you cloned
-```
-cd /Users/muralidhar/git/gdpr-fingerprint-pii
-```
-
-- Examine the manifest.yml file. Verify if the NLU service name is same as the one 
-  created in earlier steps. If not, update the NLU service name to the one created 
-  above
+- Step7: Change directory to the cloned repo's root directory
+- Step8: You will find manifest.yml file at the project's root folder. Verify if the 
+NLU service name is same as the one created in Step1 above. If not, update the NLU 
+service name to the one created above
   <br/><img src="images/ManifestServiceBinding.png" alt="ManifestServiceBinding" width="640" border="10" /><br/>
 
-Build war file using the command
+- Step9: Build war file using the command
 ```
 mvn clean package
 ```
 
-Deploy the Java Liberty Application using the below command
+- Step9: Deploy the Java Liberty Application using the below command
 ```
 cf push gdpr-personaldata-scorer -p target/PersonalDataScorer.war
 ```
-Ensure that the application is deployed successfully and is running. 
-<br/><img src="images/AppRunning.png" alt="AppRunning" width="640" border="10" /><br/>
-Also ensure that the NLU service instance is bound to the application created
+- Step10: On the Bluemix dashboard, ensure that the application is deployed successfully and is running. 
+<br/><img src="images/AppRunning.png" alt="AppRunning" width="640" border="10" /><br/><br/>
+
+- Step11: On the Bluemix dashboard, click on the application that was deployed in Step9. 
+On the left hand side navigation links click "Connections". Verify that the NLU service 
+created in Step3 is listed (meaning the NLU service instance is bound to the application)
 <br/><img src="images/ServiceBinding.png" alt="ServiceBinding" width="640" border="10" /><br/>
 
 
 ### 4. Develop Watson Knowledge Studio model
-Note that building Watson Knowledge Studio annotations and building a model is a complex and iterative process. The intention here is not to deal with the end to end process but to give an idea on the process so that it can be modified or extended as the requirements suite<br/>
-The steps described here is to import the Type Systems and ground truth on which to train the machine learning model, annotator development and evaluation, and then deploying it to Natural Language Understanding service created earlier
+Note that building Watson Knowledge Studio annotations and building a model is a complex 
+and iterative process. The intention here is not to deal with the end to end process 
+but to give an idea on the process so that it can be modified or extended to suit your 
+requirements. <br/>
+The steps described here is to import the Type Systems and ground truth on which to train 
+the machine learning model, annotator development and evaluation, and then deploying 
+it to Natural Language Understanding service created earlier.
 #### 4.1 Import Artifacts
-In github repository, navigate to WKS folder. Download the files named “Documents.zip” and “TypeSystems.json” to your local filesystem
+In github repository, navigate to WKS folder. Download the files named “Documents.zip” and 
+“TypeSystems.json” to your local filesystem.
 #### 4.2 Create Project
-Login to the WKS instance.
-- Click "Create Project". In the “Create New Project” pop up window, enter the name of the new project.
+Login to the WKS.
+- Click "Create Project".
 <br/><img src="images/WKSCreateProject.png" alt="Create Project" width="640" border="10" /><br/>
-- The “Description” field is optional.<br/>
-- In the "Select a language" drop down field, choose “English”. Machine learning-based tokenizer is default option you need to choose. 
-Click "Create"
+- In the “Create New Project” pop up window, enter the name of the new project.
+- Click "Create"
 <br/><img src="images/WKSCreateProjectOptions.png" alt="Create Project Options" width="640" border="10" /><br/>
 #### 4.3 Import type system
 - After the project is created, click “Type Systems” on the top navigation bar<br/>
 - Select “Entity Types” tab and click “Import”
 <br/><img src="images/WKSImportTypeSystems.png" alt="Import Type Systems" width="640" border="10" /><br/>
-- Click the import/download icon and browse to the file “TypeSystems.json” file that was downloaded, from git repository, earlier<br/>
+- Click the import icon and browse to the file “TypeSystems.json” file that was downloaded, from git repository, earlier<br/>
 <br/><img src="images/WKSImportTypeSystemsBrowse.png" alt="Import Type Systems Browse" width="640" border="10" /><br/>
 - The selected file gets listed in the popup window. Click “Import”
 <br/><img src="images/WKSTypeSystemsImport.png" alt="WKSTypeSystemsImport" width="640" border="10" /><br/>
-- The documents are listed as below. Make a note of entity types or keywords that we are interested in. You can add/edit entities if you wish.
+- The documents are listed as below. Make a note of entity types or keywords that we are interested in. You can add or edit entities.
 <br/><img src="images/WKSImportedEntityTypes.png" alt="WKSImportedEntityTypes" width="640" border="10" /><br/>
 #### 4.4 Import Documents
 - Click “Documents” on the top navigation bar
 <br/><img src="images/WKSImportDocuments.png" alt="WKSImportDocuments" width="640" border="10" /><br/>
 - Click “Import Document Set”
 <br/><img src="images/WKSImportDocSet.png" alt="WKSImportDocSet" width="640" border="10" /><br/>
-- Click import/download button on the popup window
+- Click import button on the popup window
 - Browse to and select “Documents.zip” file that was downloaded from github repository earlier
 - Click “Import”
 <br/><img src="images/WKSDocImport.png" alt="WKSDocImport" width="640" border="10" /><br/>
@@ -319,7 +357,7 @@ Click "Create"
 <br/><img src="images/WKSDeployNLUIntsance.png" alt="WKSDeployNLUIntsance" width="640" border="10" /><br/>
 - WKS model should get deployed on the NLU. Make a note of the Model Id. Click “OK”
 <br/><img src="images/WKSModelId.png" alt="WKSModelId" width="640" border="10" /><br/>
-- Click OK. Model is deployed to NLU
+- Model is deployed to NLU
 <br/><img src="images/WKSDeployedSnapshot.png" alt="WKSDeployedSnapshot" width="640" border="10" /><br/>
 
 ### 6. Verify that configuration parameters are correct
@@ -329,7 +367,7 @@ Click "Create"
 <br/><img src="images/Runtime.png" alt="Runtime" width="640" border="10" /><br/>
 - Click “Environment Variables” and scroll down to user defined variables
 <br/><img src="images/EnvVar.png" alt="EnvVar" width="640" border="10" /><br/>
-- Update the model id against “wks_model” entry. Also here is where you will update all your configuration data. Update/edit all the confifiguration data as required. Finally verify that all other configuration parameters are correct. Click “Save”
+- Update the model id against “wks_model” entry. Also here is where you will update all your configuration data. Update/edit all the configuration data as required. Finally verify that all other configuration parameters are correct. Click “Save”
 <br/><img src="images/EnvVarModelId.png" alt="EnvVarModelId" width="640" border="10" /><br/>
 - The application restages. When the application is running, we are ready to use the application to extract personal data and score them from unstructured text
 <br/><img src="images/AppRestarting.png" alt="AppRestarting" width="640" border="10" /><br/>

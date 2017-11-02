@@ -115,10 +115,10 @@ designed for the cloud.
 ### 1. Prerequisites
 - Bluemix account: If you do not have a Bluemix account, you can create an account [here](https://console.bluemix.net/).
 - If you opt to deploy the Liberty application manually then 
-    - Cloud Foundry cli should be installed. If not installed, click [here](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) to 
-    install.
+    - Cloud Foundry cli should be installed. If not installed, click [here](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) for 
+      instructions install.
     - Maven should be installed. If not installed, click [here](https://maven.apache.org/install.html) 
-      to install.
+      for instructions to install.
 - Watson Knowledge Studio account: User must have a WKS account. If you do not have 
   an account, you can create a free account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio).
 - Basic knowledge of building models in WKS: The user must possess basic knowledge 
@@ -129,7 +129,8 @@ designed for the cloud.
 #### 2.1 Data extraction methods
 We have to define what personal data (e.g. Name, Email id) we would want to extract. This is done in two ways in this Journey. <br/>
 A) Using Custom model build using Watson Knowledge Studio (WKS) and <br/>
-B) Using regular expressions. Details of how these are used are explained later in this document.<br/><br/>
+B) Using regular expressions. Details of how these are used are explained later in subsequent 
+sections.<br/><br/>
 #### 2.2  Configuration
 We use configuration to extract personal data. Personal data are classified into different 
 categories. Each category is assigned a weight. Also we specify what personal data 
@@ -152,7 +153,7 @@ DOB_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oc
 DOJ_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d
 ```
 
-If you want to change configuration, then follow the below syntax 
+If you want to change configuration, then follow the below template 
 
 ```
 Categories: <new set of categories which are comma separated>. e.g. Categories: MyCategory1,MyCategory2,MyCategory3
@@ -171,28 +172,27 @@ between all the components. It also integrates with NLU.
 ##### 2.3.2 Regex component:
 Regex component parses the input text using the regular expressions provided in the 
 configuration files to extract personal data. Regular expressions are used to extract 
-personal data to Augment NLU output.
+personal data to augment NLU output.
 ##### 2.3.3 Scorer component:
 Scorer component calculates the score of a document, which is between 0 and 1, based 
-on the personal data identified and the configuration data. It uses the below algorithm
+on the personal data identified and the configuration data. It uses the below algorithm<br/>
 
-	```
-	Let score be 0
-	For each category{
+```
+Let score be 0
+    For each category{
 	   cat_weight = weightage for the category
 	   cat_entity_types = list of entity types for the category
 	   for each cat_entity_types{
 	      score = score +( ( cat_weight/100 ) * ( 100 - score ) )
 	   }
-	}
-	score = score / 100; // to make it between 0 and 1
-    ```
-<br/>
+    }
+score = score / 100; // to make it between 0 and 1
+```
 
 ##### 2.3.4 Viewer component:
 Viewer component is the user interface component of the application. User can browse 
-a file, containing chat transcripts, and submit for personal data extraction component 
-After processed results (personal data) are then shown in a tree view, along with the 
+a file, containing chat transcript, and submit to personal data extraction component. 
+After processed personal data are then shown in a tree view, along with the 
 overall confidence score. <br/>
 <!--
 <img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
@@ -204,10 +204,9 @@ You can deploy the Java Liberty application using the "Deploy to Bluemix" button
 using manual steps.
 ##### 3.1.1 Deploy using "Deploy to Bluemix"
 Click "Deploy to Bluemix" button above to deploy the application to Bluemix. You would 
-be presented with a toolchain view and asked to Deploy the application, go ahead and 
-click the deploy button. After the application is deployed ensure that the application 
-is started and also ensure that a NLU service instance is created and bound to the 
-application created.<br/>
+be presented with a toolchain view and asked to "Deploy" the application. Go ahead and 
+click deploy button. The application should get deployed. Ensure that the application 
+is started and that a NLU service is created and bound to the application just deployed. <br/>
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
 ##### 3.1.2 Deploy using Manual steps
 ###### 3.1.2.1 Create NLU service instance
@@ -218,7 +217,7 @@ to create NLU service
 - Step3: Edit the field "Service name:" to say NLUGDPR and leave the other settings default. 
   Click "Create"
   <br/><img src="images/NLUCreateEdit.png" alt="NLUCreateEdit" width="640" border="10" /><br/>
-- Step4: NLU service instance is created.
+- Step4: NLU service instance should get created.
 ###### 3.1.2.2 Deploy the Java application on Bluemix
 - Step5: Clone the [repo](https://github.com/IBM/gdpr-fingerprint-pii)
 - Step6: Open command prompt. Login to your Bluemix space using the below command
@@ -245,7 +244,7 @@ cf push gdpr-personaldata-scorer -p target/PersonalDataScorer.war
 
 - Step11: On the Bluemix dashboard, click on the application that was deployed in Step9. 
 On the left hand side navigation links click "Connections". Verify that the NLU service 
-created in Step3 is listed (meaning the NLU service instance is bound to the application)
+created in Step3 is listed
 <br/><img src="images/ServiceBinding.png" alt="ServiceBinding" width="640" border="10" /><br/>
 
 
@@ -264,8 +263,7 @@ In github repository, navigate to WKS folder. Download the files named “Docume
 Login to the WKS.
 - Click "Create Project".
 <br/><img src="images/WKSCreateProject.png" alt="Create Project" width="640" border="10" /><br/>
-- In the “Create New Project” pop up window, enter the name of the new project.
-- Click "Create"
+- In the “Create New Project” pop up window, enter the name of the new project. Click "Create"
 <br/><img src="images/WKSCreateProjectOptions.png" alt="Create Project Options" width="640" border="10" /><br/>
 #### 4.3 Import type system
 - After the project is created, click “Type Systems” on the top navigation bar<br/>

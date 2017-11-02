@@ -104,7 +104,7 @@ designed for the cloud.
 # Steps
 1. [Prerequisites](#1-prerequisites)
 2. [Concepts used](#2-concepts-used)
-3. [Deploy the application to Bluemix](#3-deploy-the-application-to-bluemix)
+3. [Application Deployment](#3-application-deployment)
 4. [Develop Watson Knowledge Studio model](#4-develop-watson-knowledge-studio-model)
 5. [Deploy WKS model to Watson Natural Language Understanding](#5-deploy-wks-model-to-watson-natural-language-understanding)
 6. [Verify that configuration parameters are correct](#6-verify-that-configuration-parameters-are-correct)
@@ -198,7 +198,7 @@ overall confidence score. <br/>
 <img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
 -->
 
-### 3. Application deployment
+### 3. Application Deployment
 #### 3.1 Deploy Java Liberty application to Bluemix
 You can deploy the Java Liberty application using the "Deploy to Bluemix" button or 
 using manual steps.

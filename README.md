@@ -1,6 +1,4 @@
 
-# Work in Progress
-
 # Fingerprinting personal data from unstructured documents
 
 The General Data Protection Regulation (GDPR) is a regulation by which the European 
@@ -15,9 +13,9 @@ will be a significant part of compliance with the new rule.
 
 When a customer requests that all his or her personal data be deleted, then an organisation 
 needs to identify all the documents where the customer's personal data reside. This 
-journey addresses the need to identify the personal data from the provided documents. 
+code pattern addresses the need to identify the personal data from the provided documents. 
 Also, we will see how to assign a confidence score for the personal data that indicates 
-the confidence level in identifying an individual uniquely as part of the journey.
+the confidence level in identifying an individual uniquely as part of the code pattern.
 
 Let us try to understand this with an example chat transcript as below<br />
 
@@ -55,7 +53,7 @@ Confidence score: 0.7
 ```
 
 
-This journey gives you a step by step instructions for:
+This code pattern gives you a step by step instructions for:
 - Building a custom model using Watson Knowledge Studio (WKS) and having Natural Language 
 Understanding (NLU) use that model for personal data extraction.
 - Using regular expressions, in addition to NLU, to extract personal data from unstructured 
@@ -65,7 +63,7 @@ representing the confidence level of identifying an individual using the persona
 identified.
 - Viewing the score and the personal data identified in a tree structure for better 
 visualization.
-- Consuming the output of this Journey by other applications.
+- Consuming the output of this code pattern by other applications.
 
 # Flow
 <br/><img src="images/Architecture.png" alt="Architecture/Flow diagram" width="640" border="10" /><br/>
@@ -98,7 +96,7 @@ designed for the cloud.
 
 # Watch the Overview Video
 
-[![Coming Soon]](http://localhost)
+[![](https://i.ytimg.com/vi/NiBCa3EtCr0/3.jpg)](https://youtu.be/NiBCa3EtCr0)
 
 
 # Steps
@@ -117,8 +115,8 @@ designed for the cloud.
 - If you opt to deploy the Liberty application manually then 
     - Cloud Foundry cli should be installed. If not installed, click [here](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) for 
       instructions install.
-    - Maven should be installed. If not installed, click [here](https://maven.apache.org/install.html) 
-      for instructions to install.
+    - Maven should be installed. If not installed, you can download Maven from [here](https://maven.apache.org/download.cgi). You 
+      can refer to installation instructions [here](https://maven.apache.org/install.html).
 - Watson Knowledge Studio account: User must have a WKS account. If you do not have 
   an account, you can create a free account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio).
 - Basic knowledge of building models in WKS: The user must possess basic knowledge 
@@ -126,7 +124,7 @@ designed for the cloud.
 
 ### 2. Concepts used
 #### 2.1 Data extraction methods
-We have to define what personal data (e.g. Name, Email id) we would want to extract. This is done in two ways in this Journey. <br/>
+We have to define what personal data (e.g. Name, Email id) we would want to extract. This is done in two ways in this code pattern. <br/>
 A) Using Custom model build using Watson Knowledge Studio (WKS) and <br/>
 B) Using regular expressions. Details of how these are used are explained later in subsequent 
 sections.<br/><br/>
@@ -208,6 +206,11 @@ click deploy button. The application should get deployed. Ensure that the applic
 is started and that a NLU service is created and bound to the application just deployed. <br/>
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
 ##### 3.1.2 Deploy using Manual steps
+If you have used "Deploy to Bluemix" button to deploy the application, then skip this 
+section and junk to section "4. Develop Watson Knowledge Studio model". If you have 
+not used "Deploy to Bluemix" button to deploy the application, then complete the sections 
+"3.1.2.1 Create NLU service instance" and "3.1.2.2 Deploy the Java application on Bluemix" 
+below.
 ###### 3.1.2.1 Create NLU service instance
 - Step1: Click [here](https://console.bluemix.net/catalog/services/natural-language-understanding) 
 to create NLU service
@@ -219,7 +222,9 @@ to create NLU service
 - Step4: NLU service instance should get created.
 ###### 3.1.2.2 Deploy the Java application on Bluemix
 - Step5: Clone the [repo](https://github.com/IBM/gdpr-fingerprint-pii)
-- Step6: Open command prompt. Login to your Bluemix space using the below command
+- Step6: Open command prompt. Login to your Bluemix space using the below command. 
+  Ensure that you login to same space where NLU service instance was created in section 
+  "3.1.2.1 Create NLU service instance"
 ```
 cf login
 ```
@@ -248,8 +253,8 @@ created in Step3 is listed
 
 
 ### 4. Develop Watson Knowledge Studio model
-Detailed steps to create a model in WKS is provided [here](https://github.ibm.com/IBMCode/howtos/tree/master/extracting-personal-data-from-unstructured-text-using-watson-knowledge-studio)
-This is a how-to guide 
+Detailed steps to create a model in WKS is provided [here](https://github.ibm.com/IBMCode/howtos/tree/master/extracting-personal-data-from-unstructured-text-using-watson-knowledge-studio). 
+This is a how-to guide.
 
 ### 5. Deploy WKS model to Watson Natural Language Understanding
 - In WKS, navigate to "Annotator Component" and Click on NLU
@@ -288,10 +293,11 @@ This is a how-to guide
 
 
 ### 7. Analyze Results
+- From the github repo for this Pattern, download sample chat transcripts, from 
+  the folder "SampleChatTranscripts", on to your local file system
 - Open the application URL from a browser
 <br/><img src="images/AppHomePage.png" alt="AppHomePage" width="640" border="10" /><br/><br/>
-- Click "Choose File". On the popup window browse to the text file from which personal 
-data should be extracted. Select the file and click "Open"
+- Click "Choose File". On the popup window browse to any chat transcript that you downloaded in 2 steps above and select it. Click "Open"
 - Initially you see a collapsed tree view as below
 <br/><img src="images/TreeView1.png" alt="TreeView1" width="640" border="10" /><br/><br/>
 - Click on nodes to expand and collapse the nodes. Full tree view looks as below

@@ -1,0 +1,12 @@
+Rep: This is Priya. How can I help you?
+Caller: This is John. There is an issue in the billing for this month.
+Rep: Sure, I can help you.  For verification purpose may I know your date of birth and email id
+Caller: It is nineteen seventy nine August tenth and my email id is john@gmail.com
+Rep: Thanks for the information. Could you explain the problem.
+Caller: There is a charge for caller tune service that I did not request.
+Rep: This is added by default. I can take a request to remove the addition.
+Caller: Sure, could you remove it and correct my billing.
+Rep:The changes will be reflected in next months bill. Is there anything else that I can help you with
+Caller: No
+Rep: Thanks for calling Vodaphone. Have a good day.
+Caller: you too

@@ -239,9 +239,10 @@ service name to the one created above
 mvn clean package
 ```
 
-- Step9: Deploy the Java Liberty Application using the below command
+- Step9: Deploy the Java Liberty Application using the below command. Provide a unique 
+  application name so that the route is not already taken in Bluemix.
 ```
-cf push gdpr-personaldata-scorer -p target/PersonalDataScorer.war
+cf push <unique-application-name> -p target/PersonalDataScorer.war
 ```
 - Step10: On the Bluemix dashboard, ensure that the application is deployed successfully and is running. 
 <br/><img src="images/AppRunning.png" alt="AppRunning" width="640" border="10" /><br/><br/>

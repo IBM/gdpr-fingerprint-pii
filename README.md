@@ -120,7 +120,8 @@ designed for the cloud.
 - Watson Knowledge Studio account: User must have a WKS account. If you do not have 
   an account, you can create a free account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio).
 - Basic knowledge of building models in WKS: The user must possess basic knowledge 
-  of building model in WKS in order to build a custom model.
+  of building model in WKS in order to build a custom model. Check getting started documentation [here](https://console.bluemix.net/docs/services/knowledge-studio/tutorials-create-project.html#wks_tutintro)
+  
 
 ### 2. Concepts used
 #### 2.1 Data extraction methods

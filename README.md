@@ -126,8 +126,8 @@ designed for the cloud.
 ### 2. Concepts used
 #### 2.1 Data extraction methods
 We have to define what personal data (e.g. Name, Email id) we would want to extract. This is done in two ways in this code pattern. <br/>
-A) Using Custom model build using Watson Knowledge Studio (WKS) and <br/>
-B) Using regular expressions. Details of how these are used are explained later in subsequent 
+A) Using Custom model built using Watson Knowledge Studio (WKS) and <br/>
+B) Using regular expressions. Details of how these are used are explained in subsequent 
 sections.<br/><br/>
 #### 2.2  Configuration
 We use configuration to extract personal data. Personal data are classified into different 
@@ -256,10 +256,10 @@ created in Step3 is listed
 
 ### 4. Develop Watson Knowledge Studio model
 Detailed steps to create a model in WKS is provided [here](https://github.ibm.com/IBMCode/howtos/tree/master/extracting-personal-data-from-unstructured-text-using-watson-knowledge-studio). 
-This is a how-to guide.
+This is a how-to guide. Follow these steps to create a custom model.
 
 ### 5. Deploy WKS model to Watson Natural Language Understanding
-- In WKS, navigate to "Annotator Component" and Click on NLU
+- Login to WKS, navigate to "Annotator Component" and Click on NLU
 <br/><img src="images/WKSCaptureModelId1.png" alt="WKSCaptureModelId1" width="640" border="10" /><br/><br/>
 - Click “Details”
 <br/><img src="images/WKSAnnotatorCreated.png" alt="WKSAnnotatorCreated" width="640" border="10" /><br/><br/>

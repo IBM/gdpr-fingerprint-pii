@@ -118,7 +118,8 @@ designed for the cloud.
     - Maven should be installed. If not installed, you can download Maven from [here](https://maven.apache.org/download.cgi). You 
       can refer to installation instructions [here](https://maven.apache.org/install.html).
 - Watson Knowledge Studio account: User must have a WKS account. If you do not have 
-  an account, you can create a free account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio).
+  an account, you can create a free account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio). 
+  Make a note of the login URL since it is unique to every login id
 - Basic knowledge of building models in WKS: The user must possess basic knowledge 
   of building model in WKS in order to build a custom model. Check getting started documentation [here](https://console.bluemix.net/docs/services/knowledge-studio/tutorials-create-project.html#wks_tutintro)
   
@@ -348,7 +349,7 @@ Login to the WKS.
 <br/><img src="images/WKSAnnotatorProcessing.png" alt="WKSAnnotatorProcessing" width="640" border="10" />
 
 ### 5. Deploy WKS model to Watson Natural Language Understanding
-- Login to WKS, navigate to "Annotator Component" and Click on NLU
+- Login to WKS, using the login URL noted down from prerequisites step, navigate to "Annotator Component" and Click on NLU
 <br/><img src="images/WKSCaptureModelId1.png" alt="WKSCaptureModelId1" width="640" border="10" /><br/><br/>
 - Click “Details”
 <br/><img src="images/WKSAnnotatorCreated.png" alt="WKSAnnotatorCreated" width="640" border="10" /><br/><br/>

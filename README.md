@@ -257,9 +257,26 @@ created in Step3 is listed
 
 ### 4. Develop Watson Knowledge Studio model
 ## 4.1 Import Artifacts
-In github repository, navigate to WKS folder. Download the files named “Documents.zip” and
-“TypeSystems.json” to your local filesystem.
+### 4.1.1 Type Systems
+You can learn more about Type Systems [here](https://console.bluemix.net/docs/services/knowledge-studio/typesystem.html#typesystem)
+Type Systems can either be created or imported from an already created Type Systems 
+json file. It is left to user to create his or her own Type systems or use a Type Systems 
+json file provided in this repository. If you wish to import the Type Systems json 
+file, then download the file named "TypeSystems.json" under the folder "WKS" in this 
+repository to your local file system. The json file has entity types such as Name, PhoneNo, EmailId, Address. 
+You can edit/add/delete entity types to suit your requirement.
+ 
+### 4.1.2 Documents
+You can learn more about Documents [here](https://console.bluemix.net/docs/services/knowledge-studio/documents-for-annotation.html#wks_t_docs_intro)
+We will need a set of documents to train and evaluate the WKS model. These documents 
+will contain the unstructured text from which we will identify personal data. Refer 
+to some of the sample document files under the folder "SampleChatTranscripts". To train 
+WKS model, a large and varied set of documents are needed. To complete this exercise, 
+let us consider a smaller set of documents. 
 
+You can either have your own set of documents or use the ones provided in this git repository. 
+It is placed under WKS/Documents.zip. If you decide to use the documents provided in 
+this repo, then download the file to your local file system.
 
 ## 4.2 Create Project
 Login to the WKS.

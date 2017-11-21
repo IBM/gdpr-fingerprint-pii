@@ -320,5 +320,11 @@ Generic Output JSON looks as in the below image<br/>
 # References
 *
 
+
+# Learn more
+- **Artificial Intelligence Journeys:** Enjoyed this Journey? Check out our other [AI Journeys](https://developer.ibm.com/code/technologies/artificial-intelligence/).
+- **AI and Data Journey Playlist:** Bookmark our [playlist](https://www.youtube.com/playlist?list=PLzUbsvIyrNfknNewObx5N7uGZ5FKH0Fde) with all of our Journey videos
+
+
 # License
 [Apache 2.0](LICENSE)

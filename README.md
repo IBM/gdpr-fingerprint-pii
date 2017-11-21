@@ -1,20 +1,20 @@
 
 # Fingerprinting personal data from unstructured documents
 
-The General Data Protection Regulation (GDPR) is a regulation by which the European 
-Parliament, the Council of the European Union and the European Commission intend to 
-strengthen and unify data protection for all individuals within the European Union 
-(EU). It also addresses the export of personal data outside the EU. 
+The General Data Protection Regulation (GDPR) is a regulation by which the European
+Parliament, the Council of the European Union and the European Commission intend to
+strengthen and unify data protection for all individuals within the European Union
+(EU). It also addresses the export of personal data outside the EU.
 
-Under the EU's new General Data Protection Regulation, enterprises around the world 
-must not only keep personal data private, but they will also be required to "forget" 
-any personal data related to an individual on request -- and the GDPR right to be forgotten 
-will be a significant part of compliance with the new rule. 
+Under the EU's new General Data Protection Regulation, enterprises around the world
+must not only keep personal data private, but they will also be required to "forget"
+any personal data related to an individual on request -- and the GDPR right to be forgotten
+will be a significant part of compliance with the new rule.
 
-When a customer requests that all his or her personal data be deleted, then an organisation 
-needs to identify all the documents where the customer's personal data reside. This 
-code pattern addresses the need to identify the personal data from the provided documents. 
-Also, we will see how to assign a confidence score for the personal data that indicates 
+When a customer requests that all his or her personal data be deleted, then an organisation
+needs to identify all the documents where the customer's personal data reside. This
+code pattern addresses the need to identify the personal data from the provided documents.
+Also, we will see how to assign a confidence score for the personal data that indicates
 the confidence level in identifying an individual uniquely as part of the code pattern.
 
 Let us try to understand this with an example chat transcript as below<br />
@@ -54,14 +54,14 @@ Confidence score: 0.7
 
 
 This code pattern gives you a step by step instructions for:
-- Building a custom model using Watson Knowledge Studio (WKS) and having Natural Language 
+- Building a custom model using Watson Knowledge Studio (WKS) and having Natural Language
 Understanding (NLU) use that model for personal data extraction.
-- Using regular expressions, in addition to NLU, to extract personal data from unstructured 
+- Using regular expressions, in addition to NLU, to extract personal data from unstructured
 text.
-- Configuring pre-identified personal data with weightage and coming up with a score 
-representing the confidence level of identifying an individual using the personal data 
+- Configuring pre-identified personal data with weightage and coming up with a score
+representing the confidence level of identifying an individual using the personal data
 identified.
-- Viewing the score and the personal data identified in a tree structure for better 
+- Viewing the score and the personal data identified in a tree structure for better
 visualization.
 - Consuming the output of this code pattern by other applications.
 
@@ -78,19 +78,19 @@ visualization.
 
 
 # Included Components
-* [Watson Knowledge Studio](https://console.bluemix.net/docs/services/knowledge-studio/index.html#wks_overview_full): 
-  A tool to create a machine-learning model that understands the linguistic nuances, 
-  meaning, and relationships specific to your industry or to create a rule-based model 
+* [Watson Knowledge Studio](https://console.bluemix.net/docs/services/knowledge-studio/index.html#wks_overview_full):
+  A tool to create a machine-learning model that understands the linguistic nuances,
+  meaning, and relationships specific to your industry or to create a rule-based model
   that finds entities in documents based on rules that you define.
 
-* [Watson Natural Language Understanding](https://www.ibm.com/watson/services/natural-language-understanding/): 
-  A Bluemix service that can analyze text to extract meta-data from content such as 
-  concepts, entities, keywords, categories, sentiment, emotion, relations, semantic 
+* [Watson Natural Language Understanding](https://www.ibm.com/watson/services/natural-language-understanding/):
+  An IBM Cloud service that can analyze text to extract meta-data from content such as
+  concepts, entities, keywords, categories, sentiment, emotion, relations, semantic
   roles, using natural language understanding.
 
-* [Liberty for Java](https://console.bluemix.net/docs/runtimes/liberty/index.html#liberty_runtime): 
-Develop, deploy, and scale Java web apps with ease. IBM WebSphere Liberty Profile is 
-a highly composable, ultra-fast, ultra-light profile of IBM WebSphere Application Server 
+* [Liberty for Java](https://console.bluemix.net/docs/runtimes/liberty/index.html#liberty_runtime):
+Develop, deploy, and scale Java web apps with ease. IBM WebSphere Liberty Profile is
+a highly composable, ultra-fast, ultra-light profile of IBM WebSphere Application Server
 designed for the cloud.
 
 
@@ -111,28 +111,28 @@ designed for the cloud.
 
 
 ### 1. Prerequisites
-- Bluemix account: If you do not have a Bluemix account, you can create an account [here](https://console.bluemix.net/).
-- If you opt to deploy the Liberty application manually then 
-    - Cloud Foundry cli should be installed. If not installed, click [here](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) for 
+- IBM Cloud account: If you do not have an IBM Cloud account, you can create an account [here](https://console.bluemix.net/).
+- If you opt to deploy the Liberty application manually then
+    - Cloud Foundry cli should be installed. If not installed, click [here](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) for
       instructions install.
-    - Maven should be installed. If not installed, you can download Maven from [here](https://maven.apache.org/download.cgi). You 
+    - Maven should be installed. If not installed, you can download Maven from [here](https://maven.apache.org/download.cgi). You
       can refer to installation instructions [here](https://maven.apache.org/install.html).
 - Watson Knowledge Studio account: User must have a WKS account. If you do not have 
   an account, you can create a free account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio). 
   Make a note of the login URL since it is unique to every login id
 - Basic knowledge of building models in WKS: The user must possess basic knowledge 
   of building model in WKS in order to build a custom model. Check getting started documentation [here](https://console.bluemix.net/docs/services/knowledge-studio/tutorials-create-project.html#wks_tutintro)
-  
+
 
 ### 2. Concepts used
 #### 2.1 Data extraction methods
 We have to define what personal data (e.g. Name, Email id) we would want to extract. This is done in two ways in this code pattern. <br/>
 A) Using Custom model built using Watson Knowledge Studio (WKS) and <br/>
-B) Using regular expressions. Details of how these are used are explained in subsequent 
+B) Using regular expressions. Details of how these are used are explained in subsequent
 sections.<br/><br/>
 #### 2.2  Configuration
-We use configuration to extract personal data. Personal data are classified into different 
-categories. Each category is assigned a weight. Also we specify what personal data 
+We use configuration to extract personal data. Personal data are classified into different
+categories. Each category is assigned a weight. Also we specify what personal data
 belongs to which category. <br/>
 
 A sample configuration is as shown below <br/>
@@ -152,28 +152,28 @@ DOB_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oc
 DOJ_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d
 ```
 
-If you want to change configuration, then follow the below template 
+If you want to change configuration, then follow the below template
 
 ```
 Categories: <new set of categories which are comma separated>. e.g. Categories: MyCategory1,MyCategory2,MyCategory3
-<category_name>_Weight: Weightage for each category. e.g. MyCategory1_Weight: 40 
+<category_name>_Weight: Weightage for each category. e.g. MyCategory1_Weight: 40
 <category>_PIIs: Personal data (Entity types). e.g. MyCategory1_PIIS: EmailId, Employee Id
-regex_params: Entity types which have to be extracted using regular expressions. e.g. regex_params: 
+regex_params: Entity types which have to be extracted using regular expressions. e.g. regex_params:
 Date
-<regex_param>_regex: Regular expression using which an entity needs to be extracted from text e.g. Date_regex: 
+<regex_param>_regex: Regular expression using which an entity needs to be extracted from text e.g. Date_regex:
 (0[1-9]|[12]\[0-9]|3[01])
 ```
 
 #### 2.3 Brief description of application components
 ##### 2.3.1 Personal Data Extractor component:
-Personal Data Extractor component is the controller which controls the flow of data 
+Personal Data Extractor component is the controller which controls the flow of data
 between all the components. It also integrates with NLU.
 ##### 2.3.2 Regex component:
-Regex component parses the input text using the regular expressions provided in the 
-configuration files to extract personal data. Regular expressions are used to extract 
+Regex component parses the input text using the regular expressions provided in the
+configuration files to extract personal data. Regular expressions are used to extract
 personal data to augment NLU output.
 ##### 2.3.3 Scorer component:
-Scorer component calculates the score of a document, which is between 0 and 1, based 
+Scorer component calculates the score of a document, which is between 0 and 1, based
 on the personal data identified and the configuration data. It uses the below algorithm<br/>
 
 ```
@@ -189,50 +189,50 @@ score = score / 100; // to make it between 0 and 1
 ```
 
 ##### 2.3.4 Viewer component:
-Viewer component is the user interface component of the application. User can browse 
-a file, containing chat transcript, and submit to personal data extraction component. 
-After processed personal data are then shown in a tree view, along with the 
+Viewer component is the user interface component of the application. User can browse
+a file, containing chat transcript, and submit to personal data extraction component.
+After processed personal data are then shown in a tree view, along with the
 overall confidence score. <br/>
 <!--
 <img src="images/Viewer.png" alt="Personal Data View diagram" width="640" border="10" />
 -->
 
 ### 3. Application deployment
-#### 3.1 Deploy Java Liberty application to Bluemix
-You can deploy the Java Liberty application using the "Deploy to Bluemix" button or 
+#### 3.1 Deploy Java Liberty application to IBM Cloud
+You can deploy the Java Liberty application using the "Deploy to IBM Cloud" button or
 using manual steps.
-##### 3.1.1 Deploy using "Deploy to Bluemix"
-Click "Deploy to Bluemix" button above to deploy the application to Bluemix. You would 
-be presented with a toolchain view and asked to "Deploy" the application. Go ahead and 
-click deploy button. The application should get deployed. Ensure that the application 
+##### 3.1.1 Deploy using "Deploy to IBM Cloud"
+Click "Deploy to IBM Cloud" button above to deploy the application to IBM Cloud. You would
+be presented with a toolchain view and asked to "Deploy" the application. Go ahead and
+click deploy button. The application should get deployed. Ensure that the application
 is started and that a NLU service is created and bound to the application just deployed. <br/>
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
+[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
 ##### 3.1.2 Deploy using Manual steps
-If you have used "Deploy to Bluemix" button to deploy the application, then skip this 
-section and jump to section "4. Develop Watson Knowledge Studio model". If you have 
-not used "Deploy to Bluemix" button to deploy the application, then complete the sections 
-"3.1.2.1 Create NLU service instance" and "3.1.2.2 Deploy the Java application on Bluemix" 
+If you have used "Deploy to IBM Cloud" button to deploy the application, then skip this
+section and jump to section "4. Develop Watson Knowledge Studio model". If you have
+not used "Deploy to IBM Cloud" button to deploy the application, then complete the sections
+"3.1.2.1 Create NLU service instance" and "3.1.2.2 Deploy the Java application on IBM Cloud"
 below.
 ###### 3.1.2.1 Create NLU service instance
-- Step1: Click [here](https://console.bluemix.net/catalog/services/natural-language-understanding) 
+- Step1: Click [here](https://console.bluemix.net/catalog/services/natural-language-understanding)
 to create NLU service
 - Step2: Below screen is displayed
   <br/><img src="images/NLUCreateDefault.png" alt="NLUCreateDefault" width="640" border="10" /><br/><br/>
-- Step3: Edit the field "Service name:" to say NLUGDPR and leave the other settings default. 
+- Step3: Edit the field "Service name:" to say NLUGDPR and leave the other settings default.
   Click "Create"
   <br/><img src="images/NLUCreateEdit.png" alt="NLUCreateEdit" width="640" border="10" /><br/><br/>
 - Step4: NLU service instance should get created.
-###### 3.1.2.2 Deploy the Java application on Bluemix
+###### 3.1.2.2 Deploy the Java application on IBM Cloud
 - Step5: Clone the [repo](https://github.com/IBM/gdpr-fingerprint-pii)
-- Step6: Open command prompt. Login to your Bluemix space using the below command. 
-  Ensure that you login to same space where NLU service instance was created in section 
+- Step6: Open command prompt. Login to your IBM Cloud space using the below command.
+  Ensure that you login to same space where NLU service instance was created in section
   "3.1.2.1 Create NLU service instance"
 ```
 cf login
 ```
 - Step7: Change directory to the cloned repo's root directory
-- Step8: You will find manifest.yml file at the project's root folder. Verify if the 
-NLU service name is same as the one created in Step1 above. If not, update the NLU 
+- Step8: You will find manifest.yml file at the project's root folder. Verify if the
+NLU service name is same as the one created in Step1 above. If not, update the NLU
 service name to the one created above
   <br/><img src="images/ManifestServiceBinding.png" alt="ManifestServiceBinding" width="640" border="10" /><br/>
 
@@ -241,16 +241,16 @@ service name to the one created above
 mvn clean package
 ```
 
-- Step9: Deploy the Java Liberty Application using the below command. Provide a unique 
-  application name so that the route is not already taken in Bluemix.
+- Step9: Deploy the Java Liberty Application using the below command. Provide a unique
+  application name so that the route is not already taken in IBM Cloud.
 ```
 cf push <unique-application-name> -p target/PersonalDataScorer.war
 ```
-- Step10: On the Bluemix dashboard, ensure that the application is deployed successfully and is running. 
+- Step10: On IBM Cloud dashboard, ensure that the application is deployed successfully and is running.
 <br/><img src="images/AppRunning.png" alt="AppRunning" width="640" border="10" /><br/><br/>
 
-- Step11: On the Bluemix dashboard, click on the application that was deployed in Step9. 
-On the left hand side navigation links click "Connections". Verify that the NLU service 
+- Step11: On IBM Cloud dashboard, click on the application that was deployed in Step9.
+On the left hand side navigation links click "Connections". Verify that the NLU service
 created in Step3 is listed
 <br/><img src="images/ServiceBinding.png" alt="ServiceBinding" width="640" border="10" /><br/>
 
@@ -380,7 +380,7 @@ Login to the WKS.
 <br/><img src="images/WKSDeploy.png" alt="WKSDeploy" width="640" border="10" /><br/><br/>
 - Select “Natural Language Understanding”. Click “Next”
 <br/><img src="images/WKSDeployModel.png" alt="WKSDeployModel" width="640" border="10" /><br/><br/>
-- Select your Bluemix Region, Space and NLU service instances. Click “Deploy”
+- Select your IBM Cloud Region, Space and NLU service instances. Click “Deploy”
 <br/><img src="images/WKSDeployNLUIntsance.png" alt="WKSDeployNLUIntsance" width="640" border="10" /><br/><br/>
 - WKS model should get deployed on the NLU. Make a note of the Model Id. Click “OK”
 <br/><img src="images/WKSModelId.png" alt="WKSModelId" width="640" border="10" /><br/><br/>
@@ -389,7 +389,7 @@ Login to the WKS.
 
 
 ### 6. Verify that configuration parameters are correct
-- Navigate to the Bluemix dashboard. Click on the GDPR application that is deployed
+- Navigate to IBM Cloud dashboard. Click on the GDPR application that is deployed
 <br/><img src="images/BMDashboard.png" alt="BMDashboard" width="640" border="10" /><br/><br/>
 - Click “Runtime”
 <br/><img src="images/Runtime.png" alt="Runtime" width="640" border="10" /><br/><br/>
@@ -402,7 +402,7 @@ Login to the WKS.
 
 
 ### 7. Analyze Results
-- From the github repo for this Pattern, download sample chat transcripts, from 
+- From the github repo for this Pattern, download sample chat transcripts, from
   the folder "SampleChatTranscripts", on to your local file system
 - Open the application URL from a browser
 <br/><img src="images/AppHomePage.png" alt="AppHomePage" width="640" border="10" /><br/><br/>
@@ -425,7 +425,13 @@ Generic Output JSON looks as in the below image<br/>
 
 
 # References
-* 
+*
+
+
+# Learn more
+- **Artificial Intelligence Code Patterns:** Enjoyed this Journey? Check out our other [AI Code Patterns](https://developer.ibm.com/code/technologies/artificial-intelligence/).
+- **AI and Data Code Pattern Playlist:** Bookmark our [playlist](https://www.youtube.com/playlist?list=PLzUbsvIyrNfknNewObx5N7uGZ5FKH0Fde) with all of our Code Pattern videos
+
 
 # License
 [Apache 2.0](LICENSE)

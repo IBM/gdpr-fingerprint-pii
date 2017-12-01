@@ -27,9 +27,9 @@ public class PIIDataExtractor {
 	final static Logger logger = Logger.getLogger(PIIDataExtractor.class);
 
 	/**
-	 * This method extracts personal data and scores those personal data. 
+	 * This method extracts personal data and scores those personal data.
 	 * Output data is more generic, targetted to be consumed by other applications
-	 * 
+	 *
 	 * @param inputJSON Unstructired text in a JSON object
 	 * @return scorerOutput Personal data and score output as JSON
 	 */
@@ -69,8 +69,8 @@ public class PIIDataExtractor {
 	/**
 	 * This method extracts personal data and scores those personal data.
 	 * Output data is formatted so that it can be consumed by D3 tree viewer library
-	 * This method used Generic Format to create a veiw format. 
-	 * 
+	 * This method used Generic Format to create a veiw format.
+	 *
 	 * @param payload Text document from which personal data needs to be extracted
 	 * @return nfD3OutputWithScore Personal data and score output as JSON to be used by D3 tree
 	 */
@@ -83,26 +83,26 @@ public class PIIDataExtractor {
 			String nfNameL1Str = "Categories";
 			nfD3Output.put("name", nfNameL1Str); // view format - parent node
 			// view format - children of categories
-			JSONArray nfChildrenL1Array = new JSONArray(); 
+			JSONArray nfChildrenL1Array = new JSONArray();
 			nfD3Output.put("children", nfChildrenL1Array);
 
 			JSONObject ofScorerOutput = getPersonalDataInGenericFormat(inputJSON); // generic format output
 			nfD3OutputWithScore.put("score", ofScorerOutput.get("PIIConfidenceScore"));
 			nfD3OutputWithScore.put("treeData", nfD3Output);
 			// generic format parent node
-			JSONArray ofCategoriesArray = (JSONArray) ofScorerOutput.get("categories"); 
+			JSONArray ofCategoriesArray = (JSONArray) ofScorerOutput.get("categories");
 			if (ofCategoriesArray.size() > 0) {
 				// generic format - top level Object in categories Array
-				JSONObject ofCategories = (JSONObject) ofCategoriesArray.get(0); 
+				JSONObject ofCategories = (JSONObject) ofCategoriesArray.get(0);
 
 				// generic format For each category
-				for (Object ofKey : ofCategories.keySet()) { 
+				for (Object ofKey : ofCategories.keySet()) {
 					// based on you key types
 					// Category name.. e.g. Very_High
-					String ofKeyStr = (String) ofKey; 
+					String ofKeyStr = (String) ofKey;
 					// Add this key as name
 					// view format - Category name
-					JSONObject nfNameL2 = new JSONObject(); 
+					JSONObject nfNameL2 = new JSONObject();
 					String categoryWeight = "";
 					JSONArray nfChildrenL2Array = new JSONArray(); //
 					nfNameL2.put("children", nfChildrenL2Array);
@@ -110,7 +110,7 @@ public class PIIDataExtractor {
 
 					// add children to nfChildrenL2Array
 					// generic format - PII Array for a given Category
-					JSONArray ofPIIArrayForGivenCategory = (JSONArray) ofCategories.get(ofKeyStr); 
+					JSONArray ofPIIArrayForGivenCategory = (JSONArray) ofCategories.get(ofKeyStr);
 					if (ofPIIArrayForGivenCategory != null && ofPIIArrayForGivenCategory.size() > 0) {
 						for (int i = 0; i < ofPIIArrayForGivenCategory.size(); i++) {
 							JSONObject ofPIIObject = (JSONObject) ofPIIArrayForGivenCategory.get(i);
@@ -157,7 +157,7 @@ public class PIIDataExtractor {
 	// Invoke NLU to capture NLU output
 	/**
 	  * Invoke NLU to extract keywords (entities)
-	  * 
+	  *
 	  * @param text Text document from which personal data needs to be extracted
 	  * @return response.toString() NLU output as a String
 	  */
@@ -190,16 +190,16 @@ public class PIIDataExtractor {
 		}
 
 	}
-	
-	
+
+
 	private Map<String, String> getNLUCredentials() throws Exception{
-		
+
 		Map<String, String> nluCredentialsMap = new HashMap<String, String>();
-		
+
 		try{
 			String VCAP_SERVICES = System.getenv("VCAP_SERVICES");
 			//String VCAP_SERVICES = "{\"natural-language-understanding\":[{\"credentials\":{\"url\":\"https://gateway.watsonplatform.net/natural-language-understanding/api\",\"username\":\"8ea86c6c-c681-4186-bf91-e766413145ad\",\"password\":\"XaQHFNhhpnKX\"},\"syslog_drain_url\":null,\"volume_mounts\":[],\"label\":\"natural-language-understanding\",\"provider\":null,\"plan\":\"free\",\"name\":\"NLU - GDPR\",\"tags\":[\"watson\",\"ibm_created\",\"ibm_dedicated_public\",\"lite\"]}]}";
-			
+
 			if (VCAP_SERVICES != null) {
 				// parse the VCAP JSON structure
 				JSONObject obj = (JSONObject) JSONObject.parse(VCAP_SERVICES);

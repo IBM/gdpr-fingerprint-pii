@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
  * 1. PII data categories
  * 2. Weightage for each of the categories
  * 3. PII data mapping to individual categories
- * 
+ *
  * All the above configuration data are stored as environment variables.. Example of such a configuration is as below
  * 		Categories=Very_High,High,Medium,Low
  * 		Very_High_Weight=50
@@ -23,21 +23,21 @@ import org.apache.log4j.Logger;
  * 		Low_PIIs=Name,Company
  */
 public class GDPRConfig {
-	
+
 	final static Logger logger = Logger.getLogger(GDPRConfig.class);
-	
+
 	// Categories in config
 	private static String[] categoriesArray = null;
-	
+
 	// weightages in config
 	private static HashMap<String, String> weightageMap = null;
-	
+
 	// PIIs in config
 	private static HashMap<String, String[]> categoryPIIMapping = null;
 
 	/**
 	  * Get the categories configured as a String Array
-	  * 
+	  *
 	  * @return categoriesArray Categories as an array of Strings
 	  */
 	public static String[] getCategories() throws Exception {
@@ -54,7 +54,7 @@ public class GDPRConfig {
 
 	/**
 	  * Get the weights for each category as a map of category->weight
-	  * 
+	  *
 	  * @return weightageMap Map containing weights for the categories
 	  */
 	public static HashMap<String, String> getWeightages() throws Exception {
@@ -73,9 +73,9 @@ public class GDPRConfig {
 	/**
 	  * Mapping of each category with all PII data. represented as map category -> PIIData[]
 	  * e.g. ""Very_High" -> ["Name", "emailid"]
-	  * 
+	  *
 	  * @return categoryPIIMapping Map of category and PII types corresponding to category
-	  */	
+	  */
 	public static HashMap<String, String[]> getCategoryPIIMapping() throws Exception {
 		try {
 			if (categoryPIIMapping == null) {
@@ -233,7 +233,7 @@ public class GDPRConfig {
 
 	/**
 	  * Given a category, get weight for it as specified in config
-	  * 
+	  *
 	  * @param stringArray Array String values to trim
 	  * @return stringArray trimmes values Array
 	  */

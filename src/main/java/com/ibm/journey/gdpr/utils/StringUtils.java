@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 
 /**
- * Generic String utilities that can be reused.. 
+ * Generic String utilities that can be reused..
  * e.g. Splitting a String, converting InputStream to String
  */
 public class StringUtils {
@@ -41,7 +41,7 @@ public class StringUtils {
 		return sb.toString();
 
 	}
-	
+
 	public static String[] csvStringToArray(String csvString){
 		return csvString.split(",");
 	}

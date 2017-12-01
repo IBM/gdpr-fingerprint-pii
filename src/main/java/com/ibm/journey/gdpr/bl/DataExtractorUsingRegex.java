@@ -12,9 +12,9 @@ public class DataExtractorUsingRegex {
 
 	/**
 	  * This method extracts personal data using regular expressions
-	  * 
+	  *
 	  * @param text Text document from which text matching regular expressions need to be extracted
-	  * @param nluJSON NLUOutput 
+	  * @param nluJSON NLUOutput
 	  * @return nluJSON Regular expression parsing results are appended to the input NLU output and returned
 	  */
 	public JSONObject parseForRegularExpression(String text, JSONObject nluJSON) {
@@ -56,11 +56,11 @@ public class DataExtractorUsingRegex {
 
 		return nluJSON;
 	}
-	
+
 
 	/**
 	  * This method matches text for a given regular expression
-	  * 
+	  *
 	  * @param text input text data on which regular expression is run
 	  * @param patternStr regular expression string
 	  * @return matchResultList results of regular expression matching

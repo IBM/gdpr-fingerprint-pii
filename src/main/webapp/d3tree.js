@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 
 
@@ -21,7 +21,7 @@ window.onload = function() {
                 send(reader.result);
             }
 
-            reader.readAsText(file); 
+            reader.readAsText(file);
         } else {
             fileDisplayArea.innerText = "File not supported!"
         }
@@ -55,7 +55,7 @@ function showTree(treeData){
 	console.log("treeData");
 	console.log(treeData);
 	//treeData = {"children":[{"children":[{"children":[{"children":[{"name":"Weightage 10.0"}],"name":"IBM"}],"name":"company"},{"children":[{"children":[{"name":"Weightage 10.0"}],"name":"10-Aug-1979"}],"name":"dob"}],"name":"Cat2"},{"children":[{"children":[{"children":[{"name":"Weightage 50.0"}],"name":"Murali"}],"name":"name"}],"name":"Cat1"}],"name":"Categories"};
-	
+
 	// Set the dimensions and margins of the diagram
 	var margin = {top: 0, right: 90, bottom: 30, left: 150},
     	width = 960 - margin.left - margin.right,
@@ -64,9 +64,9 @@ function showTree(treeData){
 	// append the svg object to the body of the page
 	// appends a 'group' element to 'svg'
 	// moves the 'group' element to the top left margin
-	
+
 	d3.select("svg").remove(); // remove the svg if already existing
-	
+
 	svg = d3.select("body").append("svg")
     .attr("width", width + margin.right + margin.left)
     .attr("height", height + margin.top + margin.bottom)
@@ -75,7 +75,7 @@ function showTree(treeData){
 
 	i = 0,
 	duration = 750;
-	   
+
 
 	// declares a tree layout and assigns the size
 	treemap = d3.tree().size([height, width]);
@@ -152,7 +152,7 @@ function update(source) {
   // Transition to the proper position for the node
   nodeUpdate.transition()
     .duration(duration)
-    .attr("transform", function(d) { 
+    .attr("transform", function(d) {
         return "translate(" + d.y + "," + d.x + ")"; // direction
      });
 

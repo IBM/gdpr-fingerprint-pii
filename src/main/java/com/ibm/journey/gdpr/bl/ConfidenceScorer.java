@@ -8,7 +8,7 @@ import com.ibm.json.java.JSONObject;
 
 /**
  * This class implements the algorithm for scoring logic
- * 
+ *
  * Scoring logic:
 
 Let us divide PII data into, say, 3 categories. We can divide into how many ever categories we want, but for explanation sake, let us consider 3 categories. Let's name them as high, medium and low. Let us assign weightages to these categories as follows (again weightages here are for explanation sake and we can assign any weightage we feel would make sense)
@@ -30,13 +30,13 @@ Algorithm goes as follows:
 
 So the document score is 0.9475
 With this logic the document scores will always be between 0 and 1. And since we consider weightages in the order of high->medium->low the scoring is consistent. We can try documents, whose score we know already, and check what will be the score using this algorithm. We can then tweak weightages so that the algorithm score matches the actual score. This will help us arrive at optimal weightage values.
- * 
+ *
  */
 
 public class ConfidenceScorer {
-	
+
 	final static Logger logger = Logger.getLogger(ConfidenceScorer.class);
-	
+
 	/**
 	 * Get the confidence score on Personal data based on the logic explain in class comments
 	 * @param inputData The JSON data on which scoring algorithm is applied
@@ -44,21 +44,21 @@ public class ConfidenceScorer {
 	 */
 
 	public JSONObject getConfidenceScore(JSONObject inputData) throws Exception{
-		
+
 		try{
 			JSONObject outputJSON = new JSONObject();
-			
+
 			// get entities node from NLU data
 			JSONArray entities = (JSONArray)inputData.get("entities");
-			
-			// for each PII in entities node, 
+
+			// for each PII in entities node,
 			// 		1. check what is it's category
 			// 		2. Get weightage for that category
 			// Create a new JSONObject for output purpose which will have
 			// 		1. Categories that the PII belong to
 			//		2. attach PII (along with weight) to respective categories
 			// Calculate overall weight
-			JSONArray categoriesArray = new JSONArray(); 
+			JSONArray categoriesArray = new JSONArray();
 			if( entities == null ){
 				return outputJSON;
 			}
@@ -72,12 +72,12 @@ public class ConfidenceScorer {
 					continue;
 				}
 				float weight = GDPRConfig.getWeightForCategory(category);
-				
+
 				JSONObject attributeWeight = new JSONObject();
 				attributeWeight.put("piitype", piiType);
 				attributeWeight.put("pii", pii);
 				attributeWeight.put("weight", weight);
-				
+
 				boolean foundCategory = false; // To check if a PII's category is already added to outputData or not
 				JSONObject categoryEntry = null; // individual category (e.g. Medium category)
 				JSONArray attributesArray = null; // pii array (nodes containing piitype, piitext and weight)
@@ -95,7 +95,7 @@ public class ConfidenceScorer {
 					attributesArray = new JSONArray(); // category not found.. new array of pii attributes
 				}
 				attributesArray.add(attributeWeight); // add attributes node
-				
+
 				if( categoryEntry == null ){ // category was not found
 					categoryEntry = new JSONObject();
 				}
@@ -103,17 +103,17 @@ public class ConfidenceScorer {
 				if( !foundCategory && categoriesArray.size() <= 0 ){
 					categoriesArray.add(categoryEntry); // this is done only once so that reference is added
 				}
-				
+
 				outputJSON.put("categories",categoriesArray); // add categories node
 			}
 			outputJSON.put("PIIConfidenceScore", calculateConfidence(categoriesArray));
-			return outputJSON;			
+			return outputJSON;
 		}catch( Exception e){
 			e.printStackTrace();
 			throw new Exception(e.getMessage());
 		}
 	}
-	
+
 	private float calculateConfidence(JSONArray categoriesArray) throws Exception{
 		// Get categories in order of priority
 		float currentConfidence = 0;
@@ -138,15 +138,15 @@ public class ConfidenceScorer {
 				}
 			}
 			return currentConfidence/100;
-			
+
 		}catch( Exception e){
 			e.printStackTrace();
 			throw e;
 		}
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param weight weightage of the category
 	 * @param currentConfidence Confidence score of the document. This gets updated as and when each of the personal data occurances are processed
 	 * @return currentConfidence The updated confidence score

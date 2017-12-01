@@ -7,7 +7,7 @@ applications:
   domain: mybluemix.net
   buildpack: liberty-for-java
   path: target/PersonalDataScorer.war
-  services: 
+  services:
     - NLUGDPR
   env:
     Categories: Very_High,High,Medium,Low

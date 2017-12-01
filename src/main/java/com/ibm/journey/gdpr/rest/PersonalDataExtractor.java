@@ -28,13 +28,13 @@ import com.ibm.json.java.JSONObject;
 @ApplicationPath("/rest")
 @Path("/personaldata")
 public class PersonalDataExtractor extends Application {
-	
+
 	final static Logger logger = Logger.getLogger(PersonalDataExtractor.class);
 
 	/**
 	 * This method extracts personal data and scores those personal data.
 	 * Output data is formatted so that it can be consumed by D3 tree viewer library
-	 * 
+	 *
 	 * @param payload Text document from which personal data needs to be extracted
 	 * @return Response Personal data and score output as JSON
 	 */
@@ -48,21 +48,21 @@ public class PersonalDataExtractor extends Application {
 				logger.error("Input data not available");
 				return Response.serverError().entity("Input data not available").build();
 			}
-			
+
 			JSONObject payloadJSON = JSONObject.parse(payload);
 			if(logger.isInfoEnabled()){
 			    logger.info("Input text provided by user");
 			    logger.info(payloadJSON.toString());
 			}
-			
+
 			PIIDataExtractor piiExtractor = new PIIDataExtractor();
 			JSONObject response = piiExtractor.getPersonalDataForViewer(payloadJSON);
-			
+
 			if(logger.isInfoEnabled()){
 			    logger.info("Output for D3 viewer format");
 			    logger.info(response.toString());
 			}
-			
+
 			return Response.ok(response, MediaType.APPLICATION_JSON)
 					.header("Access-Control-Allow-Origin", "*")
 					.build();
@@ -72,12 +72,12 @@ public class PersonalDataExtractor extends Application {
 			return Response.serverError().entity(e.getMessage()).build();
 		}
 	}
-	
-	
+
+
 	/**
-	 * This method extracts personal data and scores those personal data. 
+	 * This method extracts personal data and scores those personal data.
 	 * Output data is more generic, targetted to be consumed by other applications
-	 * 
+	 *
 	 * @param payload Text document from which personal data needs to be extracted
 	 * @return Response Personal data and score output as JSON
 	 */
@@ -96,16 +96,16 @@ public class PersonalDataExtractor extends Application {
 			    logger.info(payloadJSON.toString());
 			}
 
-			
+
 			PIIDataExtractor piiDataExtractor = new PIIDataExtractor();
 			JSONObject response = piiDataExtractor.getPersonalDataInGenericFormat(payloadJSON);
-			
+
 			if(logger.isInfoEnabled()){
 			    logger.info("Output for consumer format");
 			    logger.info(response.toString());
 			}
 
-			
+
 			return Response.ok(response, MediaType.APPLICATION_JSON)
 					.header("Access-Control-Allow-Origin", "*")
 					.build();

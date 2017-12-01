@@ -117,10 +117,10 @@ designed for the cloud.
       instructions install.
     - Maven should be installed. If not installed, you can download Maven from [here](https://maven.apache.org/download.cgi). You
       can refer to installation instructions [here](https://maven.apache.org/install.html).
-- Watson Knowledge Studio account: User must have a WKS account. If you do not have 
-  an account, you can create a free account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio). 
+- Watson Knowledge Studio account: User must have a WKS account. If you do not have
+  an account, you can create a free account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio).
   Make a note of the login URL since it is unique to every login id
-- Basic knowledge of building models in WKS: The user must possess basic knowledge 
+- Basic knowledge of building models in WKS: The user must possess basic knowledge
   of building model in WKS in order to build a custom model. Check getting started documentation [here](https://console.bluemix.net/docs/services/knowledge-studio/tutorials-create-project.html#wks_tutintro)
 
 
@@ -259,23 +259,23 @@ created in Step3 is listed
 ## 4.1 Import Artifacts
 ### 4.1.1 Type Systems
 You can learn more about Type Systems [here](https://console.bluemix.net/docs/services/knowledge-studio/typesystem.html#typesystem)
-Type Systems can either be created or imported from an already created Type Systems 
-json file. It is left to user to create his or her own Type systems or use a Type Systems 
-json file provided in this repository. If you wish to import the Type Systems json 
-file, then download the file named "TypeSystems.json" under the folder "WKS" in this 
-repository to your local file system. The json file has entity types such as Name, PhoneNo, EmailId, Address. 
+Type Systems can either be created or imported from an already created Type Systems
+json file. It is left to user to create his or her own Type systems or use a Type Systems
+json file provided in this repository. If you wish to import the Type Systems json
+file, then download the file named "TypeSystems.json" under the folder "WKS" in this
+repository to your local file system. The json file has entity types such as Name, PhoneNo, EmailId, Address.
 You can edit/add/delete entity types to suit your requirement.
- 
+
 ### 4.1.2 Documents
 You can learn more about Documents [here](https://console.bluemix.net/docs/services/knowledge-studio/documents-for-annotation.html#wks_t_docs_intro)
-We will need a set of documents to train and evaluate the WKS model. These documents 
-will contain the unstructured text from which we will identify personal data. Refer 
-to some of the sample document files under the folder "SampleChatTranscripts". To train 
-WKS model, a large and varied set of documents are needed. To complete this exercise, 
-let us consider a smaller set of documents. 
+We will need a set of documents to train and evaluate the WKS model. These documents
+will contain the unstructured text from which we will identify personal data. Refer
+to some of the sample document files under the folder "SampleChatTranscripts". To train
+WKS model, a large and varied set of documents are needed. To complete this exercise,
+let us consider a smaller set of documents.
 
-You can either have your own set of documents or use the ones provided in this git repository. 
-It is placed under WKS/Documents.zip. If you decide to use the documents provided in 
+You can either have your own set of documents or use the ones provided in this git repository.
+It is placed under WKS/Documents.zip. If you decide to use the documents provided in
 this repo, then download the file to your local file system.
 
 ## 4.2 Create Project

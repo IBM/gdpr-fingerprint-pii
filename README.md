@@ -1,15 +1,9 @@
 
 # Fingerprinting personal data from unstructured documents
 
-The General Data Protection Regulation (GDPR) is a regulation by which the European
-Parliament, the Council of the European Union and the European Commission intend to
-strengthen and unify data protection for all individuals within the European Union
-(EU). It also addresses the export of personal data outside the EU.
+General Data Protection Regulation (GDPR) will be a new regulation in EU which will come into effect in May 2018. This new regulation applies to those organizations, including those outside EU, which collect and process personal data. It aims to give more control to individuals over usage of their personal data.
 
-Under the EU's new General Data Protection Regulation, enterprises around the world
-must not only keep personal data private, but they will also be required to "forget"
-any personal data related to an individual on request -- and the GDPR right to be forgotten
-will be a significant part of compliance with the new rule.
+Right to forget - Under the new GDPR, organizations around the world must not only protect personal data but also forget personal data on request from individuals.
 
 When a customer requests that all his or her personal data be deleted, then an organisation
 needs to identify all the documents where the customer's personal data reside. This

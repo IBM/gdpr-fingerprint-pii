@@ -1,6 +1,8 @@
 
 # 구조화되지 않은 일반 문서에서 개인 데이터 채취
 
+*Read this in other languages: [English](README.md).*
+
 개인 정보 보호 규정([General Data Protection Regulation, GDPR](http://terms.naver.com/entry.nhn?docId=3596816&cid=42346&categoryId=42346))은 EU에 도입되는 새로운 규정으로 2018년 5월부터 유효합니다. 이 규정은 EU 시민의 개인 정보를 수집하고 처리하는 (EU 밖에 있는 조직을 포함하여) 모든 조직에 적용됩니다. 이 규정은 개인 데이터 사용에 대한 개인의 통제력을 향상시키는 것을 목표로합니다.
 
 잊혀질 권리 - 새로운 GDPR 규정에서, 전 세계의 모든 조직은 개인 데이터를 보호하는 것에 그치지 않고 개인의 요청에 따라 개인 데이터를 삭제해야 합니다.
@@ -78,13 +80,12 @@ Confidence score: 0.7
 # 단계
 1. [사전 준비 사항](#1-사전-준비-사항)
 2. [컨셉](#2-컨셉)
-3. [애플리케이션 개발](#3-애플리케이션-개발)
-4. [Watson Knowledge Studio로 모델 개발](#4-watson-knowledge-studio로-모델-개발)
-5. [WKS 모델을 Watson Natural Language Understanding 서비스로 배포](#5-wks-모델을-watson-natural-language-understanding-서비스로-배포)
+3. [애플리케이션 배포](#3-애플리케이션-배포)
+4. [Watson Knowledge Studio 모델 개발](#4-watson-knowledge-studio-모델-개발)
+5. [WKS 모델을 Watson Natural Language Understanding 서비스로 배포](#5-개발한-wks-모델을-watson-natural-language-understanding-서비스로-배포)
 6. [환경 변수 수정](#6-환경-변수-수정)
 7. [결과 분석](#7-결과-분석)
 8. [다른 애플리케이션에서 결과값 사용](#8-다른-애플리케이션에서-결과값-사용)
-
 
 # 1. 사전 준비 사항
 - IBM Cloud 계정: IBM Cloud계정이 없으면 [여기](https://console.bluemix.net/)에서 계정을 생성하십시오. 이 패턴을 완료하기 위해서는 카드등록을 하여 계정을 Pay as you go 계정으로 업그레이드 해야 합니다. 
@@ -324,7 +325,7 @@ WKS에 툴에서 작업하십시오.
 - 트레이닝 및 평가 프로세스가 시작됩니다. 완료될 때 까지 기다립니다.
 <br/><img src="images/WKSModelManagementTrain2.png" alt="WKSModelManagement" width="640" border="10" /><br/><br/>
 
-### 5. 개발한 WKS 모델을 Watson Natural Language Understanding 서비스로 배포
+# 5. 개발한 WKS 모델을 Watson Natural Language Understanding 서비스로 배포
 - 사전준비사항 단계에서 기록해둔 로그인 URL로 WKS에 로그인 하십시오. `Model Management > Versions` 페이지로 이동합니다. `Take Snapshot` 버튼을 눌러 스냅샷을 생성합니다. 팝업창이 뜨면 `OK`버튼을 누릅니다.
 <br/><img src="images/WKSModelTakeSnapshot.png" alt="WKSModelTakeSnapshot" width="640" border="10" /><br/><br/>
 - 스냅샷의 Action열에 있는 `Deploy`버튼을 클릭합니다.
@@ -339,7 +340,7 @@ WKS에 툴에서 작업하십시오.
 <br/><img src="images/WKSModelDeploy5.png" alt="WKSModelDeploy" width="640" border="10" /><br/><br/>
 
 
-### 6. 환경 변수 수정
+# 6. 환경 변수 수정
 - IBM Cloud 대시보드로 접속하십시오. 배포된 GDPR 애플리케이션을 클릭합니다.
 <br/><img src="images/BMDashboard.png" alt="BMDashboard" width="640" border="10" /><br/><br/>
 - “Runtime”을 클릭합니다.
@@ -352,7 +353,7 @@ WKS에 툴에서 작업하십시오.
 <br/><img src="images/AppRestarting.png" alt="AppRestarting" width="640" border="10" /><br/>
 
 
-### 7. 결과 분석
+# 7. 결과 분석
 - 이 github 레파지토리에서 샘플 채팅 데이터인 `SampleChatTranscripts_ko` 폴더를 다운로드 하십시오.
 - 브라우저에서 애플리케이션 URL을 오픈합니다.
 <br/><img src="images/AppHomePage.png" alt="AppHomePage" width="640" border="10" /><br/><br/>
@@ -363,7 +364,7 @@ WKS에 툴에서 작업하십시오.
 <br/><img src="images/TreeView2.png" alt="TreeView2" width="640" border="10" /><br/>
 
 
-### 8. 다른 애플리케이션에서 결과 사용하기
+# 8. 다른 애플리케이션에서 결과 사용하기
 - 이 애플리케이션은 두개의 REST 인터페이스를 제공합니다. <br />
 /rest/personaldata/forviewer <br/>
 /rest/personaldata/forconsumer<br/>

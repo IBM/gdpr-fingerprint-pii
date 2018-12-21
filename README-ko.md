@@ -65,11 +65,11 @@ Confidence score: 0.7
 
 
 # 포함된 구성 요소
-* [Watson Knowledge Studio](https://console.bluemix.net/docs/services/knowledge-studio/index.html#wks_overview_full): 특정 산업분야에서 사용하는 언어의 뉘앙스와 의미, 관계를 이해하는 머신 러닝 모델 또는 정의한 룰에 근거하여 문서에서 엔티티를 찾는 룰 기반 모델을 생성하는 툴
+* [Watson Knowledge Studio](https://cloud.ibm.com/docs/services/knowledge-studio/index.html#wks_overview_full): 특정 산업분야에서 사용하는 언어의 뉘앙스와 의미, 관계를 이해하는 머신 러닝 모델 또는 정의한 룰에 근거하여 문서에서 엔티티를 찾는 룰 기반 모델을 생성하는 툴
 
 * [Watson Natural Language Understanding](https://www.ibm.com/watson/services/natural-language-understanding/): 텍스트 컨텐츠로부터 컨셉, 엔티티, 키워드, 카테고리, 긍부정, 감정, 관계, 의미적 역할 등을 분석하여 메타데이터를 추출하는 IBM Cloud 서비스
 
-* [Liberty for Java](https://console.bluemix.net/docs/runtimes/liberty/index.html#liberty_runtime): Java 웹 애플리케이션을 쉽게 개발, 배포 및 스케일링 할 수 있는 IBM WebSphere 애플리케이션 서버의 프로파일로 빠르고 가벼워 Cloud 환경에 맞게 설계되었다.
+* [Liberty for Java](https://cloud.ibm.com/docs/runtimes/liberty/index.html#liberty_runtime): Java 웹 애플리케이션을 쉽게 개발, 배포 및 스케일링 할 수 있는 IBM WebSphere 애플리케이션 서버의 프로파일로 빠르고 가벼워 Cloud 환경에 맞게 설계되었다.
 
 
 # 영상으로 보기 (영어)
@@ -88,11 +88,11 @@ Confidence score: 0.7
 8. [다른 애플리케이션에서 결과값 사용](#8-다른-애플리케이션에서-결과값-사용)
 
 # 1. 사전 준비 사항
-- IBM Cloud 계정: IBM Cloud계정이 없으면 [여기](https://console.bluemix.net/)에서 계정을 생성하십시오. 이 패턴을 완료하기 위해서는 카드등록을 하여 계정을 Pay as you go 계정으로 업그레이드 해야 합니다. 
+- IBM Cloud 계정: IBM Cloud계정이 없으면 [여기](https://cloud.ibm.com/)에서 계정을 생성하십시오. 이 패턴을 완료하기 위해서는 카드등록을 하여 계정을 Pay as you go 계정으로 업그레이드 해야 합니다. 
 - 리버티 애플리케이션을 메뉴얼리 배포하려면 다음을 완료하십시오.
     - Cloud Foundry cli를 [여기](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)를 참조하여 설치합니다.
     - Maven이 설치되어 있어야 합니다. Maven을 [여기](https://maven.apache.org/download.cgi)에서 다운로드 하고 [여기](https://maven.apache.org/install.html)에서 설치 가이드를 확인하십시오. 
-- WKS를 사용하여 모델을 빌드하기 위한 기본 지식을 스터디 합니다.: WKS로 custom model을 빌드하기 위한 기본적인 지식을 갖고 있어야 합니다. [이 문서](https://console.bluemix.net/docs/services/knowledge-studio/tutorials-create-project.html#wks_tutintro)에서 시작하십시오.
+- WKS를 사용하여 모델을 빌드하기 위한 기본 지식을 스터디 합니다.: WKS로 custom model을 빌드하기 위한 기본적인 지식을 갖고 있어야 합니다. [이 문서](https://cloud.ibm.com/docs/services/knowledge-studio/tutorials-create-project.html#wks_tutintro)에서 시작하십시오.
 
 
 # 2. 컨셉
@@ -168,13 +168,13 @@ Viewer component는 애플리케이션의 UI 컴포넌트 입니다. 대화 스�
 ### 3.1.1 "Deploy to IBM Cloud" 버튼으로 애플리케이션 배포
 애플리케이션을 IBM Cloud로 배포하려면 아래의 "Deploy to IBM Cloud" 버튼을 클릭하십시오. 툴체인 화면이 보여지고 "Deploy"버튼을 클릭하면 애플리케이션이 배포됩니다. 계속 진행하여 배포 버튼을 누르십시오. 애플리케이션이 배포될 것입니다. 애플리케이션이 시작되었는지, NLU 서비스가 생성되고 애플리케이션에 바인드 되었는지를 확인하십시오.
 
-[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
+[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
 
 ### 3.1.2 메뉴얼로 애플리케이션 배포
 `Deploy to IBM Cloud` 버튼으로 애플리케이션을 배포했다면 이 섹션은 스킵하고 [4. Watson Knowledge Studio 모델 개발](#4-watson-knowledge-studio로-모델-개발) 섹션으로 이동하십시오. 메뉴얼로 애플리케이션을 배포하려면 아래의 `3.1.2.1 NLU 서비스 인스턴스 생성` 섹션 및 `3.1.2.2 IBM Cloud에 자바 애플리케이션 배포` 섹션을 모두 완료하십시오.
 
 ### 3.1.2.1 NLU 서비스 인스턴스 생성
-- Step1: [여기](https://console.bluemix.net/catalog/services/natural-language-understanding)를 클릭하고 NLU 서비스를 생성하십시오.
+- Step1: [여기](https://cloud.ibm.com/catalog/services/natural-language-understanding)를 클릭하고 NLU 서비스를 생성하십시오.
 - Step2: 아래 스크린이 보여질 것입니다.
   <br/><img src="images/NLUCreateDefault.png" alt="NLUCreateDefault" width="640" border="10" /><br/><br/>
 - Step3: `Service name:` 필드를 NLUGDPR로 수정하고 다른 설정은 디폴트 상태로 남겨둔 채로 `Create`를 클릭합니다.
@@ -211,17 +211,17 @@ cf push <unique-application-name> -p target/PersonalDataScorer.war
 # 4. Watson Knowledge Studio 모델 개발
 ## 4.1 필요한 파일 가져오기
 ### 4.1.1 타입 시스템(Type System)
-[여기](https://console.bluemix.net/docs/services/knowledge-studio/typesystem.html#typesystem)에서 타입 시스템에 대한 자세한 내용을 확인할 수 있습니다.
+[여기](https://cloud.ibm.com/docs/services/knowledge-studio/typesystem.html#typesystem)에서 타입 시스템에 대한 자세한 내용을 확인할 수 있습니다.
 타입 시스템은 생성할 수도 있고 이미 생성된 것을 JSON 파일 형태로 가져올 수도 있습니다. 자신만의 타입 시스템을 생성하셔도 되고 이 레파지토리에 제공된 타입 시스템의 JSON 파일을 사용해도 됩니다. 타입 시스템 JSON 파일을 Import 하려면 이 레파지토리의 `WKS`에 있는 `TypeSystems.json` 파일을 다운로드 하십시오. 이 JSON 파일은 이름, 휴대폰 번호, 이메일 주소, 주소 등과 같은 엔티티를 가지고 있습니다. 이를 필요에 따라 수정/추가/삭제 하셔도 됩니다.
 
 ### 4.1.2 문서(Documents)
-[여기](https://console.bluemix.net/docs/services/knowledge-studio/documents-for-annotation.html#wks_t_docs_intro)에서 문서(Documents)에 대한 더 자세한 내용을 확인할 수 있습니다. 
+[여기](https://cloud.ibm.com/docs/services/knowledge-studio/documents-for-annotation.html#wks_t_docs_intro)에서 문서(Documents)에 대한 더 자세한 내용을 확인할 수 있습니다. 
 WKS 모델을 학습시키고 평가하기 위한 문서들이 필요합니다. 문서는 우리가 개인 정보를 식별할 구조화되지 않은 텍스트를 의미합니다. `SampleChatTranscripts` 폴더에 있는 샘플 문서를 확인하십시오. WKS 모델을 학습시키려면 방대하고 다양한 문서가 필요합니다. 이 과정을 시간 내에 완료하기 위해 우리는 아주 적은 양의 데이터만 사용합니다.
 
 가지고 있는 문서 셋을 사용해도 되고 이 git 레파지토리에 제공되는 문서를 사용해도 됩니다. 문서는 `WKS/Documents.zip`에 있습니다. 이 레파지토리에 있는 문서를 사용하려면 이 파일을 다운로드 하십시오.
 
 ## 4.2 Watson Knowledge Studio 서비스 인스턴스 생성
-[여기](https://console.bluemix.net/catalog/services/knowledge-studio?taxonomyNavigation=cf-apps)를 클릭하고 Watson Knowledge Studio 서비스 인스턴스를 생성합니다.
+[여기](https://cloud.ibm.com/catalog/services/knowledge-studio?taxonomyNavigation=cf-apps)를 클릭하고 Watson Knowledge Studio 서비스 인스턴스를 생성합니다.
 
 <img src="images/WKSCreateServiceInstance.png" alt="Create Service Instance" width="640" border="10" /><br/><br/>
 

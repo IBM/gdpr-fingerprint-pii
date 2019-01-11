@@ -74,7 +74,7 @@ visualization.
 
 
 # Included Components
-* [Watson Knowledge Studio](https://console.bluemix.net/docs/services/knowledge-studio/index.html#wks_overview_full):
+* [Watson Knowledge Studio](https://cloud.ibm.com/docs/services/knowledge-studio/index.html#wks_overview_full):
   A tool to create a machine-learning model that understands the linguistic nuances,
   meaning, and relationships specific to your industry or to create a rule-based model
   that finds entities in documents based on rules that you define.
@@ -84,7 +84,7 @@ visualization.
   concepts, entities, keywords, categories, sentiment, emotion, relations, semantic
   roles, using natural language understanding.
 
-* [Liberty for Java](https://console.bluemix.net/docs/runtimes/liberty/index.html#liberty_runtime):
+* [Liberty for Java](https://cloud.ibm.com/docs/runtimes/liberty/index.html#liberty_runtime):
 Develop, deploy, and scale Java web apps with ease. IBM WebSphere Liberty Profile is
 a highly composable, ultra-fast, ultra-light profile of IBM WebSphere Application Server
 designed for the cloud.
@@ -107,7 +107,7 @@ designed for the cloud.
 
 
 ### 1. Prerequisites
-- IBM Cloud account: If you do not have an IBM Cloud account, you can create an account [here](https://console.bluemix.net/).
+- IBM Cloud account: If you do not have an IBM Cloud account, you can create an account [here](https://cloud.ibm.com/).
 - If you opt to deploy the Liberty application manually then
     - Cloud Foundry cli should be installed. If not installed, click [here](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) for
       instructions install.
@@ -117,7 +117,7 @@ designed for the cloud.
   an account, you can create a free account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio).
   Make a note of the login URL since it is unique to every login id
 - Basic knowledge of building models in WKS: The user must possess basic knowledge
-  of building model in WKS in order to build a custom model. Check getting started documentation [here](https://console.bluemix.net/docs/services/knowledge-studio/tutorials-create-project.html#wks_tutintro)
+  of building model in WKS in order to build a custom model. Check getting started documentation [here](https://cloud.ibm.com/docs/services/knowledge-studio/tutorials-create-project.html#wks_tutintro)
 
 
 ### 2. Concepts used
@@ -202,7 +202,7 @@ Click `Deploy to IBM Cloud` button above to deploy the application to IBM Cloud.
 be presented with a toolchain view and asked to "Deploy" the application. Go ahead and
 click `Deploy` button. The application should get deployed. Ensure that the application
 is started and that a NLU service is created and bound to the application just deployed. <br/>
-[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
+[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
 ##### 3.1.2 Deploy using Manual steps
 If you have used `Deploy to IBM Cloud` button to deploy the application, then skip this
 section and jump to section "4. Develop Watson Knowledge Studio model". If you have
@@ -210,7 +210,7 @@ not used `Deploy to IBM Cloud` button to deploy the application, then complete t
 "3.1.2.1 Create NLU service instance" and "3.1.2.2 Deploy the Java application on IBM Cloud"
 below.
 ###### 3.1.2.1 Create NLU service instance
-- Step1: Click [here](https://console.bluemix.net/catalog/services/natural-language-understanding)
+- Step1: Click [here](https://cloud.ibm.com/catalog/services/natural-language-understanding)
 to create NLU service
 - Step2: Below screen is displayed
   <br/><img src="images/NLUCreateDefault.png" alt="NLUCreateDefault" width="640" border="10" /><br/><br/>
@@ -254,7 +254,7 @@ created in Step3 is listed.
 ### 4. Develop Watson Knowledge Studio model
 ## 4.1 Import Artifacts
 ### 4.1.1 Type Systems
-You can learn more about Type Systems [here](https://console.bluemix.net/docs/services/knowledge-studio/typesystem.html#typesystem)
+You can learn more about Type Systems [here](https://cloud.ibm.com/docs/services/knowledge-studio/typesystem.html#typesystem)
 Type Systems can either be created or imported from an already created Type Systems
 json file. It is left to user to create his or her own Type systems or use a Type Systems
 json file provided in this repository. If you wish to import the Type Systems json
@@ -263,7 +263,7 @@ repository to your local file system. The json file has entity types such as Nam
 You can edit/add/delete entity types to suit your requirement.
 
 ### 4.1.2 Documents
-You can learn more about Documents [here](https://console.bluemix.net/docs/services/knowledge-studio/documents-for-annotation.html#wks_t_docs_intro)
+You can learn more about Documents [here](https://cloud.ibm.com/docs/services/knowledge-studio/documents-for-annotation.html#wks_t_docs_intro)
 We will need a set of documents to train and evaluate the WKS model. These documents
 will contain the unstructured text from which we will identify personal data. Refer
 to some of the sample document files under the folder `SampleChatTranscripts`. To train
@@ -425,12 +425,12 @@ Generic Output JSON looks as in the below image<br/>
 
 
 # Learn more
-- **Artificial Intelligence Code Patterns:** Enjoyed this Journey? Check out our other [AI Code Patterns](https://developer.ibm.com/code/technologies/artificial-intelligence/).
+- **Artificial Intelligence Code Patterns:** Enjoyed this Journey? Check out our other [AI Code Patterns](https://developer.ibm.com/technologies/artificial-intelligence/).
 - **AI and Data Code Pattern Playlist:** Bookmark our [playlist](https://www.youtube.com/playlist?list=PLzUbsvIyrNfknNewObx5N7uGZ5FKH0Fde) with all of our Code Pattern videos
 
 
 # License
 
-This code pattern is licensed under the Apache Software License, Version 2.  Separate third party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1 (DCO)](https://developercertificate.org/) and the [Apache Software License, Version 2](http://www.apache.org/licenses/LICENSE-2.0.txt).
+This code pattern is licensed under the Apache Software License, Version 2.  Separate third party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1 (DCO)](https://developercertificate.org/) and the [Apache Software License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
 
-[Apache Software License (ASL) FAQ](http://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
+[Apache Software License (ASL) FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)

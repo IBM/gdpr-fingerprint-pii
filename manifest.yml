@@ -6,6 +6,7 @@ applications:
 - instances: 1
   domain: mybluemix.net
   buildpack: liberty-for-java
+  random-route: true
   services:
     - NLUGDPR
   env:

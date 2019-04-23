@@ -21,8 +21,9 @@
 	<name>PersonalDataScorer</name>
 	<url>http://maven.apache.org</url>
 
+
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+	
 		<dependency>
 			<groupId>javax.ws.rs</groupId>
 			<artifactId>javax.ws.rs-api</artifactId>
@@ -34,12 +35,6 @@
 			<artifactId>com.ibm.websphere.appserver.api.json</artifactId>
 			<version>1.0</version>
 		</dependency>
-		<!-- NLU -->
-		<dependency>
-			<groupId>com.ibm.watson.developer_cloud</groupId>
-			<artifactId>java-sdk</artifactId>
-			<version>3.7.2</version>
-		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -47,12 +42,20 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.ibm.watson/ibm-watson -->
+<dependency>
+    <groupId>com.ibm.watson</groupId>
+    <artifactId>ibm-watson</artifactId>
+    <version>7.0.0</version>
+</dependency>
 
+
+		
 	</dependencies>
 
 

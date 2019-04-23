@@ -232,23 +232,21 @@ NLU service name is same as the one created in Step1 above. If not, update the N
 service name to the one created above
   <br/><img src="images/ManifestServiceBinding.png" alt="ManifestServiceBinding" width="640" border="10" /><br/>
 
-- Step9: Build war file using the command
-```
-mvn clean package
-```
 
 - Step9: Deploy the Java Liberty Application using the below command. Provide a unique
   application name so that the route is not already taken in IBM Cloud.
 ```
-cf push <unique-application-name> -p target/PersonalDataScorer.war
+cf push <unique-application-name> -p deployables/PersonalDataScorer.war
 ```
 - Step10: On IBM Cloud dashboard, ensure that the application is deployed successfully and is running.
 <br/><img src="images/AppRunning.png" alt="AppRunning" width="640" border="10" /><br/><br/>
 
 - Step11: On IBM Cloud dashboard, click on the application that was deployed in Step9.
 On the left hand side navigation links click `Connections`. Verify that the NLU service
-created in Step3 is listed.
+created in Step3 is listed. If not listed, manually create a connection to NLU service. Restage the application, if prompted for.
 <br/><img src="images/ServiceBinding.png" alt="ServiceBinding" width="640" border="10" /><br/>
+
+- Step11: Ensure that the entries, under `env` in manifest.yml are updated in apps runtime -> user defined variables. If not available, manually update the variables as available in manifest file. Restage the application, if prompted for.
 
 
 ### 4. Develop Watson Knowledge Studio model

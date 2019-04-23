@@ -1,14 +1,9 @@
-declared-services:
-    NLUGDPR:
-        label: natural-language-understanding
-        plan: free
+---
 applications:
 - instances: 1
   domain: mybluemix.net
   buildpack: liberty-for-java
   random-route: true
-  services:
-    - NLUGDPR
   env:
     Categories: Very_High,High,Medium,Low
     Very_High_Weight: 50

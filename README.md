@@ -202,7 +202,7 @@ Click `Deploy to IBM Cloud` button above to deploy the application to IBM Cloud.
 be presented with a toolchain view and asked to "Deploy" the application. Go ahead and
 click `Deploy` button. The application should get deployed. Ensure that the application
 is started and that a NLU service is created and bound to the application just deployed. <br/>
-[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git)
+[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git&branch=ProcessChanges)
 ##### 3.1.2 Deploy using Manual steps
 If you have used `Deploy to IBM Cloud` button to deploy the application, then skip this
 section and jump to section "4. Develop Watson Knowledge Studio model". If you have

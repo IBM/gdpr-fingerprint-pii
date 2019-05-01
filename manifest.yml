@@ -1,5 +1,5 @@
 declared-services:
-    NLUGDPR:
+    fpii-nlu:
         label: natural-language-understanding
         plan: free
 applications:
@@ -8,7 +8,7 @@ applications:
   buildpack: liberty-for-java
   path: target/PersonalDataScorer.war
   services:
-    - NLUGDPR
+    - fpii-nlu
   env:
     Categories: Very_High,High,Medium,Low
     Very_High_Weight: 50

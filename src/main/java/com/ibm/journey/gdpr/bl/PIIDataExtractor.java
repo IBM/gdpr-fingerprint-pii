@@ -1,22 +1,19 @@
 package com.ibm.journey.gdpr.bl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
+import com.ibm.cloud.sdk.core.service.security.IamOptions;
 import com.ibm.json.java.JSONArray;
 import com.ibm.json.java.JSONObject;
-import com.ibm.watson.developer_cloud.natural_language_understanding.v1.NaturalLanguageUnderstanding;
-import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalysisResults;
-import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.AnalyzeOptions;
-import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.EntitiesOptions;
-import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.Features;
-import com.ibm.watson.developer_cloud.natural_language_understanding.v1.model.KeywordsOptions;
+import com.ibm.watson.natural_language_understanding.v1.NaturalLanguageUnderstanding;
+import com.ibm.watson.natural_language_understanding.v1.model.AnalysisResults;
+import com.ibm.watson.natural_language_understanding.v1.model.AnalyzeOptions;
+import com.ibm.watson.natural_language_understanding.v1.model.EntitiesOptions;
+import com.ibm.watson.natural_language_understanding.v1.model.Features;
+import com.ibm.watson.natural_language_understanding.v1.model.KeywordsOptions;
 
 
 /**
@@ -172,8 +169,15 @@ public class PIIDataExtractor {
 //				logger.info("user: " + user + ", modelid: " + model + "  For password, refer env variables");
 //			}
 
-			NaturalLanguageUnderstanding service = new NaturalLanguageUnderstanding(
-					NaturalLanguageUnderstanding.VERSION_DATE_2017_02_27, nluCreds.get("username"), nluCreds.get("password"));
+			IamOptions options = new IamOptions.Builder()
+				    .apiKey(nluCreds.get("apikey"))
+				    .build();
+			
+			NaturalLanguageUnderstanding nluservice = new NaturalLanguageUnderstanding("2018-11-16", options);
+			nluservice.setEndPoint(nluCreds.get("url"));
+			
+//			NaturalLanguageUnderstanding service = new NaturalLanguageUnderstanding(
+//					NaturalLanguageUnderstanding.VERSION_DATE_2017_02_27, nluCreds.get("username"), nluCreds.get("password"));
 
 			EntitiesOptions entitiesOptions = new EntitiesOptions.Builder().model(model).emotion(true).sentiment(true)
 					.limit(20).build();
@@ -181,7 +185,12 @@ public class PIIDataExtractor {
 					.build();
 			Features features = new Features.Builder().entities(entitiesOptions).keywords(keywordsOptions).build();
 			AnalyzeOptions parameters = new AnalyzeOptions.Builder().text(text).features(features).build();
-			AnalysisResults response = service.analyze(parameters).execute();
+			
+			AnalysisResults response = nluservice
+					  .analyze(parameters)
+					  .execute()
+					  .getResult();
+			
 
 			return JSONObject.parse(response.toString());
 		} catch (Exception e) {
@@ -209,9 +218,8 @@ public class PIIDataExtractor {
 						JSONObject o = (JSONObject)nluArray.get(i);
 						if( o.get("credentials") != null ){
 							JSONObject credsObject = (JSONObject)o.get("credentials");
-							nluCredentialsMap.put("username", (String)credsObject.get("username"));
-							nluCredentialsMap.put("password", (String)credsObject.get("password"));
-							nluCredentialsMap.put("nluURL", (String)credsObject.get("url"));
+							nluCredentialsMap.put("apikey", (String)credsObject.get("apikey"));
+							nluCredentialsMap.put("url", (String)credsObject.get("url"));
 						}
 					}
 				}
@@ -220,7 +228,7 @@ public class PIIDataExtractor {
 			e.printStackTrace();
 			throw new Exception(e.getMessage());
 		}
-		if( nluCredentialsMap.get("username") == null ){
+		if( nluCredentialsMap.get("apikey") == null ){
 			throw new Exception("NLU Credentials not found");
 		}
 		return nluCredentialsMap;

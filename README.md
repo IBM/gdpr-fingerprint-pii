@@ -1,7 +1,7 @@
 
 # Fingerprinting personal data from unstructured documents
 
-* From the time this repository was published, there are some changes in Watson APIs. While we update this documentation, please refer to ProcessChanges branch of this repository with updated code and documentation*
+>> *From the time this repository was published, there are some changes in Watson APIs. While we update this documentation, please refer to ProcessChanges branch of this repository with updated code and documentation*
 
 *Read this in other languages: [한국어](README-ko.md).*
 

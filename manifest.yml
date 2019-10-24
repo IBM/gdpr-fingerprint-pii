@@ -1,14 +1,9 @@
-declared-services:
-    fpii-nlu:
-        label: natural-language-understanding
-        plan: free
+---
 applications:
 - instances: 1
-  domain: mybluemix.net
   buildpack: liberty-for-java
-  path: target/PersonalDataScorer.war
-  services:
-    - fpii-nlu
+  random-route: true
+  name: pii-gdpr
   env:
     Categories: Very_High,High,Medium,Low
     Very_High_Weight: 50
@@ -22,4 +17,4 @@ applications:
     regex_params: DOB,DOJ
     DOB_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.](19|20)\d\d
     DOJ_regex: (0[1-9]|[12][0-9]|3[01])[- /.](Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[- /.]\\d\\d
-    wks_model: 10:b7a9e265-5325-45bd-b1c7-38a063097179
+    wks_model: f300d086-b286-4d3d-b2ac-e622c480f80f

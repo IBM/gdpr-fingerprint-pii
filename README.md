@@ -1,8 +1,6 @@
 
 # Fingerprinting personal data from unstructured documents
 
-*Read this in other languages: [한국어](README-ko.md).*
-
 General Data Protection Regulation (GDPR) will be a new regulation in EU which will come into effect in May 2018. This new regulation applies to those organizations, including those outside EU, which collect and process personal data. It aims to give more control to individuals over usage of their personal data.
 
 Right to forget - Under the new GDPR, organizations around the world must not only protect personal data but also forget personal data on request from individuals.
@@ -94,8 +92,7 @@ Develop, deploy, and scale Java web apps with ease. IBM WebSphere Liberty Profil
 
 ### 1. Prerequisites
 - IBM Cloud account: If you do not have an IBM Cloud account, you can create an account [here](https://cloud.ibm.com/).
-- If you opt to deploy the Liberty application manually then
-    - Cloud Foundry cli should be installed. If not installed, click [here](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) for instructions to install.
+- Cloud Foundry cli should be installed. If not installed, click [here](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html) for instructions to install.
 - Watson Knowledge Studio account: User must have a WKS account. If you do not have
   an account, you can create a free account [here](https://www.ibm.com/account/us-en/signup/register.html?a=IBMWatsonKnowledgeStudio).
   Make a note of the login URL since it is unique to every login id
@@ -184,28 +181,7 @@ Viewer component is the user interface component of the application. User can br
 
 ### 3. Application deployment
 
-#### 3.1 Deploy Java Liberty application to IBM Cloud
-
-You can deploy the Java Liberty application using the `Deploy to IBM Cloud` button or
-using manual steps.
-
-##### 3.1.1 Deploy using "Deploy to IBM Cloud"
-
-Click `Deploy to IBM Cloud` button above to deploy the application to IBM Cloud. You would
-be presented with a toolchain view and asked to "Deploy" the application. Go ahead and
-click `Deploy` button. The application should get deployed. Ensure that the application
-is started and that a NLU service is created and bound to the application just deployed. 
-[![Deploy to IBM Cloud](https://cloud.ibm.com/devops/setup/deploy/button.png)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/IBM/gdpr-fingerprint-pii.git&branch=ProcessChanges)
-
-##### 3.1.2 Deploy using Manual steps
-
-If you have used `Deploy to IBM Cloud` button to deploy the application, then skip this
-section and jump to section "4. Develop Watson Knowledge Studio model". If you have
-not used `Deploy to IBM Cloud` button to deploy the application, then complete the sections
-"3.1.2.1 Create NLU service instance" and "3.1.2.2 Deploy the Java application on IBM Cloud"
-below.
-
-###### 3.1.2.1 Create NLU service instance
+#### 3.1 Create NLU service instance
 
 - Step1: Click [here](https://cloud.ibm.com/catalog/services/natural-language-understanding) to create NLU service
 - Step2: Below screen is displayed
@@ -215,33 +191,40 @@ below.
 ![NLUCreateEdit](./images/NLUCreateEdit.png)
 - Step4: NLU service instance should get created.
 
-###### 3.1.2.2 Deploy the Java application on IBM Cloud
+#### 3.2 Deploy the Java application on IBM Cloud
 
 - Step5: Clone the [repo](https://github.com/IBM/gdpr-fingerprint-pii)
 - Step6: Open command prompt. Login to your IBM Cloud space using the below command.
   Ensure that you login to same space where NLU service instance was created in section
-  "3.1.2.1 Create NLU service instance"
+  "3.1 Create NLU service instance"
 ```
 cf login
 ```
 - Step7: Change directory to the cloned repo's root directory
-- Step8: You will find manifest.yml file at the project's root folder. Verify if the
-NLU service name is same as the one created in Step1 above. If not, update the NLU
-service name to the one created above
+- Step8: You will find manifest.yml file at the project's root folder. Verify if the NLU service name is same as the one created in Step1 above. If not, update the NLU service name to the one created above
 ![ManifestServiceBinding](./images/ManifestServiceBinding.png)
 
-- Step9: Deploy the Java Liberty Application using the below command. Provide a unique application name so that the route is not already taken in IBM Cloud.
+- Step9: On the command prompt, change directory to git repo parent folder.
+- Step10: Change directory to /src/main/webapp within the project
 ```
-cf push <unique-application-name> -p deployables/PersonalDataScorer.war
+cd /src/main/webapp
 ```
-- Step10: On IBM Cloud dashboard, ensure that the application is deployed successfully and is running.
+- Step11: Create a war file using the below command
+```
+jar -cvf ~/PersonalDataScorer.war *
+```
+Step12: 
+```
+ibmcloud cf push <unique-application-name> -p ~/PersonalDataScorer.war
+```
+
+- Step13: On IBM Cloud dashboard, ensure that the application is deployed successfully and is running.
 ![AppRunning](./images/AppRunning.png)
 
-- Step11: On IBM Cloud dashboard, click on the application that was deployed in Step9.
-On the left hand side navigation links click `Connections`. Verify that the NLU service created in Step3 is listed. If not listed, manually create a connection to NLU service. Restage the application, if prompted for.
+- Step14: On IBM Cloud dashboard, click on the application that was deployed in Step12. On the left hand side navigation links click `Connections`. Verify that the NLU service created in Step3 is listed. If not listed, manually create a connection to NLU service. Restage the application, if prompted for.
 ![ServiceBinding](./images/ServiceBinding.png)
 
-- Step11: Ensure that the entries, under `env` in manifest.yml are updated in apps runtime -> user defined variables. If not available, manually update the variables as available in manifest file. Restage the application, if prompted for.
+- Step15: Ensure that environment variables specified in manifest.yml file are updated for the deployed application. On IBM Cloud dashboard, click the deployed application. On the left hand side menu click `Runtime`. Then click `User Defined Variables`. Now verift that all environment variables are updated here.
 
 
 ### 4. Develop Watson Knowledge Studio model

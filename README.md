@@ -224,7 +224,7 @@ ibmcloud cf push <unique-application-name> -p ~/PersonalDataScorer.war
 - Step14: On IBM Cloud dashboard, click on the application that was deployed in Step12. On the left hand side navigation links click `Connections`. Verify that the NLU service created in Step3 is listed. If not listed, manually create a connection to NLU service. Restage the application, if prompted for.
 ![ServiceBinding](./images/ServiceBinding.png)
 
-- Step15: Ensure that environment variables specified in manifest.yml file are updated for the deployed application. On IBM Cloud dashboard, click the deployed application. On the left hand side menu click `Runtime`. Then click `User Defined Variables`. Now verift that all environment variables are updated here.
+- Step15: Ensure that environment variables specified in manifest.yml file are updated for the deployed application. On IBM Cloud dashboard, click the deployed application. On the left hand side menu click `Runtime`. Then click `User Defined Variables`. Now, verify that all environment variables are updated here.
 
 
 ### 4. Develop Watson Knowledge Studio model

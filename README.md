@@ -408,6 +408,7 @@ Login to the WKS.
 The two have differently formatted output for different usage purposes. While the former is used by viewer, in D3 tree view, the latter is more generic and can be invoked by any application for consumption. 
 Viewer Output JSON looks as in the below image
 ![](./images/ForViewer.png)
+
 Generic Output JSON looks as in the below image
 ![](./images/ForConsumer.png)
 

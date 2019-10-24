@@ -1,9 +1,9 @@
 ---
 applications:
 - instances: 1
-  domain: mybluemix.net
   buildpack: liberty-for-java
   random-route: true
+  name: pii-gdpr
   env:
     Categories: Very_High,High,Medium,Low
     Very_High_Weight: 50
